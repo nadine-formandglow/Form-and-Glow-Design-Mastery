@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From&Glow — Design Mastery</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --serif:"Cormorant Garant",serif;
+  --fb:#0e1f14;--fe:#1a4a2e;--f3:#2d6b3a;--f4:#4a7c59;--f5:#7db88a;--f6:#e8f5e9;
+  --gold:#c9a84c;--gold2:#e8c97a;--gold3:#fff3d4;
+  --beige:#f5efe6;--cream:#fff8ed;--warm:#e8ddd0;--warm2:#d4c8b8;
+  --ink:#0e1f14;--ink2:#2a3d2e;--ink3:#5a6e5e;--ink4:#8a9e8e;
+  --rose:#8b2a1e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",system-ui,sans-serif;background:var(--beige);color:var(--ink);max-width:480px;margin:0 auto;line-height:1.6;min-height:100vh}
+
+/* HEADER — editorial masthead */
+#hdr{background:var(--fb);color:white;padding:0;position:sticky;top:0;z-index:200;box-shadow:0 2px 30px rgba(14,31,20,.5)}
+.hdr-inner{padding:14px 20px 12px;display:flex;justify-content:space-between;align-items:flex-start}
+.brand-mark{display:flex;flex-direction:column;gap:2px}
+.brand-from{font-family:"Cormorant Garant",serif;font-size:11px;font-weight:400;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);opacity:.8}
+.brand-name{font-family:"Cormorant Garant",serif;font-size:26px;font-weight:600;line-height:1;letter-spacing:.04em;color:white}
+.brand-glow{color:var(--gold)}
+.brand-sub{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:3px;font-weight:400}
+.day-display{text-align:right}
+.day-num{font-family:"Cormorant Garant",serif;font-size:40px;font-weight:700;color:var(--gold);line-height:1}
+.day-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+/* Gold ember progress bar */
+.prog-wrap{height:3px;background:rgba(255,255,255,.1);position:relative;overflow:visible}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .8s ease;position:relative}
+.prog-glow{position:absolute;right:-1px;top:-3px;width:7px;height:7px;background:var(--gold2);border-radius:50%;box-shadow:0 0 8px 3px rgba(201,168,76,.6)}
+
+/* NAV */
+#nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--fb);border-top:1px solid rgba(201,168,76,.2);display:flex;z-index:200;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:0}
+#nav::-webkit-scrollbar{display:none}
+.nb{flex:0 0 auto;min-width:54px;border:none;background:none;padding:9px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:8.5px;color:rgba(255,255,255,.35);cursor:pointer;font-family:"DM Sans",sans-serif;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:all .2s;border-bottom:2px solid transparent}
+.nb:active{background:rgba(201,168,76,.1)}
+.nb.on{color:var(--gold);border-bottom-color:var(--gold)}
+.nb .ni{font-size:18px;transition:transform .2s}
+.nb.on .ni{transform:scale(1.1)}
+
+/* PAGES */
+.pg{display:none;padding:20px 16px 110px;animation:fadeIn .3s ease}
+.pg.on{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* CARDS */
+.card{background:var(--cream);border-radius:4px;padding:20px;margin-bottom:16px;border:1px solid var(--warm);position:relative}
+.card::before{content:"";position:absolute;top:0;left:20px;right:20px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.3}
+/* Editorial section title */
+.ct{font-family:"Cormorant Garant",serif;font-size:22px;font-weight:600;margin-bottom:4px;color:var(--ink);letter-spacing:.01em}
+.ct-rule{width:32px;height:1px;background:var(--gold);margin-bottom:12px}
+.cs{font-size:12.5px;color:var(--ink3);margin-bottom:14px;line-height:1.6}
+
+/* BUTTONS */
+.btn{background:var(--fe);color:white;border:none;border-radius:3px;padding:12px 20px;font-size:13px;font-weight:600;cursor:pointer;width:100%;font-family:"DM Sans",sans-serif;letter-spacing:.05em;transition:all .2s;position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.15),transparent);pointer-events:none}
+.btn:active{transform:scale(.98);opacity:.9}
+.btn-sm{width:auto;padding:9px 18px;font-size:12px}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink)}
+.btn-ghost{background:transparent;border:1px solid var(--warm2);color:var(--ink3)}
+
+/* INPUTS */
+input[type="text"],input:not([type]),textarea,input[type="number"],select{width:100%;border:1px solid var(--warm);border-radius:3px;padding:10px 12px;font-family:"DM Sans",sans-serif;font-size:13.5px;background:white;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.12)}
+textarea{resize:vertical;min-height:110px}
+
+/* HOME SPECIFIC */
+.streak-pill{background:linear-gradient(135deg,#c45c1a,#e07a2a);color:white;border-radius:3px;padding:10px 16px;display:inline-flex;align-items:center;gap:8px;font-size:19px;font-weight:700;letter-spacing:.02em;box-shadow:0 3px 16px rgba(196,92,26,.3)}
+.focus-box{background:white;border:1px solid var(--warm);border-left:3px solid var(--gold);border-radius:3px;padding:14px 16px;line-height:1.75;font-size:13.5px}
+.phase-pill{display:inline-block;padding:3px 10px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;margin-bottom:6px}
+.pp-int{background:var(--gold3);color:var(--gold)}
+.pp-land{background:#e8f5e9;color:var(--fe)}
+.pp-merge{background:#f0e8f5;color:#4a1e6e}
+.milestone-mark{display:inline-flex;align-items:center;gap:6px;background:var(--fb);color:var(--gold);border-radius:3px;padding:4px 10px;font-size:11px;font-weight:600;letter-spacing:.05em;margin-top:6px}
+
+/* WIN / NOTE ITEMS */
+.win-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--warm);font-size:13px;color:var(--ink2)}
+.win-item:last-child{border-bottom:none}
+.win-mark{width:6px;height:6px;background:var(--gold);border-radius:50%;flex-shrink:0;margin-top:7px}
+
+/* SCHEDULE */
+.sblock{display:flex;gap:14px;margin-bottom:14px;align-items:stretch}
+.stime{font-size:11px;font-weight:600;color:var(--gold);min-width:78px;text-align:right;flex-shrink:0;padding-top:2px;letter-spacing:.03em}
+.sline{width:1px;background:var(--warm2);flex-shrink:0;position:relative}
+.sline::before{content:"";width:7px;height:7px;border:1.5px solid var(--gold);border-radius:50%;background:var(--cream);position:absolute;top:3px;left:-3px}
+.sdetail{flex:1;background:white;border:1px solid var(--warm);border-radius:3px;padding:10px 14px}
+.slabel{font-weight:600;font-size:13.5px;color:var(--ink);margin-bottom:2px}
+.sdesc{font-size:12px;color:var(--ink3)}
+.smins{font-size:10px;font-weight:600;color:var(--gold);margin-top:4px;letter-spacing:.05em;text-transform:uppercase}
+
+/* SUBJECTS */
+.subject{border:1px solid var(--warm);border-radius:3px;padding:14px 16px;margin-bottom:8px;cursor:pointer;transition:all .2s;background:white}
+.subject:hover{border-color:var(--gold);background:var(--cream)}
+.subject.open{border-color:var(--gold);background:var(--cream);border-left:3px solid var(--gold)}
+.sub-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.sub-title{font-weight:600;font-size:14px;color:var(--ink);flex:1;line-height:1.4}
+.sub-tag{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:2px;flex-shrink:0;margin-top:2px}
+.tag-int{background:var(--gold3);color:var(--gold)}
+.tag-land{background:#e8f5e9;color:var(--fe)}
+.tag-both{background:#f0e8f5;color:#4a1e6e}
+.sub-arrow{font-size:11px;color:var(--gold);transition:transform .25s;flex-shrink:0;margin-top:2px}
+.subject.open .sub-arrow{transform:rotate(180deg)}
+.sub-body{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--warm);font-size:13px;line-height:1.75;color:var(--ink2)}
+.subject.open .sub-body{display:block}
+.sub-link{display:inline-block;margin-top:10px;color:var(--fe);font-weight:600;font-size:12.5px;text-decoration:none;border-bottom:1px solid var(--f5)}
+
+/* QUIZ */
+.qcard{background:white;border-radius:3px;padding:16px;margin-bottom:14px;border:1px solid var(--warm)}
+.qopt{width:100%;text-align:left;background:var(--cream);border:1px solid var(--warm);border-radius:3px;padding:10px 14px;font-size:13px;cursor:pointer;margin-bottom:6px;font-family:"DM Sans",sans-serif;color:var(--ink2);transition:all .15s}
+.qopt:hover{border-color:var(--gold);background:var(--gold3)}
+.qopt.correct{background:#e8f5e9;border-color:var(--fe);color:var(--fe);font-weight:600}
+.qopt.wrong{background:#fdf0ee;border-color:var(--rose);color:var(--rose)}
+.qexp{font-size:12px;color:var(--ink3);margin-top:10px;padding:10px 12px;background:var(--beige);border-radius:3px;border-left:2px solid var(--gold);display:none;line-height:1.65}
+.qexp.show{display:block}
+
+/* GLOSSARY */
+.gitem{border-bottom:1px solid var(--warm);padding:11px 0;cursor:pointer}
+.gitem:last-child{border-bottom:none}
+.gterm{font-weight:600;font-size:13.5px;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
+.gdef{font-size:12.5px;color:var(--ink2);margin-top:8px;line-height:1.65;display:none;padding-left:12px;border-left:2px solid var(--gold)}
+.gdef.show{display:block}
+
+/* CHECKLIST */
+.citem{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--warm);font-size:13px;cursor:pointer}
+.citem:last-child{border-bottom:none}
+.cbox{width:20px;height:20px;border:1.5px solid var(--warm2);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .15s}
+.citem.done .cbox{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.citem.done span{text-decoration:line-through;color:var(--ink4)}
+
+/* SCORE BUTTONS */
+.sbtn{width:32px;height:32px;border:1px solid var(--warm);border-radius:2px;background:white;font-size:11.5px;font-weight:600;cursor:pointer;color:var(--ink3);transition:all .15s;font-family:"DM Sans",sans-serif}
+.sbtn:hover{border-color:var(--gold);color:var(--gold)}
+.sbtn.sel{background:var(--gold);border-color:var(--gold);color:var(--ink);box-shadow:0 2px 8px rgba(201,168,76,.3)}
+
+/* RUBRIC */
+.ritem{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--warm)}
+.ritem:last-child{border-bottom:none;margin-bottom:0}
+.rname{font-weight:600;font-size:13.5px;margin-bottom:2px;color:var(--ink)}
+.rdesc{font-size:11.5px;color:var(--ink3);margin-bottom:8px}
+.rtotal-box{background:var(--fb);border-radius:3px;padding:14px 16px;margin:14px 0;display:flex;align-items:center;justify-content:space-between}
+.centry{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--warm);font-size:13px}
+.centry:last-child{border-bottom:none}
+
+/* FILE TABS */
+.ftab{padding:5px 12px;border-radius:2px;border:1px solid var(--warm);background:white;color:var(--ink3);font-size:11.5px;font-weight:600;cursor:pointer;transition:all .2s;font-family:"DM Sans",sans-serif;letter-spacing:.04em}
+.ftab.active{background:var(--fb);border-color:var(--fb);color:var(--gold)}
+
+/* UPLOAD ZONE */
+.uzone{border:1px dashed var(--warm2);border-radius:3px;padding:20px;text-align:center;margin-bottom:14px;position:relative;transition:all .2s;cursor:pointer;background:white}
+.uzone:hover{border-color:var(--gold);background:var(--gold3)}
+
+/* NOTES */
+.snote{background:white;border-radius:3px;padding:12px 14px;margin-top:10px;font-size:12.5px;color:var(--ink2);line-height:1.65;border-left:2px solid var(--gold);animation:fadeIn .3s ease}
+.ndlbl{font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em}
+
+/* STATS */
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.sbox{background:white;border-radius:3px;padding:14px;border:1px solid var(--warm);position:relative;overflow:hidden}
+.sbox::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);opacity:.3}
+.snum{font-family:"Cormorant Garant",serif;font-size:32px;font-weight:700;line-height:1.1}
+.slbl{font-size:9.5px;color:var(--ink3);font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-top:2px}
+.sbar-w{background:var(--warm);border-radius:0;height:3px;overflow:hidden;margin-top:8px}
+.sbar{height:100%;transition:width .8s ease}
+
+/* STYLE TABLE */
+.stw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.st{width:100%;border-collapse:collapse;font-size:11px}
+.st th{background:var(--fb);color:var(--gold);padding:8px 8px;text-align:left;font-weight:600;white-space:nowrap;letter-spacing:.06em;font-size:10px;text-transform:uppercase}
+.st td{padding:8px 8px;border-bottom:1px solid var(--warm);vertical-align:top;line-height:1.4;color:var(--ink2)}
+.st tr:nth-child(even) td{background:var(--cream)}
+.st tr:hover td{background:var(--gold3)}
+.stn{font-weight:700;color:var(--ink);white-space:nowrap}
+
+/* QUOTE */
+.qquote{background:var(--fb);border-radius:3px;padding:24px 22px;margin-bottom:12px;position:relative;overflow:hidden}
+.qquote::before{content:"\201C";font-family:"Cormorant Garant",serif;font-size:120px;color:var(--gold);opacity:.12;position:absolute;top:-10px;left:10px;line-height:1}
+.qqtext{font-family:"Cormorant Garant",serif;font-size:19px;font-style:italic;line-height:1.65;color:white;margin-bottom:12px;position:relative;z-index:1}
+.qqauth{font-size:11px;opacity:.55;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold)}
+.qqrule{width:24px;height:1px;background:var(--gold);margin-bottom:8px;opacity:.6}
+
+/* REVIEW */
+.rvf{margin-bottom:16px}
+.rvlbl{font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.rvsaved{background:white;border-radius:3px;padding:14px;margin-top:10px;border-left:2px solid var(--gold);font-size:12.5px;animation:fadeIn .3s ease}
+.rvwlbl{font-size:10px;font-weight:600;color:var(--gold);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
+
+/* MEASUREMENTS */
+.mg{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--warm)}
+.mg:last-child{border-bottom:none}
+.mgt{font-weight:600;font-size:13.5px;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.mr{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--warm);font-size:12.5px}
+.mr:last-child{border-bottom:none}
+.mn{color:var(--ink2);flex:1}
+.mnote{font-size:11px;color:var(--ink4);margin-top:1px}
+.mv{font-weight:700;color:var(--fe);font-size:13px;white-space:nowrap;margin-left:14px}
+
+/* PALETTE */
+.pswatch{width:100%;height:54px;border-radius:3px;cursor:pointer;border:1px solid var(--warm);transition:transform .15s}
+.phex{font-size:10.5px;font-weight:600;color:var(--ink3);text-align:center;margin-top:4px;font-family:monospace}
+.psaved-strip{display:flex;border-radius:3px;overflow:hidden;margin-bottom:6px}
+.pstrip{height:34px}
+
+/* INSPO */
+.ipin{position:relative;border-radius:3px;overflow:hidden;aspect-ratio:1;cursor:pointer;background:var(--warm)}
+.ipin img{width:100%;height:100%;object-fit:cover;display:block}
+.iptag{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(14,31,20,.75));padding:16px 8px 7px;font-size:9.5px;font-weight:700;color:white;text-transform:uppercase;letter-spacing:.08em}
+.ipdel{position:absolute;top:6px;right:6px;background:rgba(14,31,20,.65);color:white;border:none;width:24px;height:24px;border-radius:50%;font-size:11px;cursor:pointer;display:none;align-items:center;justify-content:center}
+.ipin:hover .ipdel{display:flex}
+
+/* BRIEF */
+.bff{margin-bottom:14px}
+.bfl{font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.bfsaved{background:white;border-radius:3px;padding:14px;margin-top:10px;border-left:2px solid var(--gold);font-size:12.5px}
+.bftitle{font-family:"Cormorant Garant",serif;font-size:17px;font-weight:600;margin-bottom:3px;color:var(--ink)}
+.bfdate{font-size:10px;color:var(--ink4);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+
+/* BOOK LIST */
+.bi{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--warm)}
+.bi:last-child{border-bottom:none}
+.bicon{font-size:26px;flex-shrink:0}
+.btitle{font-weight:600;font-size:13px;color:var(--ink);margin-bottom:1px}
+.bauth{font-size:11.5px;color:var(--gold);font-style:italic}
+.bdesc{font-size:12px;color:var(--ink3);margin-top:3px;line-height:1.5}
+
+/* TIMER */
+#ttime{transition:color .3s}
+#ttime.urgent{color:var(--rose)!important;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* FLASHCARD */
+.fcard{background:var(--fb);border-radius:3px;padding:26px 20px;color:white;min-height:170px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;position:relative;overflow:hidden}
+.fcard::before{content:"";position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:var(--gold);opacity:.06}
+
+/* PHASE BANDS */
+.phase-band{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:3px;margin-bottom:8px;border:1px solid var(--warm)}
+.pb-int{background:var(--gold3);border-color:rgba(201,168,76,.3)}
+.pb-land{background:#e8f5e9;border-color:rgba(26,74,46,.2)}
+.pb-merge{background:#f0e8f5;border-color:rgba(74,30,110,.2)}
+
+/* PHASE TIMELINE */
+.timeline-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.td-gold{background:var(--gold)}
+.td-green{background:var(--fe)}
+.td-purple{background:#7b3fa0}
+
+/* ANKI CHART BARS */
+.abar-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD HEADER -->
+<div id="hdr">
+  <div class="hdr-inner">
+    <div class="brand-mark">
+      <div class="brand-from">From</div>
+      <div class="brand-name">From<span class="brand-glow">&amp;Glow</span></div>
+      <div class="brand-sub">Design Mastery — 180 Days</div>
+    </div>
+    <div class="day-display">
+      <div class="day-num" id="hdr-d">1</div>
+      <div class="day-label">of 180</div>
+    </div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-fill" id="prog" style="width:.5%">
+      <div class="prog-glow"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <button class="nb on" onclick="gotoTab('home',this)"><span class="ni">✦</span><span class="nl">Home</span></button>
+  <button class="nb" onclick="gotoTab('plan',this)"><span class="ni">📅</span><span class="nl">Plan</span></button>
+  <button class="nb" onclick="gotoTab('learn',this)"><span class="ni">📚</span><span class="nl">Learn</span></button>
+  <button class="nb" onclick="gotoTab('quiz',this)"><span class="ni">🧠</span><span class="nl">Quiz</span></button>
+  <button class="nb" onclick="gotoTab('inspo',this)"><span class="ni">🖼️</span><span class="nl">Inspo</span></button>
+  <button class="nb" onclick="gotoTab('ref',this)"><span class="ni">📐</span><span class="nl">Reference</span></button>
+  <button class="nb" onclick="gotoTab('stats',this)"><span class="ni">◈</span><span class="nl">Stats</span></button>
+  <button class="nb" onclick="gotoTab('quotes',this)"><span class="ni">❝</span><span class="nl">Wisdom</span></button>
+  <button class="nb" onclick="gotoTab('projects',this)"><span class="ni">✏️</span><span class="nl">Critique</span></button>
+  <button class="nb" onclick="gotoTab('notes',this)"><span class="ni">📝</span><span class="nl">Notes</span></button>
+</nav>
+
+<!-- ===== HOME ===== -->
+<div class="pg on" id="pg-home">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:12px">
+      <div>
+        <div style="font-size:10px;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Today</div>
+        <div style="font-size:13.5px;color:var(--ink2)">Day <span id="current-day">1</span> of 180</div>
+        <div id="streak-badge" style="margin-top:10px"><span>🔥</span><span id="streak-num">0</span><span style="font-size:13px;font-weight:500"> day streak</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+        <button onclick="markDayDone()" class="btn btn-sm">✓ Mark Done</button>
+        <button onclick="resetProgress()" style="font-size:10px;color:var(--ink4);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.04em">↺ Reset</button>
+      </div>
+    </div>
+    <div style="margin-bottom:18px">
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;font-weight:600">Today's Focus</div>
+      <div class="focus-box" id="today-focus">Loading...</div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;font-weight:600">Log a Win</div>
+      <div style="display:flex;gap:8px">
+        <input id="win-input" placeholder="What went well today?" onkeydown="if(event.key==='Enter')addWin()">
+        <button onclick="addWin()" class="btn btn-sm" style="flex-shrink:0">Log</button>
+      </div>
+      <div id="wins-list" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Study Timer</div><div class="ct-rule"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+      <button onclick="startTimer(105)" class="btn btn-sm" style="flex:1">105 min Deep Study</button>
+      <button onclick="startTimer(90)" class="btn btn-gold btn-sm" style="flex:1">90 min Project</button>
+      <button onclick="startTimer(25)" class="btn btn-sm" style="flex:1;background:#5a3e28">25 min Pomodoro</button>
+    </div>
+    <div id="timer-display" style="display:none;text-align:center;padding:18px 0">
+      <div id="ttime" style="font-family:'Cormorant Garant',serif;font-size:60px;font-weight:700;color:var(--gold);line-height:1">00:00</div>
+      <div id="tlabel" style="font-size:12px;color:var(--ink3);margin:8px 0 16px;letter-spacing:.06em;text-transform:uppercase"></div>
+      <div style="display:flex;gap:8px;justify-content:center">
+        <button onclick="pauseTimer()" id="tpause" class="btn btn-sm btn-gold">⏸ Pause</button>
+        <button onclick="stopTimer()" class="btn btn-sm" style="background:var(--rose)">✕ Stop</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Anki Tracker</div><div class="ct-rule"></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <input type="number" id="anki-input" placeholder="0" min="0" max="999" style="width:80px;text-align:center;font-size:22px;font-weight:700;padding:8px;font-family:'Cormorant Garant',serif">
+      <button onclick="logAnki()" class="btn btn-sm" style="flex:1">Log Cards</button>
+    </div>
+    <div id="anki-hist" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Weekly Checklist</div><div class="ct-rule"></div>
+    <div id="wkchecklist"></div>
+    <button onclick="resetChecklist()" class="btn btn-ghost btn-sm" style="margin-top:12px;width:auto">Reset Week</button>
+  </div>
+</div>
+
+<!-- ===== PLAN ===== -->
+<div class="pg" id="pg-plan">
+  <div class="card"><div class="ct">Daily Study Schedule</div><div class="ct-rule"></div><div id="dsched"></div></div>
+  <div class="card">
+    <div class="ct">From&Glow 180-Day Blueprint</div><div class="ct-rule"></div>
+    <div class="cs">Your personal plan — written by you, built around your vision.</div>
+    <div id="fg-master-plan"></div>
+  </div>
+  <div class="card" style="border:1px solid rgba(201,168,76,.3)">
+    <div class="ct">Original Phase Structure</div><div class="ct-rule"></div>
+    <div class="cs">Detailed weekly breakdown of subjects and milestones.</div>
+    <div id="dphases"></div>
+  </div>
+  <div class="card"><div class="ct">Essential Reading</div><div class="ct-rule"></div><div class="cs">The books every From&Glow designer must own.</div><div id="booklist"></div></div>
+  <div class="card"><div class="ct">Recommended Courses</div><div class="ct-rule"></div><div class="cs">The best courses to complement your 180-day study.</div><div id="courselist"></div></div>
+  <div class="card"><div class="ct">YouTube Channels</div><div class="ct-rule"></div><div class="cs">Free study material for your daily sessions.</div><div id="ytlist"></div></div>
+</div>
+
+<!-- ===== LEARN ===== -->
+<div class="pg" id="pg-learn">
+  <div class="card">
+    <div class="ct">Study Subjects</div><div class="ct-rule"></div>
+    <div class="cs">All 40 subjects across both disciplines. Tagged by Interior, Landscape, or Both.</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="sub-filters">
+      <button class="ftab active" onclick="filterSubs('all',this)">All 40</button>
+      <button class="ftab" onclick="filterSubs('INT',this)">Interior</button>
+      <button class="ftab" onclick="filterSubs('LAND',this)">Landscape</button>
+      <button class="ftab" onclick="filterSubs('BOTH',this)">Both</button>
+    </div>
+    <div id="sublist"></div>
+  </div>
+  <div class="card"><div class="ct">Key Terms Glossary</div><div class="ct-rule"></div><div class="cs">60 essential terms across both disciplines.</div><div id="glosslist"></div></div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div class="pg" id="pg-quiz">
+  <div class="card">
+    <div class="ct">Study Flashcards</div><div class="ct-rule"></div>
+    <div class="cs">54 cards across every subject. Filter by category, then tap any card to reveal the answer.</div>
+    <div id="fcard-cats" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px"></div>
+    <div id="flashcard"></div>
+  </div>
+  <div class="card"><div class="ct">Knowledge Quiz</div><div class="ct-rule"></div><div class="cs">20 questions spanning both disciplines.</div><div id="quizbox"></div></div>
+  <div class="card" id="qrescard" style="display:none"><div class="ct">Your Results</div><div class="ct-rule"></div><div id="qresults"></div></div>
+</div>
+
+<!-- ===== INSPO ===== -->
+<div class="pg" id="pg-inspo">
+  <div class="card">
+    <div class="ct">Inspiration Board</div><div class="ct-rule"></div>
+    <div class="cs">Pin images from the web or upload your own. Tag by space type or discipline.</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="inspo-tabs">
+      <button class="ftab active" onclick="filterInspo('all',this)">All</button>
+      <button class="ftab" onclick="filterInspo('Interior',this)">Interior</button>
+      <button class="ftab" onclick="filterInspo('Garden',this)">Garden</button>
+      <button class="ftab" onclick="filterInspo('Luxury',this)">Luxury</button>
+      <button class="ftab" onclick="filterInspo('Materials',this)">Materials</button>
+      <button class="ftab" onclick="filterInspo('Lighting',this)">Lighting</button>
+      <button class="ftab" onclick="filterInspo('Planting',this)">Planting</button>
+      <button class="ftab" onclick="filterInspo('Colour',this)">Colour</button>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:14px;flex-direction:column">
+      <input id="inspo-url" placeholder="Paste an image URL to pin..." onkeydown="if(event.key==='Enter')pinUrl()">
+      <div style="display:flex;gap:8px">
+        <select id="inspo-tag" style="flex:1"><option value="Interior">Interior</option><option value="Garden">Garden</option><option value="Luxury">Luxury</option><option value="Materials">Materials</option><option value="Lighting">Lighting</option><option value="Planting">Planting</option><option value="Colour">Colour</option></select>
+        <button onclick="pinUrl()" class="btn btn-sm">Pin</button>
+      </div>
+      <div class="uzone" style="padding:14px;position:relative"><input type="file" id="inspo-file" accept="image/*" multiple onchange="uploadInspo()" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%"><div style="font-size:13px;color:var(--ink3)">📷 Upload from camera roll</div></div>
+    </div>
+    <div id="inspo-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
+    <div id="inspo-empty" style="text-align:center;padding:28px;color:var(--ink4);font-size:13px;display:none;font-style:italic">Your board awaits. Start pinning.</div>
+  </div>
+  <div class="card">
+    <div class="ct">Client Brief</div><div class="ct-rule"></div>
+    <div class="cs">Practice the From&Glow client discovery process. Save a brief for every project.</div>
+    <div style="margin-bottom:12px"><div class="bfl">Project Name</div><input id="brief-name" placeholder="e.g. Sandton Villa — Full Property Transformation"></div>
+    <div id="brief-date" style="font-size:10px;color:var(--gold);font-weight:600;margin-bottom:14px;letter-spacing:.06em;text-transform:uppercase"></div>
+    <div id="brief-fields"></div>
+    <button onclick="saveBrief()" class="btn" style="margin-top:16px">Save Brief</button>
+    <div id="saved-briefs" style="margin-top:14px"></div>
+  </div>
+</div>
+
+<!-- ===== REFERENCE ===== -->
+<div class="pg" id="pg-ref">
+  <div class="card">
+    <div class="ct">Colour Palette Builder</div><div class="ct-rule"></div>
+    <div class="cs">Build and save palettes for interior and exterior spaces. Uses the 60-30-10 rule.</div>
+    <div style="margin-bottom:14px">
+      <div style="font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">60 — 30 — 10 Palette</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:start">
+        <div><input type="color" id="c60" value="#f5efe6" class="pswatch"><div class="phex" id="h60">#f5efe6</div><div style="font-size:9.5px;text-align:center;color:var(--ink4);margin-top:3px;text-transform:uppercase;letter-spacing:.04em">Dominant</div></div>
+        <div><input type="color" id="c30" value="#1a4a2e" class="pswatch"><div class="phex" id="h30">#1a4a2e</div><div style="font-size:9.5px;text-align:center;color:var(--ink4);margin-top:3px;text-transform:uppercase;letter-spacing:.04em">Secondary</div></div>
+        <div><input type="color" id="c10" value="#c9a84c" class="pswatch"><div class="phex" id="h10">#c9a84c</div><div style="font-size:9.5px;text-align:center;color:var(--ink4);margin-top:3px;text-transform:uppercase;letter-spacing:.04em">Accent</div></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:16px"><input id="pal-name" placeholder="Name this palette..." style="flex:1" onkeydown="if(event.key==='Enter')savePal()"><button onclick="savePal()" class="btn btn-sm btn-gold" style="flex-shrink:0">Save</button></div>
+    <div id="saved-pals"></div>
+  </div>
+  <div class="card"><div class="ct">Measurements Cheat Sheet</div><div class="ct-rule"></div><div class="cs">Key dimensions for interior and landscape spaces. South African standards.</div><div id="measlist"></div></div>
+  <div class="card"><div class="ct">Style Comparison</div><div class="ct-rule"></div><div class="cs">Interior and garden styles side-by-side. Swipe to scroll.</div><div class="stw"><table class="st" id="styletable"></table></div></div>
+
+  <!-- LANDSCAPE CHEAT SHEETS -->
+  <div class="card"><div class="ct">🌿 SA Plant Quick-Reference</div><div class="ct-rule"></div><div class="cs">Indigenous and proven plants by climate zone. Your go-to reference for every SA project.</div><div id="sa-plants"></div></div>
+  <div class="card"><div class="ct">🌍 SA Soil & Climate Zone Guide</div><div class="ct-rule"></div><div class="cs">What to plant where — Highveld, Cape and KZN conditions at a glance.</div><div id="sa-climate"></div></div>
+  <div class="card"><div class="ct">🧱 SA Hard Landscaping Materials</div><div class="ct-rule"></div><div class="cs">Key materials used in SA luxury outdoor spaces — with pros, cons and cost tier.</div><div id="sa-hardscape"></div></div>
+  <div class="card"><div class="ct">💧 Pool & Water Feature Standards</div><div class="ct-rule"></div><div class="cs">Key design standards and dimensions for pools, rills, ponds and water features in SA.</div><div id="sa-water"></div></div>
+  <div class="card"><div class="ct">🌳 Planting Layer Reference</div><div class="ct-rule"></div><div class="cs">From canopy to ground layer — structure, examples and SA plants for each layer.</div><div id="sa-layers"></div></div>
+
+  <!-- BUSINESS CHEAT SHEETS -->
+  <div class="card"><div class="ct">💰 SA Luxury Market Pricing Guide</div><div class="ct-rule"></div><div class="cs">Fee structures, pricing models and typical rates for the SA luxury residential design market.</div><div id="biz-pricing"></div></div>
+  <div class="card"><div class="ct">📅 Project Timeline Template</div><div class="ct-rule"></div><div class="cs">Typical phases and timeframes for a full From&Glow interior + landscape project.</div><div id="biz-timeline"></div></div>
+  <div class="card"><div class="ct">📋 Client Proposal Checklist</div><div class="ct-rule"></div><div class="cs">Everything a professional From&Glow proposal must include. Tick every box before sending.</div><div id="biz-proposal"></div></div>
+  <div class="card"><div class="ct">📝 Contract Essentials</div><div class="ct-rule"></div><div class="cs">What every SA design contract must include to protect you and your client.</div><div id="biz-contract"></div></div>
+  <div class="card"><div class="ct">🏛️ SA Professional Bodies & Registrations</div><div class="ct-rule"></div><div class="cs">The bodies, registrations and certifications that give From&Glow professional credibility in SA.</div><div id="biz-bodies"></div></div>
+  <div class="card"><div class="ct">📱 Marketing & Client Acquisition</div><div class="ct-rule"></div><div class="cs">How to attract luxury residential clients in SA — channels, strategies and From&Glow positioning.</div><div id="biz-marketing"></div></div>
+</div>
+
+<!-- ===== STATS ===== -->
+<div class="pg" id="pg-stats">
+  <div class="card"><div class="ct">Progress</div><div class="ct-rule"></div><div class="cs">Your 180-day From&Glow journey.</div><div class="sgrid" id="statgrid"></div><div id="statchart"></div></div>
+  <div class="card">
+    <div class="ct">Weekly Review</div><div class="ct-rule"></div>
+    <div class="cs">Every Sunday — reflect on both disciplines and set your focus for next week.</div>
+    <div id="rv-date" style="font-size:10px;color:var(--gold);font-weight:600;margin-bottom:14px;letter-spacing:.08em;text-transform:uppercase"></div>
+    <div class="rvf"><div class="rvlbl">What did I learn this week?</div><textarea id="rv-learned" placeholder="Key concepts, breakthroughs, connections between interior and landscape..." style="min-height:70px"></textarea></div>
+    <div class="rvf"><div class="rvlbl">What was hard or unclear?</div><textarea id="rv-hard" placeholder="What needs more study..." style="min-height:60px"></textarea></div>
+    <div class="rvf"><div class="rvlbl">My focus for next week</div><textarea id="rv-focus" placeholder="What I will prioritise next week..." style="min-height:60px"></textarea></div>
+    <div class="rvf"><div class="rvlbl">Score my week (1–10)</div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap" id="rv-score-btns">
+        <button class="sbtn" onclick="setRvScore(1,this)">1</button><button class="sbtn" onclick="setRvScore(2,this)">2</button><button class="sbtn" onclick="setRvScore(3,this)">3</button><button class="sbtn" onclick="setRvScore(4,this)">4</button><button class="sbtn" onclick="setRvScore(5,this)">5</button><button class="sbtn" onclick="setRvScore(6,this)">6</button><button class="sbtn" onclick="setRvScore(7,this)">7</button><button class="sbtn" onclick="setRvScore(8,this)">8</button><button class="sbtn" onclick="setRvScore(9,this)">9</button><button class="sbtn" onclick="setRvScore(10,this)">10</button>
+      </div>
+    </div>
+    <button onclick="saveReview()" class="btn" style="margin-top:8px">Save Weekly Review</button>
+    <div id="saved-reviews" style="margin-top:16px"></div>
+  </div>
+</div>
+
+<!-- ===== QUOTES ===== -->
+<div class="pg" id="pg-quotes">
+  <div class="card"><div class="ct">Design Wisdom</div><div class="ct-rule"></div><div class="cs">Words from the masters of both disciplines — and for From&Glow.</div><div id="quotebox"></div><div style="display:flex;gap:8px;margin-top:14px"><button onclick="prevQ()" class="btn btn-ghost btn-sm" style="flex:1">← Prev</button><button onclick="nextQ()" class="btn btn-sm" style="flex:1">Next →</button></div></div>
+  <div class="card"><div class="ct">All Quotes</div><div class="ct-rule"></div><div id="allquotes"></div></div>
+</div>
+
+<!-- ===== PROJECTS ===== -->
+<div class="pg" id="pg-projects">
+  <div class="card">
+    <div class="ct">Self-Critique Rubric</div><div class="ct-rule"></div>
+    <div id="proj-date" style="font-size:10px;color:var(--gold);font-weight:600;margin-bottom:12px;letter-spacing:.08em;text-transform:uppercase"></div>
+    <input id="rubric-proj" placeholder="Project name..." style="margin-bottom:14px">
+    <div id="rubric-items"></div>
+    <div class="rtotal-box"><span style="font-weight:600;font-size:13px;color:rgba(255,255,255,.7);letter-spacing:.05em;text-transform:uppercase">Total Score</span><span id="rtotal" style="font-family:'Cormorant Garant',serif;font-size:28px;font-weight:700;color:var(--gold)">0 / 80</span></div>
+    <button onclick="saveRubric()" class="btn">Save Critique</button>
+  </div>
+  <div class="card" id="crit-hist-card" style="display:none"><div class="ct">Past Critiques</div><div class="ct-rule"></div><div id="crit-list"></div></div>
+</div>
+
+<!-- ===== NOTES ===== -->
+<div class="pg" id="pg-notes">
+  <div class="card">
+    <div class="ct">Study Files</div><div class="ct-rule"></div>
+    <div class="cs">Upload sketches, mood boards, plant lists, photos and PDFs.</div>
+    <div id="file-tabs" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px"></div>
+    <div class="uzone"><input type="file" id="file-input" accept="image/*,application/pdf" multiple onchange="uploadFiles()"><div style="font-size:28px;margin-bottom:8px">⬆</div><div style="font-size:13px;color:var(--ink3)">Tap to upload files</div></div>
+    <div id="file-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"></div>
+  </div>
+  <div class="card">
+    <div class="ct">Daily Notes</div><div class="ct-rule"></div>
+    <div id="notes-date" style="font-size:10px;color:var(--gold);font-weight:600;margin-bottom:12px;letter-spacing:.08em;text-transform:uppercase"></div>
+    <textarea id="note-text" placeholder="Reflections, insights, connections between interior and landscape..."></textarea>
+    <button onclick="saveNote()" class="btn" style="margin-top:12px">Save Note</button>
+    <div id="notes-hist" style="margin-top:14px"></div>
+  </div>
+  <div class="card" style="border:1px solid rgba(201,168,76,.4)">
+    <div class="ct">Backup & Restore</div><div class="ct-rule"></div>
+    <div class="cs" style="margin-bottom:16px">Export all your data as a single backup file. Restore at any time on any device.</div>
+    <button onclick="exportBackup()" class="btn btn-gold" style="margin-bottom:8px">⬇ Export Backup File</button>
+    <div style="font-size:10.5px;color:var(--ink4);text-align:center;margin-bottom:16px;letter-spacing:.04em">Save to iCloud, Google Drive or your phone</div>
+    <div class="uzone" style="padding:16px;position:relative"><input type="file" id="restore-input" accept=".json" onchange="importBackup(event)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%"><div style="font-size:13px;color:var(--ink3)">📁 Tap to restore from backup</div></div>
+    <div id="restore-status" style="margin-top:10px;font-size:12.5px;text-align:center;display:none"></div>
+    <div style="background:var(--gold3);border-radius:3px;padding:10px 14px;margin-top:14px;font-size:12px;color:var(--ink2);line-height:1.6;border-left:2px solid var(--gold)"><strong>Tip:</strong> Export every Sunday after your Weekly Review. Your journey is irreplaceable.</div>
+  </div>
+</div>
+<script>
+// OPEN EXTERNAL LINKS (no confirmation dialog)
+function openLink(url){window.open(url,'_blank','noopener,noreferrer');}
+
+// STATE — all keys prefixed fg_ so no collision with other apps
+var D=localStorage,
+cd=parseInt(D.getItem('fg_day')||'1'),
+streak=parseInt(D.getItem('fg_streak')||'0'),
+wins=JSON.parse(D.getItem('fg_wins')||'[]'),
+notes=JSON.parse(D.getItem('fg_notes')||'{}'),
+crits=JSON.parse(D.getItem('fg_crits')||'[]'),
+sfiles=JSON.parse(D.getItem('fg_sfiles')||'{}'),
+ankiLog=JSON.parse(D.getItem('fg_anki')||'{}'),
+ckState=JSON.parse(D.getItem('fg_ck')||'{}'),
+inspo=JSON.parse(D.getItem('fg_inspo')||'[]'),
+briefs=JSON.parse(D.getItem('fg_briefs')||'[]'),
+pals=JSON.parse(D.getItem('fg_pals')||'[]'),
+reviews=JSON.parse(D.getItem('fg_reviews')||'[]'),
+rscores={},afs='fg1',ifilter='all',subfilter='all',rvScore=0,
+ti=null,tr=0,tp=false,
+qi=parseInt(D.getItem('fg_qi')||String(Math.floor(Math.random()*35))),fi=0;
+
+function sv(k,v){D.setItem(k,JSON.stringify(v));}
+function el(id){return document.getElementById(id);}
+function sh(id,h){var e=el(id);if(e)e.innerHTML=h;}
+function tod(){var n=new Date(),ds=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],ms=['January','February','March','April','May','June','July','August','September','October','November','December'];return ds[n.getDay()]+', '+n.getDate()+' '+ms[n.getMonth()]+' '+n.getFullYear();}
+
+// ============================================================
+// DATA
+// ============================================================
+var PHASES=[
+  {n:1,r:'Days 1–60',t:'Interior Design Mastery',cls:'pb-int',dot:'td-gold',
+   items:['Wk 1–2: Elements, Principles, Colour Theory — the foundation of all design','Wk 3–4: 10 Core Styles — from Japandi to Art Deco, know them deeply','Wk 5–6: Space Planning, Scale, Lighting Design, Materials & Finishes','Wk 7–8: Client Process, Mood Boards, Budgeting, Portfolio basics'],
+   milestone:'Complete concept package for a luxury residential interior — brief, floor plan, mood board, material spec'},
+  {n:2,r:'Days 61–120',t:'Landscape Design Mastery',cls:'pb-land',dot:'td-green',
+   items:['Wk 9–10: Design Principles, Garden Styles, Site Analysis & Soil Science','Wk 11–12: Plant Knowledge — trees, shrubs, perennials, grasses (100+ plants)','Wk 13–14: Planting Design, Water Features, Lighting, Sustainable Design','Wk 15–16: Hard Landscaping, Technical Drawing, Client Briefs, SA-specific plants'],
+   milestone:'Complete concept package for a luxury residential garden — brief, scaled plan, planting scheme, material palette'},
+  {n:3,r:'Days 121–180',t:'From&Glow Integration — The Full Property',cls:'pb-merge',dot:'td-purple',
+   items:['Wk 17–18: Interior-Exterior Flow — the transition from inside to outside','Wk 19–20: Two full From&Glow projects — complete property transformations','Wk 21–22: Business of Design — SA market, pricing, contracts, SADA, client acquisition','Wk 23–24: Portfolio refinement, brand launch, From&Glow identity'],
+   milestone:'3 full property portfolios (interior + exterior as one) + From&Glow brand launch ready'}
+];
+
+// ============================================================
+// NADINE'S FROM&GLOW MASTER PLAN
+// ============================================================
+var FG_PLAN={
+  title:'From & Glow Design Mastery — 180 Day Plan',
+  subtitle:'Interior Design + Landscape Design + From & Glow Business Launch',
+  purpose:'Personal study tool only',
+  howToUse:[
+    'Phase 1 = Deep study mode — immerse yourself in theory and visual language',
+    'Phase 2 = Project mode — create real work, build your portfolio',
+    'Phase 3 = Business + brand mode while continuing to design',
+    'Review and adjust every 30 days — your plan evolves with you'
+  ],
+  phases:[
+    {
+      n:1, days:'Days 1 – 60', title:'Foundations', weight:'40%',
+      cls:'pb-int', dot:'td-gold', weightColor:'var(--gold)',
+      focus:'Core theory and visual language of both Interior Design and Landscape Design.',
+      themes:[
+        'Elements & Principles — Interior + Landscape',
+        'Colour, Light & Materials',
+        'Space Planning & Site Planning',
+        'Design Styles & Visual Language',
+        'Sustainability & Wellness Principles'
+      ],
+      breakdown:[
+        {period:'Days 1–30',focus:'Interior Design fundamentals + daily Anki'},
+        {period:'Days 31–45',focus:'Landscape Design fundamentals + site analysis'},
+        {period:'Days 46–60',focus:'Integration weeks — connecting both disciplines'}
+      ],
+      milestones:[
+        'Complete Mental Models + Style Identification mastery',
+        'Finish core reading for both disciplines',
+        'Create 15 strong mood boards (one per style studied)',
+        'Pass all knowledge checks'
+      ]
+    },
+    {
+      n:2, days:'Days 61 – 120', title:'Integration & Application', weight:'35%',
+      cls:'pb-land', dot:'td-green', weightColor:'var(--fe)',
+      focus:'Move from theory into applied design through realistic projects combining interior and landscape work.',
+      themes:[
+        'Residential and small commercial projects — interior + outdoor spaces',
+        'Client process, briefs and presentations',
+        'Detailing, specifications and construction knowledge',
+        'Budgeting and value engineering',
+        'Self-critique and design decision making'
+      ],
+      breakdown:[
+        {period:'Monthly real brief',focus:'One brief set by someone else — not self-initiated'},
+        {period:'Weekly review',focus:'Every Sunday: what did I learn, what needs revisiting'},
+        {period:'Project critiques',focus:'Self-critique rubric after every completed project'}
+      ],
+      milestones:[
+        'Complete 3–4 substantial combined projects (interior + landscape)',
+        'Strong specification and documentation skills',
+        'Confident client presentation style'
+      ]
+    },
+    {
+      n:3, days:'Days 121 – 180', title:'Business & Brand Launch', weight:'25%',
+      cls:'pb-merge', dot:'td-purple', weightColor:'#7b3fa0',
+      focus:'Prepare From & Glow to operate professionally while continuing to develop design skills.',
+      themes:[
+        'Personal branding and positioning',
+        'Portfolio development — interior + landscape as one story',
+        'Business systems — proposals, contracts, pricing, project management',
+        'Marketing and client acquisition in the SA luxury market',
+        'Soft launch preparation'
+      ],
+      breakdown:[
+        {period:'Wks 17–20',focus:'Continue designing while building business foundations'},
+        {period:'Wks 21–22',focus:'Portfolio editing — 6–8 strongest projects'},
+        {period:'Wks 23–24',focus:'Brand launch readiness — soft launch preparation'}
+      ],
+      milestones:[
+        'Professional portfolio — 6–8 strong combined projects',
+        'Complete business foundation — pricing, contracts, processes',
+        'Clear personal brand direction for From & Glow',
+        'Ready for soft launch'
+      ]
+    }
+  ]
+};
+
+function getPhaseForDay(day){
+  if(day<=60)return {n:1,label:'PHASE 1 — FOUNDATIONS',sub:'Deep study mode',color:'var(--gold)',bg:'rgba(201,168,76,.12)',border:'rgba(201,168,76,.3)'};
+  if(day<=120)return {n:2,label:'PHASE 2 — INTEGRATION & APPLICATION',sub:'Project mode',color:'var(--fe)',bg:'rgba(26,74,46,.1)',border:'rgba(26,74,46,.25)'};
+  return {n:3,label:'PHASE 3 — BUSINESS & BRAND LAUNCH',sub:'Business + brand mode',color:'#7b3fa0',bg:'rgba(123,63,160,.1)',border:'rgba(123,63,160,.25)'};
+}
+
+function renderMasterPlan(){
+  var c=el('fg-master-plan');if(!c)return;
+  var p=FG_PLAN;
+  c.innerHTML=
+    // Purpose strip
+    '<div style="background:var(--fb);border-radius:3px;padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px">' +
+      '<span style="color:var(--gold);font-size:16px">✦</span>' +
+      '<div><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)">Purpose</div>' +
+      '<div style="font-size:12px;color:rgba(255,255,255,.7);margin-top:1px">'+p.purpose+'</div></div>' +
+    '</div>' +
+
+    // How to use
+    '<div style="margin-bottom:18px">' +
+      '<div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px">How to Use This Plan</div>' +
+      p.howToUse.map(function(h,i){
+        var labels=['Phase 1','Phase 2','Phase 3','Every 30 Days'];
+        var colors=['var(--gold)','var(--fe)','#7b3fa0','var(--ink3)'];
+        return '<div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--warm)">' +
+          '<span style="font-size:9px;font-weight:700;color:'+colors[i]+';text-transform:uppercase;letter-spacing:.06em;min-width:64px;padding-top:2px">'+labels[i]+'</span>' +
+          '<span style="font-size:12.5px;color:var(--ink2);flex:1;line-height:1.5">'+h+'</span></div>';
+      }).join('') +
+    '</div>' +
+
+    // Three phases
+    FG_PLAN.phases.map(function(ph){
+      return '<div class="phase-band '+ph.cls+'" style="margin-bottom:14px;display:block;padding:16px">' +
+
+        // Phase header
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">' +
+          '<div style="display:flex;align-items:center;gap:8px">' +
+            '<div class="timeline-dot '+ph.dot+'"></div>' +
+            '<div>' +
+              '<div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.6">Phase '+ph.n+' — '+ph.days+'</div>' +
+              '<div style="font-family:var(--serif,serif);font-size:19px;font-weight:700;color:var(--ink);margin-top:1px">'+ph.title+'</div>' +
+            '</div>' +
+          '</div>' +
+          '<div style="background:'+ph.weightColor+';color:white;border-radius:2px;padding:4px 10px;font-size:11px;font-weight:700;letter-spacing:.06em;flex-shrink:0">'+ph.weight+'</div>' +
+        '</div>' +
+
+        // Main focus
+        '<div style="font-size:12.5px;color:var(--ink2);line-height:1.6;margin-bottom:12px;font-style:italic;border-left:2px solid '+ph.weightColor+';padding-left:10px">'+ph.focus+'</div>' +
+
+        // Key themes
+        '<div style="margin-bottom:12px">' +
+          '<div style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:7px">Key Themes</div>' +
+          '<ul style="padding-left:14px">'+ph.themes.map(function(t){return '<li style="font-size:12px;color:var(--ink2);margin-bottom:4px;line-height:1.45">'+t+'</li>';}).join('')+'</ul>' +
+        '</div>' +
+
+        // Breakdown
+        '<div style="margin-bottom:12px">' +
+          '<div style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:7px">Focus Breakdown</div>' +
+          ph.breakdown.map(function(b){
+            return '<div style="display:flex;gap:10px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.06)">' +
+              '<span style="font-size:10px;font-weight:700;color:'+ph.weightColor+';min-width:80px;flex-shrink:0;padding-top:1px;text-transform:uppercase;letter-spacing:.04em">'+b.period+'</span>' +
+              '<span style="font-size:12px;color:var(--ink2);flex:1;line-height:1.45">'+b.focus+'</span>' +
+            '</div>';
+          }).join('') +
+        '</div>' +
+
+        // Milestones
+        '<div style="background:rgba(14,31,20,.07);border-radius:2px;padding:10px 12px">' +
+          '<div style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--fe);margin-bottom:7px">Milestones</div>' +
+          ph.milestones.map(function(m){
+            return '<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:5px">' +
+              '<span style="color:var(--gold);font-size:11px;flex-shrink:0;margin-top:1px">✦</span>' +
+              '<span style="font-size:12px;color:var(--ink2);line-height:1.45">'+m+'</span></div>';
+          }).join('') +
+        '</div>' +
+
+      '</div>';
+    }).join('') +
+
+    // 30-day review reminder
+    '<div style="background:var(--gold3);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:12px 14px;text-align:center">' +
+      '<div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">30-Day Review</div>' +
+      '<div style="font-size:12.5px;color:var(--ink2);line-height:1.5">Review and adjust this plan every 30 days.<br>Your learning evolves. Your plan should too.</div>' +
+    '</div>';
+}
+
+var SCHED=[
+  {t:'9:15 – 11:00',l:'Deep Study',d:'Theory, books, subject deep-dives',m:105},
+  {t:'11:15 – 13:00',l:'Practice & Application',d:'Anki, style analysis, mood boards, sketches',m:105},
+  {t:'14:00 – 15:30',l:'Projects & Review',d:'Design work, self-critique, portfolio building',m:90}
+];
+
+var SUBJECTS=[
+  // INTERIOR (INT)
+  {t:'Elements & Principles of Design',tag:'INT',c:'7 Elements: Line, Shape, Form, Space, Texture, Value, Colour.<br>7 Principles: Balance, Rhythm, Emphasis, Proportion, Scale, Harmony, Contrast.<br><br><em>Study Focus:</em> Apply each element and principle to real luxury interiors you admire.',r:'https://foyr.com/learn/interior-design-basic-concepts-and-principles/'},
+  {t:'Colour Theory for Interiors',tag:'INT',c:'Hue, Saturation, Value, Temperature. Colour harmony systems. Psychological impact of colour. The 60-30-10 rule.<br><br><em>Study Focus:</em> Create palettes for different moods. Practice with From&Glow\'s own palette.',r:'https://www.canva.com/colors/color-wheel/'},
+  {t:'10 Core Interior Styles',tag:'INT',c:'Scandinavian, Japandi, Industrial, Mid-Century Modern, Art Deco, Maximalist, Biophilic, Bohemian, Contemporary, Coastal.<br><br><em>Study Focus:</em> Know materials, colours, furniture and mood of each. Create a style reference board.',r:'https://www.decorilla.com/online-decorating/interior-design-styles-101/'},
+  {t:'Space Planning & Scale',tag:'INT',c:'Traffic flow, zoning, furniture arrangement, scale and proportion, negative space, golden ratio.<br><br><em>Study Focus:</em> Practice drawing scaled floor plans and analysing layouts.',r:'https://foyr.com/learn/definitive-guide-to-space-planning-in-interior-design'},
+  {t:'Lighting Design — Interior',tag:'INT',c:'Ambient, Task, Accent lighting. Layered lighting principles. Natural vs artificial light. Luxury lighting specification.<br><br><em>Study Focus:</em> Design a complete layered lighting plan for a luxury living room.',r:'https://foyr.com/learn/guide-to-layering-in-interior-design/'},
+  {t:'Materials & Finishes',tag:'INT',c:'Hard vs soft materials, texture hierarchy, marble, timber, brass, stone, velvet, linen. Material combinations for luxury residential.<br><br><em>Study Focus:</em> Build a materials library of 40+ finishes you can specify confidently.',r:'https://foyr.com/learn/how-to-choose-the-right-materials-for-interior-design/'},
+  {t:'Furniture & Layout',tag:'INT',c:'Furniture types, scale, ergonomics, arrangement rules, conversation areas, focal points. Sourcing in South Africa.<br><br><em>Study Focus:</em> Practice furniture layouts for different room types and sizes.',r:'https://www.decorilla.com/online-decorating/placing-furniture/'},
+  {t:'Kitchen & Bathroom Design',tag:'INT',c:'Work triangle, workflow, storage, fixture specification, luxury finishes, wet area detailing.<br><br><em>Study Focus:</em> Design one luxury kitchen and one luxury bathroom from brief to spec.',r:'https://foyr.com/learn/kitchen-triangle/'},
+  {t:'Mood Boards & Concept Development',tag:'INT',c:'Visual storytelling, creating luxury mood boards, concept development, client presentation techniques.<br><br><em>Study Focus:</em> Practice making mood boards that communicate luxury and personality simultaneously.',r:'https://foyr.com/learn/how-to-create-mood-boards-for-interior-design/'},
+  {t:'Sustainable & Wellness Design',tag:'INT',c:'Low-VOC products, biophilic interiors, healthy homes, WELL principles, passive cooling in SA climate.<br><br><em>Study Focus:</em> Understand how luxury and sustainability coexist beautifully.',r:'https://foyr.com/learn/sustainable-and-holistic-interior-design'},
+  {t:'Client Process & Briefs — Interior',tag:'INT',c:'Discovery meetings, client questionnaires, understanding lifestyle and personality, concept presentation, revisions.<br><br><em>Study Focus:</em> Practise the full From&Glow discovery process with a mock luxury client.',r:'https://foyr.com/learn/interior-design-client-questionnaire'},
+  {t:'Specifications & Documentation',tag:'INT',c:'Writing specifications, schedules, drawings, documentation for contractors and suppliers.<br><br><em>Study Focus:</em> Learn to produce a complete interior specification package.',r:'https://foyr.com/learn/client-process-document-for-interior-designers'},
+  {t:'History of Interior Design',tag:'INT',c:'Major movements from Art Nouveau to contemporary. How history influences current luxury design. SA design heritage.<br><br><em>Study Focus:</em> Understand where current luxury styles come from.',r:'https://foyr.com/learn/types-of-interior-design-styles/'},
+  {t:'Digital Tools — Interior',tag:'INT',c:'SketchUp, Photoshop, Canva, AutoCAD basics. Rendering and presentation tools used in luxury design practice.<br><br><em>Study Focus:</em> Get proficient in at least two digital tools.',r:'https://foyr.com/learn/essential-tools-for-interior-designers-use/'},
+  {t:'Portfolio & Personal Branding',tag:'INT',c:'Documenting work, photography, creating a luxury design portfolio, building an online presence, From&Glow brand identity.<br><br><em>Study Focus:</em> Begin building your portfolio from day one.',r:'https://foyr.com/learn/how-to-create-successful-interior-design-portfolio/'},
+
+  // LANDSCAPE (LAND)
+  {t:'Principles of Landscape Design',tag:'LAND',c:'Unity, Balance, Proportion, Rhythm, Emphasis, Simplicity. Applied to outdoor spaces and the SA landscape.<br><br><em>Study Focus:</em> Apply each principle to real gardens. Visit great SA gardens whenever possible.',r:'https://www.gardendesign.com/landscape-design/rules.html'},
+  {t:'Garden Styles & History',tag:'LAND',c:'Formal, Naturalistic, Japanese, Cottage, Contemporary, Mediterranean, Tropical, Biophilic, Wildlife, Productive.<br><br><em>Study Focus:</em> Know the signature plants, materials, structure and mood of each style.',r:'https://www.gardendesign.com/landscape-design/'},
+  {t:'Plant Knowledge — Trees & Shrubs',tag:'LAND',c:'Indigenous SA trees (e.g. Wild Olive, Fever Tree, Acacia, Fynbos shrubs), exotic structural plants, scale, evergreen vs deciduous, seasonal interest.<br><br><em>Study Focus:</em> Build a library of 60+ trees and shrubs including key SA indigenous species.',r:'https://www.plantzafrica.com/'},
+  {t:'Plant Knowledge — Perennials & Grasses',tag:'LAND',c:'SA indigenous perennials, ornamental grasses, groundcovers, bulbs. Seasonal interest, naturalistic planting, Fynbos-inspired schemes.<br><br><em>Study Focus:</em> Know 40+ perennials and grasses — conditions, height, season.',r:'https://www.plantzafrica.com/'},
+  {t:'Soil Science & SA Climate Zones',tag:'LAND',c:'SA soil types, pH, drainage, Highveld vs Cape vs KZN conditions. Drought tolerance, frost considerations, watering systems.<br><br><em>Study Focus:</em> Know how to plant for Joburg, Cape Town, and KZN conditions.',r:'https://extension.psu.edu/principles-of-garden-design'},
+  {t:'Site Analysis & Survey',tag:'LAND',c:'Aspect, microclimate, soil, existing plants, drainage, views, boundaries. Reading a property before designing.<br><br><em>Study Focus:</em> Practise a full site analysis on a real SA property.',r:'https://www.gardendesign.com/landscape-design/'},
+  {t:'Hard Landscaping',tag:'LAND',c:'Paving, walls, pools, braai areas, paths, pergolas, decking. SA-specific materials — Travertine, granite, timber, Corobrik.<br><br><em>Study Focus:</em> Know 20+ hard landscaping materials appropriate for SA luxury residential.',r:'https://www.gardendesign.com/hardscaping/'},
+  {t:'Planting Design Principles',tag:'LAND',c:'Layered planting, matrix approach, seasonal succession, naturalistic drifts, structure plants vs infill plants.<br><br><em>Study Focus:</em> Design a planting scheme for a luxury SA garden with year-round interest.',r:'https://www.gardendesign.com/plants/'},
+  {t:'Water Features & Swimming Pools',tag:'LAND',c:'Formal pools, naturalistic ponds, rills, infinity edges, pool design in SA context, water-wise solutions.<br><br><em>Study Focus:</em> Design both a formal water feature and a luxury swimming pool area.',r:'https://www.gardendesign.com/water-features/'},
+  {t:'Garden Lighting Design',tag:'LAND',c:'Uplighting trees, pathway lighting, water feature lighting, outdoor entertaining atmosphere, safety and ambience balance.<br><br><em>Study Focus:</em> Create a complete outdoor lighting plan for a luxury residential garden.',r:'https://www.gardendesign.com/landscape-lighting/'},
+  {t:'Sustainable & Water-Wise Design',tag:'LAND',c:'SA water scarcity, Fynbos-inspired low-water planting, grey water systems, indigenous planting, rain gardens.<br><br><em>Study Focus:</em> Design a garden that is beautiful AND appropriate for SA water challenges.',r:'https://www.plantzafrica.com/'},
+  {t:'Technical Drawing & Plant Schedules',tag:'LAND',c:'Scaled landscape plans, sections, elevations, plant schedules with Latin names, quantities and suppliers.<br><br><em>Study Focus:</em> Produce a complete set of landscape design documents for a real project.',r:'https://www.gardendesign.com/how-to/'},
+  {t:'Client Process & Briefs — Landscape',tag:'LAND',c:'Landscape discovery consultation, brief taking, site survey, concept presentation for outdoor spaces.<br><br><em>Study Focus:</em> Practise the From&Glow outdoor discovery process with a mock SA client.',r:'https://www.sgd.org.uk/advice-for-clients/'},
+
+  // BOTH
+  {t:'Colour Theory — Interior to Exterior Flow',tag:'BOTH',c:'How to create a seamless colour journey from inside to outside. Material continuity, palette extension outdoors.<br><br><em>Study Focus:</em> Take a single palette and show how it evolves from the interior through to the garden.',r:'https://www.gardendesign.com/color/'},
+  {t:'Biophilic Design — Inside & Out',tag:'BOTH',c:'Living walls, natural light, plants indoors and outdoors, organic materials, the boundary between inside and outside.<br><br><em>Study Focus:</em> Design a home where the biophilic thread runs continuously from entry to garden.',r:'https://foyr.com/learn/ways-to-incorporate-biophilic-interior-design-into-your-home'},
+  {t:'Luxury Materials — Interior & Exterior',tag:'BOTH',c:'How materials transition from inside to outside — stone that moves from kitchen floor to terrace, timber inside and as decking, brass inside and as garden feature.<br><br><em>Study Focus:</em> Create a material palette that works across the full property.',r:'https://foyr.com/learn/how-to-choose-the-right-materials-for-interior-design/'},
+  {t:'Lighting Design — Full Property',tag:'BOTH',c:'How interior and exterior lighting work together. The From&Glow philosophy: every space glows, inside and out, day and night.<br><br><em>Study Focus:</em> Design a complete property lighting concept — every room and every outdoor zone.',r:'https://foyr.com/learn/guide-to-layering-in-interior-design/'},
+  {t:'The From&Glow Client Experience',tag:'BOTH',c:'The end-to-end client journey: discovery, concept, design development, specification, implementation oversight — for interior AND exterior as one unified project.<br><br><em>Study Focus:</em> Map the complete From&Glow client process from first contact to handover.',r:'https://www.sgd.org.uk/advice-for-clients/'},
+  {t:'Business of Design in South Africa',tag:'BOTH',c:'Fees and pricing in the SA luxury market, contracts, project management, SADA, SACLAP, professional indemnity, client acquisition, social media in SA.<br><br><em>Study Focus:</em> Build your From&Glow business model, fee structure and client proposal template.',r:'https://www.sada.co.za/'},
+  {t:'Portfolio — The From&Glow Way',tag:'BOTH',c:'How to document and present full property transformations. Before/after storytelling, photography basics, Instagram, Houzz SA, building a luxury brand online.<br><br><em>Study Focus:</em> Build your portfolio to show the complete interior-exterior transformation story.',r:'https://www.sada.co.za/'},
+  {t:'Indoor-Outdoor Living — SA Context',tag:'BOTH',c:'South Africa\'s climate makes indoor-outdoor living a way of life. Seamless transitions, stacking doors, covered braai areas, pool rooms, outdoor kitchens.<br><br><em>Study Focus:</em> Design a complete indoor-outdoor living zone for a Joburg or Cape Town property.',r:'https://www.gardendesign.com/outdoor-rooms/'}
+];
+
+var GLOSSARY=[
+  {t:'Aspect',d:'The direction a space or garden faces. Determines light, warmth, and plant choice. In SA, north-facing gets the most sun.'},
+  {t:'Ambient Lighting',d:'The base layer of light in any space — general illumination providing overall brightness. The foundation of every lighting design.'},
+  {t:'Biophilic Design',d:'Design that creates connections to nature — plants, natural light, organic materials, water — in both interior and exterior spaces.'},
+  {t:'Borrowed Landscape',d:'Using views beyond the property boundary as part of the design — a distant kopje, tree canopy, or skyline that extends the visual space.'},
+  {t:'Braai Area',d:'In SA luxury residential design, the outdoor braai (barbecue) area is a primary entertainment feature. Designing it well is essential.'},
+  {t:'Canopy Layer',d:'The highest layer in a planting scheme — large trees that provide structure, shade, and scale to a garden.'},
+  {t:'Concept Board',d:'A collection of images, materials, colours and textures that establishes the visual direction and mood for a design project.'},
+  {t:'Drifts',d:'Repeating groups of the same plant woven through a border to create rhythm and naturalistic flow.'},
+  {t:'Ergonomics',d:'The science of designing spaces and furniture for human comfort and efficient movement. Critical in kitchen, bathroom and workspace design.'},
+  {t:'Evergreen Structure',d:'Plants that hold their leaves year-round, providing the backbone and form of a garden through all seasons.'},
+  {t:'Fynbos',d:'South Africa\'s unique Cape flora — one of the world\'s six plant kingdoms. Increasingly used in contemporary SA garden design for its beauty and water-wisdom.'},
+  {t:'Focal Point',d:'The first element the eye is drawn to in a room or garden. Every great space has one strong focal point that anchors the design.'},
+  {t:'Form Follows Function',d:'The foundational design principle that the shape of a space or object should be determined by its intended use.'},
+  {t:'Golden Ratio',d:'A mathematical proportion (~1:1.618) found throughout nature that creates inherently pleasing relationships between design elements.'},
+  {t:'Hard Landscaping',d:'The non-living elements of a garden — paving, walls, steps, water features, pergolas, pools.'},
+  {t:'Highveld',d:'The high-altitude plateau of Gauteng and surrounding areas. Frost in winter, afternoon thunderstorms in summer — a specific climate zone for planting.'},
+  {t:'Hygge',d:'The Scandinavian concept of cosiness, comfort and convivial warmth. Deeply relevant to how From&Glow designs interior spaces.'},
+  {t:'Indigenous Planting',d:'Using plants native to South Africa — ecologically appropriate, water-wise, and increasingly favoured by luxury clients who want authenticity.'},
+  {t:'Indoor-Outdoor Flow',d:'The seamless visual and physical connection between interior and exterior spaces. The defining characteristic of great SA residential design.'},
+  {t:'Japandi',d:'A hybrid design style blending Japanese wabi-sabi and Scandinavian hygge — increasingly popular in SA luxury residential interiors.'},
+  {t:'Layered Lighting',d:'Using ambient, task and accent lighting together to create depth, flexibility and atmosphere in any space.'},
+  {t:'Layered Planting',d:'Designing with plants at multiple heights — canopy, understorey, shrub, perennial and ground layers — mimicking natural ecosystems.'},
+  {t:'Material Palette',d:'The curated selection of finishes and materials for a project — both interior and exterior. In From&Glow, this palette flows across the whole property.'},
+  {t:'Microclimate',d:'Local variations in temperature, wind and moisture within a garden — a sheltered north-facing wall, a frost pocket, a shaded corner under eaves.'},
+  {t:'Mood Board',d:'A visual collage of images, colours and materials that communicates the feeling and direction of a design concept before anything is built.'},
+  {t:'Naturalistic Planting',d:'A design approach that mimics natural plant communities — ecologically rich, low-maintenance, and increasingly favoured in SA luxury landscapes.'},
+  {t:'Negative Space',d:'Empty or open areas in a room or garden that allow the design to breathe and prevent visual overload.'},
+  {t:'pH',d:'The acidity or alkalinity of soil on a scale of 1–14. Determines which plants will thrive. SA soils vary enormously by region.'},
+  {t:'Rill',d:'A narrow, linear water channel — a formal landscape feature adding movement, sound and axial emphasis to a garden.'},
+  {t:'SADA',d:'South African Institute of Interior Designers — the professional body for interior designers in South Africa.'},
+  {t:'Scale',d:'The size of an object relative to the human body or surrounding space. Getting scale right makes every space feel balanced and intentional.'},
+  {t:'Seasonal Succession',d:'Designing so different plants provide interest across all four seasons — essential for gardens that look beautiful year-round.'},
+  {t:'Softscape',d:'The living elements of a garden — all the plants, lawn, and growing material.'},
+  {t:'SuDS',d:'Sustainable Urban Drainage Systems — managing rainwater naturally through rain gardens, permeable paving and planting. Increasingly relevant in SA.'},
+  {t:'Texture Hierarchy',d:'Layering materials from rough/heavy to smooth/fine across a space to create depth, richness and visual interest.'},
+  {t:'The Glow',d:'From&Glow\'s signature — the moment a property is transformed from an empty shell into a living, luminous home. Every design decision serves this moment.'},
+  {t:'Traffic Flow',d:'The natural movement patterns of people through a space. Great design keeps these clear, intuitive and beautiful.'},
+  {t:'Visual Weight',d:'How heavy an element appears visually. Darker, larger, more textured objects carry more weight. Balance is achieved by distributing visual weight.'},
+  {t:'Wabi-Sabi',d:'The Japanese aesthetic of finding beauty in imperfection and transience — mossy stone, weathered timber, the changing of seasons.'},
+  {t:'Zoning',d:'Dividing a large open space — interior or exterior — into distinct functional areas using furniture, planting, lighting or changes in flooring.'}
+];
+
+var QS=[
+  {q:'What is the 60-30-10 rule in interior design?',o:['60% furniture, 30% decor, 10% plants','60% dominant colour, 30% secondary colour, 10% accent colour','60% hard materials, 30% soft, 10% feature','60% walls, 30% floor, 10% ceiling'],c:1,e:'60% is your dominant colour (walls, large surfaces), 30% is secondary (large furniture), and 10% is accent (cushions, art, accessories, gold details).'},
+  {q:'What makes a space feel "biophilic"?',o:['Having a large television','Natural light, plants, organic materials and connection to nature','Using only neutral colours','Removing all clutter'],c:1,e:'Biophilic design creates connections to nature through plants, natural light, organic textures, water and nature-inspired patterns — in both interior and exterior spaces.'},
+  {q:'In South Africa, which direction should a garden face to receive the most sun?',o:['South-facing','East-facing','North-facing','West-facing'],c:2,e:'In the Southern Hemisphere, north-facing aspects receive the most sun. This is the opposite of the UK. Critical for both garden design and interior sunlight planning in SA.'},
+  {q:'What is the purpose of layered lighting?',o:['To save electricity','To use ambient, task and accent lighting together for depth and flexibility','To light only the ceiling','To avoid shadows'],c:1,e:'Layered lighting uses three types together: ambient (general), task (functional), and accent (decorative/dramatic) — creating depth, flexibility and atmosphere.'},
+  {q:'What does "indoor-outdoor flow" mean in SA residential design?',o:['Having indoor plants','A seamless visual and physical connection between interior and exterior spaces','Using the same flooring everywhere','Opening windows for ventilation'],c:1,e:'SA\'s climate makes indoor-outdoor living central to residential design. Seamless transitions through stacking doors, covered areas and continuous material palettes define great SA homes.'},
+  {q:'What is Fynbos?',o:['A South African cooking technique','A type of gravel used in landscaping','South Africa\'s unique Cape flora — one of the world\'s six plant kingdoms','A style of thatched roof'],c:2,e:'Fynbos is the extraordinarily diverse Cape flora of South Africa — one of the world\'s six floristic kingdoms. It is beautiful, water-wise and increasingly used in contemporary SA landscape design.'},
+  {q:'What does SADA stand for in South Africa?',o:['South African Design Awards','South African Institute of Interior Designers','South African Development Association','South African Design Academy'],c:1,e:'SADA is the South African Institute of Interior Designers — the professional body for interior designers in South Africa. Membership gives professional credibility.'},
+  {q:'What is the Golden Ratio?',o:['1:1.414','1:1.618','1:2.0','1:1.5'],c:1,e:'The Golden Ratio is approximately 1:1.618 — a mathematical proportion found throughout nature that creates inherently pleasing relationships between design elements.'},
+  {q:'In layered planting, what is the "ground layer"?',o:['The topsoil','Low plants — groundcovers, bulbs and mosses that cover soil between taller plants','The lawn','The roots of large trees'],c:1,e:'The ground layer consists of low plants — groundcovers, bulbs, mosses — that cover soil, suppress weeds and create density at the base of a planting scheme.'},
+  {q:'What is a "rill" in landscape design?',o:['A type of raised bed','A narrow linear water channel','A style of formal hedge','A sunken seating area'],c:1,e:'A rill is a narrow, linear water channel — a formal design feature that adds movement, sound and axial emphasis to a garden. Beautiful in luxury outdoor spaces.'},
+  {q:'What is the "60-30-10 planting" equivalent in garden design?',o:['60% lawn, 30% paving, 10% plants','60% structural plants, 30% seasonal interest plants, 10% specimen focal points','60% indigenous, 30% exotic, 10% edibles','60% trees, 30% shrubs, 10% flowers'],c:1,e:'In planting design, the framework is: 60% structural/foliage backbone plants, 30% seasonal interest and mid-layer plants, 10% specimen focal plants and statement pieces.'},
+  {q:'What is "wabi-sabi" and how does it apply to design?',o:['A Japanese cleaning method','The beauty found in imperfection, transience and natural materials','A type of minimalist furniture','A colour palette system'],c:1,e:'Wabi-sabi is the Japanese aesthetic of finding beauty in imperfection and transience — mossy stone, weathered timber, hand-thrown ceramics. Deeply influential in Japandi, naturalistic and biophilic design.'},
+  {q:'What is the "Highveld" and why does it matter for SA landscape design?',o:['A luxury property area of Joburg','The high-altitude plateau of Gauteng — frost in winter, storms in summer','A type of SA indigenous plant','A mountain range in the Western Cape'],c:1,e:'The Highveld is the high-altitude plateau of Gauteng and surrounding areas. It has cold, frosty winters and hot, stormy summers — a specific climate zone requiring specific plant selection.'},
+  {q:'What is the From&Glow philosophy in one sentence?',o:['The most expensive materials make the best homes','Transforming an empty property shell into a living, glowing home that reflects its owner','Following current interior design trends','Making small spaces feel larger'],c:1,e:'From&Glow takes an empty carcass — a property acquisition — and transforms it into a living, luminous home that reflects each homeowner\'s unique personality and lifestyle. Inside and out.'},
+  {q:'What material connects interior and exterior in high-end SA design?',o:['Plastic','Sandstone, granite, Travertine and natural timber — materials that move seamlessly between interior and exterior spaces','Only tile','Only concrete'],c:1,e:'Natural stone (Travertine, granite, sandstone) and timber are the great connective materials in SA luxury design — used on kitchen floors that continue to terraces, creating seamless indoor-outdoor flow.'},
+  {q:'What is "seasonal succession" in planting design?',o:['Replacing all plants each season','Designing so different plants provide interest across all four seasons','Planting the same species every year','Rotating edible crops'],c:1,e:'Seasonal succession means designing so that as one plant finishes its display, another begins — ensuring the garden has strong interest from the first spring bulbs to the last winter seed heads.'},
+  {q:'What is "negative space" in design?',o:['A room painted in dark colours','Empty or open areas that allow the design to breathe and prevent visual overload','Space below furniture','Areas with no natural light'],c:1,e:'Negative space is the intentional empty areas in a room or garden. Used well, it prevents clutter, allows the eye to rest, and makes feature elements feel more powerful.'},
+  {q:'What should drive every From&Glow design decision?',o:['The latest international trends','The homeowner\'s unique personality, lifestyle and the way they want to feel in their home','The designer\'s personal preference','Resale value of the property'],c:1,e:'From&Glow designs are driven by the individual homeowner — their personality, preferences, lifestyle and the emotional experience they want every day in their home. Inside and out.'},
+  {q:'What is "form follows function"?',o:['Decoration is more important than use','The shape of a space or object should be determined primarily by its intended purpose','Furniture must always be symmetrical','Colour should always match the architecture'],c:1,e:'Coined by architect Louis Sullivan: the shape and design of a space or object should be driven by its intended function. Beauty and function are not in conflict — in great design they are the same thing.'},
+  {q:'What makes South Africa\'s outdoor living context unique for a design business?',o:['It rains too much to design outdoors','The climate, culture of outdoor entertaining, braai tradition and indigenous flora make indoor-outdoor design more central than almost anywhere else in the world','SA clients prefer indoor-only design','Outdoor design is not valued in SA'],c:1,e:'SA\'s climate, deep culture of outdoor entertaining, the braai tradition, and extraordinary indigenous flora make the indoor-outdoor transition one of the most important and valued aspects of residential design in the country. From&Glow is perfectly positioned.'}
+];
+
+var FCARDS_ALL=[
+  // ── INTERIOR STYLES (tag: IS)
+  {s:'Japandi Interior',tag:'IS',cl:'Warm neutrals and natural timber • Wabi-sabi imperfection • Minimal clutter • Handcrafted objects • Calm, intentional spaces',k:'zen, hygge, organic, minimal, linen, quiet luxury'},
+  {s:'Art Deco Interior',tag:'IS',cl:'Bold geometric patterns • Gold and black palette • Velvet and marble • Mirrored surfaces • Glamorous and dramatic',k:'1920s, symmetry, glamour, lacquer, opulence'},
+  {s:'Biophilic Interior',tag:'IS',cl:'Living walls • Natural light flooded • Organic shapes • Stone, timber and water • Plants as primary design elements',k:'nature connection, wellbeing, organic, green, alive'},
+  {s:'Contemporary Luxury Interior',tag:'IS',cl:'Clean lines and neutral palette • Statement lighting • Luxurious textures • Art as focal point • Sophisticated restraint',k:'refined, timeless, quality, spatial, bespoke'},
+  {s:'Maximalist Interior',tag:'IS',cl:'Layered patterns and textures • Rich jewel tones • Curated collections • Bold wallpaper • Abundant personality',k:'more is more, eclectic, opulent, gallery, expressive'},
+  {s:'Mid-Century Modern Interior',tag:'IS',cl:'Organic curves and tapered legs • Walnut and teak • Bold accent colours • 1950s–70s optimism • Form and function united',k:'Eames, retro-chic, walnut, tulip, confident'},
+  {s:'Scandinavian Interior',tag:'IS',cl:'White walls and pale wood • Functional simplicity • Cosy textiles and candlelight • Muted natural palette • Hygge at its core',k:'hygge, birch, linen, minimal, functional, light'},
+  {s:'Industrial Interior',tag:'IS',cl:'Exposed brick and concrete • Raw steel and dark metals • Open ceilings and ducts • Edison bulbs • Urban warehouse feel',k:'raw, factory, urban, steel, concrete, edgy'},
+  {s:'Bohemian Interior',tag:'IS',cl:'Global textiles and layered rugs • Macramé and rattan • Warm earthy tones • Plants everywhere • Free-spirited abundance',k:'boho, artisan, global, tapestry, earthy, layered'},
+  {s:'Coastal Interior',tag:'IS',cl:'Blues, whites and sandy tones • Natural fibres and driftwood • Linen and jute • Relaxed and airy • Light-filled rooms',k:'beach, ocean, casual, light, natural, fresh'},
+
+  // ── GARDEN STYLES (tag: GS)
+  {s:'Formal Garden Style',tag:'GS',cl:'Symmetry and axial layout • Clipped hedges and topiary • Gravel paths and parterres • Restrained colour palette • Classical statuary',k:'geometry, control, yew, box, axis, grandeur'},
+  {s:'Naturalistic / New Perennial',tag:'GS',cl:'Ornamental grasses drifting in wind • Perennial layers and drifts • Seed heads left for winter interest • Prairie-inspired ecology',k:'Oudolf, drifts, ecology, movement, wild beauty'},
+  {s:'Contemporary SA Garden',tag:'GS',cl:'Clean lines and architectural plants • Infinity pool with Travertine surround • Corten steel • Indigenous accent planting • Seamless indoor-outdoor flow',k:'modern, SA luxury, clean, pool, indigenous, seamless'},
+  {s:'Mediterranean Garden',tag:'GS',cl:'Terracotta pots and gravel • Lavender, rosemary and olive trees • Sun-baked warmth • Silver-leaved drought-tolerant plants • Relaxed outdoor living',k:'drought, warmth, terracotta, olive, easy living, fragrant'},
+  {s:'Japanese Garden',tag:'GS',cl:'Raked gravel representing water • Moss, stone and carefully pruned trees • Borrowed landscape • Wabi-sabi philosophy • Profound stillness',k:'zen, karesansui, bonsai, stillness, contemplation, moss'},
+  {s:'Cottage Garden',tag:'GS',cl:'Romantic abundance of colour • Rambling roses and clematis • Self-seeding annuals • Informal paths • Gertrude Jekyll inspiration',k:'foxgloves, hollyhocks, abundance, soft edges, romantic'},
+  {s:'Tropical Garden',tag:'GS',cl:'Large bold architectural leaves • Vivid colours and lush density • Banana, canna and tree fern • High humidity feel • Jungle-inspired drama',k:'canna, tree fern, exotic, bold, jungle, KZN coast'},
+  {s:'Wildlife / Ecological Garden',tag:'GS',cl:'Native and indigenous plants • Long meadow grass • Log piles and habitat features • Pond for wildlife • No chemicals, full ecology',k:'rewilding, habitat, pollinators, native, biodiversity'},
+  {s:'Productive / Kitchen Garden',tag:'GS',cl:'Raised timber beds • Vegetables, herbs and cut flowers • Espalier fruit trees • Potager formal layout • Functional and beautiful',k:'potager, edible, harvest, raised beds, walled garden'},
+  {s:'Roof Terrace / Urban Garden',tag:'GS',cl:'Lightweight containers and raised beds • Wind-tolerant structural plants • Vertical planting • Borrowed skyline views • Maximum impact, minimum weight',k:'urban, containers, grasses, small space, rooftop, views'},
+
+  // ── COLOUR THEORY (tag: CT)
+  {s:'Analogous Colour Harmony',tag:'CT',cl:'Three colours sitting next to each other on the wheel • Calm and cohesive feel • No sharp contrast • One colour dominates • Found often in nature',k:'harmony, cohesive, calm, related hues, natural'},
+  {s:'Complementary Colour Scheme',tag:'CT',cl:'Colours directly opposite on the wheel • High contrast and visual energy • One dominant, one accent • Bold and dramatic when used well',k:'opposite, contrast, vibrant, drama, bold accent'},
+  {s:'Monochromatic Palette',tag:'CT',cl:'Single hue in multiple tones, tints and shades • Sophisticated and refined • Texture and material variation create interest • Never boring when done well',k:'one hue, tonal, elegant, sophisticated, layered'},
+  {s:'Warm Colour Palette',tag:'CT',cl:'Reds, oranges, yellows, warm whites and terracottas • Energising and welcoming • Advances visually — makes spaces feel smaller and cosier • SA sun-inspired',k:'energising, cosy, advancing, SA warmth, terracotta'},
+  {s:'Cool Colour Palette',tag:'CT',cl:'Blues, greens, greys, cool whites and lavenders • Calming and receding • Makes spaces feel larger and more airy • Perfect for SA summer bedrooms',k:'calm, receding, airy, cool, refreshing, spacious'},
+  {s:'The 60-30-10 Rule',tag:'CT',cl:'60% dominant colour (walls and large surfaces) • 30% secondary (large furniture and upholstery) • 10% accent (accessories, cushions, art, gold details)',k:'balance, proportion, palette, rule, harmonious'},
+  {s:'Split-Complementary',tag:'CT',cl:'One base colour plus the two colours adjacent to its complement • Drama with more variety than straight complementary • Sophisticated tension',k:'variety, sophisticated, dynamic, three colours'},
+  {s:'Triadic Colour Scheme',tag:'CT',cl:'Three colours equally spaced on the colour wheel • Vibrant and balanced • Requires careful proportioning • One dominates, two support',k:'balanced, vibrant, three hues, equidistant, bold'},
+
+  // ── MATERIALS & FINISHES (tag: MF)
+  {s:'Marble — Interior Application',tag:'MF',cl:'Veined stone surface • Cool to touch • Available in white, grey, green, black and pink • Used on floors, walls, countertops and feature surfaces • Luxury signature',k:'calcite, veining, polished, honed, luxury, timeless'},
+  {s:'Travertine — Interior & Exterior',tag:'MF',cl:'Warm-toned natural limestone • Pitted surface texture • Moves seamlessly from interior floor to outdoor terrace • SA luxury standard',k:'warm stone, porous, SA luxury, indoor-outdoor, earthy'},
+  {s:'Brushed Brass / Warm Metal',tag:'MF',cl:'Warm gold-toned metal • Aged and matte finish • Used on tapware, handles, light fittings and furniture legs • The From&Glow signature accent',k:'warm, luxurious, timeless, aged, tapware, From&Glow'},
+  {s:'Velvet Upholstery',tag:'MF',cl:'Soft, light-reflecting pile fabric • Depth of colour unlike any other textile • Warm and tactile • Works in jewel tones and neutrals alike • Luxury residential essential',k:'tactile, depth, jewel tones, luxurious, warm, rich'},
+  {s:'White Oak Timber',tag:'MF',cl:'Pale warm-toned hardwood • Clean grain and light feel • Used for flooring, cladding, cabinetry and furniture • Bridges interior and exterior • Very popular in SA luxury',k:'pale timber, warm, grain, Scandi, contemporary, clean'},
+  {s:'Corten Steel — Exterior',tag:'MF',cl:'Weathering steel that develops a warm rust patina • Structural and architectural • Used for retaining walls, planters, water features and screens • SA contemporary garden essential',k:'rust patina, architectural, structural, weathering, garden walls'},
+  {s:'Linen — Soft Furnishing',tag:'MF',cl:'Natural plant-based textile • Relaxed and textural • Slightly rumpled quality adds warmth • Used for curtains, cushions, bedding and upholstery • Timeless luxury',k:'natural, relaxed, textural, breathable, Belgian linen'},
+  {s:'Rattan & Natural Fibre',tag:'MF',cl:'Woven plant-based material • Light and airy visual quality • Used for furniture, pendant lights and accessories • Bridges indoor and outdoor • Biophilic accent',k:'woven, natural, airy, boho, coastal, biophilic'},
+
+  // ── LIGHTING (tag: LT)
+  {s:'Ambient Lighting Layer',tag:'LT',cl:'The base level of light in any space • General and even illumination • Sets the overall brightness • Ceiling fixtures, recessed lights, chandeliers • Foundation of every lighting design',k:'base layer, general, ceiling, recessed, brightness'},
+  {s:'Task Lighting Layer',tag:'LT',cl:'Directed light for specific activities • Reading, cooking, applying makeup, working • Desk lamps, under-cabinet strips, vanity lights • Must be shadow-free and well-positioned',k:'functional, directed, reading, cooking, shadow-free'},
+  {s:'Accent Lighting Layer',tag:'LT',cl:'Dramatic and decorative light • Creates focal points and atmosphere • Uplights, picture lights, feature wall grazing • The layer that creates the glow • 3x brighter than ambient',k:'drama, focal, atmosphere, glow, feature, art lighting'},
+  {s:'Uplighting Trees — Exterior',tag:'LT',cl:'Lights placed at base of tree pointing upward • Creates dramatic silhouette and depth • Reveals texture of bark and canopy • Transforms a garden at night • Luxury outdoor essential',k:'tree, uplight, silhouette, drama, bark, canopy, night'},
+  {s:'Warm vs Cool Light Temperature',tag:'LT',cl:'Warm white (2700–3000K) — cosy, intimate, residential • Cool white (4000K+) — clinical, sharp, office • Luxury homes almost always use warm white throughout',k:'kelvin, warm white, 2700K, 3000K, residential, intimacy'},
+  {s:'The Glow Principle',tag:'LT',cl:'Every From&Glow space should glow at night • Light layered so no single source dominates • Dimmers on everything • Warm pools of light rather than flat brightness • The signature mood',k:'From&Glow, pools of light, dimmers, warm, mood, intimate'},
+
+  // ── SPACE PLANNING (tag: SP)
+  {s:'The Golden Ratio in Space',tag:'SP',cl:'Proportion approximately 1:1.618 • Applied to room dimensions, furniture placement and architectural details • Creates spaces that feel inherently balanced and beautiful',k:'1:1.618, proportion, balance, harmonious, mathematical beauty'},
+  {s:'Negative Space / Breathing Room',tag:'SP',cl:'Intentional empty areas in a room or garden • Allows the eye to rest • Makes featured objects feel more important • Prevents visual clutter • Essential in luxury design',k:'empty, breathing, rest, restraint, intentional, luxury'},
+  {s:'Traffic Flow in Interior Space',tag:'SP',cl:'The natural movement paths through a room • Minimum 900mm for comfortable single-file • Minimum 1200mm for two people to pass • Furniture must never block natural pathways',k:'circulation, 900mm, movement, pathways, ergonomics'},
+  {s:'Zoning in Open-Plan Spaces',tag:'SP',cl:'Dividing large open spaces into distinct functional areas • Using rugs, lighting, furniture groupings and changes in flooring level • Creates rooms within rooms',k:'zones, open-plan, rugs, lighting, functional areas'},
+  {s:'The Focal Point Rule',tag:'SP',cl:'Every room needs one strong focal point that the eye goes to first • Fireplace, artwork, view, feature wall or architectural element • All furniture should face or relate to it',k:'anchor, eye, first look, fireplace, artwork, arrangement'},
+  {s:'Scale and Proportion',tag:'SP',cl:'Scale is the size of an object relative to the human body or surrounding space • Proportion is the relationship between elements • Getting both right makes a room feel effortless',k:'size, relationship, human scale, balance, harmony'},
+
+  // ── SUSTAINABILITY & WELLNESS (tag: SW)
+  {s:'Biophilic Design Principles',tag:'SW',cl:'Direct connection to nature — plants, water, natural light • Indirect connection — natural materials, organic forms, nature imagery • Space and place — prospect, refuge, mystery',k:'nature, wellbeing, direct, indirect, organic, alive'},
+  {s:'Water-Wise SA Planting',tag:'SW',cl:'Indigenous and drought-tolerant species • Deep watering less frequently • Mulching to retain moisture • Fynbos-inspired schemes for Cape gardens • Highveld water-sensitive choices',k:'indigenous, drought, mulch, fynbos, SA water crisis, wise'},
+  {s:'WELL Building Standard',tag:'SW',cl:'International certification for human health in built environments • 10 concepts: Air, Water, Nourishment, Light, Movement, Thermal, Sound, Materials, Mind, Community',k:'health, certification, air quality, light, wellbeing, WELL'},
+  {s:'Low-VOC Materials',tag:'SW',cl:'Volatile Organic Compounds emitted by paints, adhesives and finishes • Low-VOC alternatives improve indoor air quality • Especially important in SA homes with limited ventilation',k:'VOC, air quality, paint, off-gassing, healthy homes, SA'},
+  {s:'Sustainable Design in SA',tag:'SW',cl:'Solar energy and passive cooling • Water harvesting and grey water systems • Indigenous planting • Low-embodied-carbon materials • Designing for the SA climate not against it',k:'solar, water, indigenous, carbon, passive, climate-responsive'},
+
+  // ── SA CONTEXT (tag: SA)
+  {s:'The SA Braai Area',tag:'SA',cl:'Central to SA luxury outdoor living • Built-in braai with counter space and storage • Covered to allow year-round use • Often incorporates a bar, pizza oven or outdoor kitchen',k:'braai, SA culture, entertaining, outdoor kitchen, essential'},
+  {s:'SA Climate Zones',tag:'SA',cl:'Highveld (Joburg): frost winters, summer storms • Cape: Mediterranean, wet winters, dry summers • KZN coast: subtropical, humid, frost-free • Each zone requires a completely different plant palette',k:'Highveld, Cape, KZN, frost, Mediterranean, subtropical'},
+  {s:'Fynbos Planting',tag:'SA',cl:'Unique to the Western Cape of South Africa • Proteas, ericas, restios and geophytes • Water-wise, fire-adapted, ecologically extraordinary • One of the world\'s most biodiverse plant kingdoms',k:'Cape flora, protea, erica, restio, biodiversity, water-wise'},
+  {s:'SA Luxury Residential Design',tag:'SA',cl:'Indoor-outdoor flow as a defining characteristic • North-facing orientation maximised • Swimming pool as design centrepiece • Covered entertainment areas • View framing and borrowed landscape',k:'north-facing, pool, indoor-outdoor, SA luxury, view, flow'},
+  {s:'Indigenous SA Trees',tag:'SA',cl:'Wild Olive (Olea europaea subsp. africana) • Fever Tree (Vachellia xanthophloea) • Cape Chestnut (Calodendrum capense) • Wild Fig (Ficus species) • Iconic, structural, ecologically essential',k:'indigenous, Wild Olive, Fever Tree, structural, endemic, SADC'},
+  {s:'SADA Professional Body',tag:'SA',cl:'South African Institute of Interior Designers • Professional membership provides credibility • Sets standards for interior design practice in SA • Important for the From&Glow business',k:'SADA, professional, credibility, SA standard, membership'},
+
+  // ── FROM&GLOW PHILOSOPHY (tag: FG)
+  {s:'The From&Glow Vision',tag:'FG',cl:'An empty carcass handed over • A real estate acquisition transformed into a home • Inside and out as one continuous experience • Every homeowner\'s personality reflected • The property glows',k:'transformation, carcass, home, personality, inside, outside, glow'},
+  {s:'The Full Property Approach',tag:'FG',cl:'Interior design and landscape design as one unified commission • Materials, palette and light flow from threshold to garden boundary • The client never has to choose between two designers',k:'unified, full property, one vision, seamless, SA luxury'},
+  {s:'The From&Glow Discovery Process',tag:'FG',cl:'How do you live • How do you entertain • What does home mean to you • What feeling do you want every morning • What does luxury mean to you • Then and only then: what do you want it to look like',k:'discovery, personality, lifestyle, feeling, brief, SA client'},
+  {s:'From&Glow Material Language',tag:'FG',cl:'Warm natural stone (Travertine, granite, sandstone) • Timber (white oak, teak, reclaimed) • Warm metal (brushed brass, Corten) • Textiles (linen, velvet, natural fibre) • Indigenous plant accent',k:'stone, timber, brass, linen, velvet, indigenous, warmth'},
+  {s:'The Glow Moment',tag:'FG',cl:'The moment a client stands in the threshold of their completed home at dusk • Interior warmly lit • Garden glowing • The property transformed • From a structure into a story • This is why we do it',k:'threshold, dusk, warmth, transformation, story, From&Glow'}
+];
+
+var FCARD_CATS=[
+  {id:'all',label:'All Cards'},
+  {id:'IS',label:'Interior Styles'},
+  {id:'GS',label:'Garden Styles'},
+  {id:'CT',label:'Colour Theory'},
+  {id:'MF',label:'Materials'},
+  {id:'LT',label:'Lighting'},
+  {id:'SP',label:'Space Planning'},
+  {id:'SW',label:'Sustainability'},
+  {id:'SA',label:'SA Context'},
+  {id:'FG',label:'From&Glow'}
+];
+
+var activeFcat='all';
+var FCARDS=FCARDS_ALL;
+
+var BOOKS=[
+  {i:'✦',t:'A Visual Dictionary of Architecture',a:'Francis D.K. Ching',d:'The essential visual reference for every interior designer. Elements, principles and spatial concepts with beautiful drawings.'},
+  {i:'🌿',t:'Planting: A New Perspective',a:'Piet Oudolf & Noel Kingsbury',d:'The definitive guide to naturalistic planting design — four-season beauty, ecological richness, emotional power.'},
+  {i:'◈',t:'Interior Design Illustrated',a:'Francis D.K. Ching & Corky Binggeli',d:'The go-to textbook for interior design fundamentals — space, light, materials, and principles with clear drawings.'},
+  {i:'🌳',t:'Gardens Are for People',a:'Thomas D. Church',d:'The foundational modernist landscape design text — designing outdoor spaces for how people actually live.'},
+  {i:'💡',t:'Residential Lighting',a:'Randall Whitehead',d:'The definitive guide to layered lighting design in homes. Essential for interior and outdoor lighting.'},
+  {i:'🌸',t:'The Interior Design Handbook',a:'Frida Ramstedt',d:'A beautiful, practical modern guide to layout, colour, light and styling. Excellent for the luxury residential designer.'},
+  {i:'🖊️',t:'Drawing the Landscape',a:'Chip Sullivan',d:'The essential guide to hand drawing, sketching and visualising landscape designs from concept to presentation.'},
+  {i:'📐',t:'Human Dimension & Interior Space',a:'Julius Panero & Martin Zelnik',d:'The ergonomics bible — every measurement standard for every room type. Use alongside SA building regulations.'},
+  {i:'🌾',t:'The Dry Garden',a:'Beth Chatto',d:'Right plant, right place. Essential philosophy for designing beautiful, water-wise SA gardens.'},
+  {i:'🌱',t:'The Well-Tempered Garden',a:'Christopher Lloyd',d:'Opinionated, practical and full of deep plant knowledge. Teaches the instinct great garden designers need.'}
+];
+
+var COURSES=[
+  {t:'Interior Design Fundamentals',r:'4.6 ⭐',d:'Elements, principles, colour, space planning and materials. The perfect Phase 1 foundation course.',u:'https://www.udemy.com/courses/design/?q=interior+design+fundamentals&sort=highest-rated',tag:'Interior'},
+  {t:'SketchUp for Interior Designers',r:'4.7 ⭐',d:'Create floor plans, 3D models and client presentations. Essential digital tool for luxury design practice.',u:'https://www.udemy.com/courses/design/?q=sketchup+interior+design&sort=highest-rated',tag:'Interior'},
+  {t:'Planting Design Masterclass',r:'4.7 ⭐',d:'Deep dive into planting design — layering, seasonal interest, naturalistic schemes. Phase 2 core course.',u:'https://www.udemy.com/courses/design/?q=planting+design&sort=highest-rated',tag:'Landscape'},
+  {t:'Garden Design: Outdoor Spaces',r:'4.6 ⭐',d:'Comprehensive garden design covering principles, styles, planting and client presentation.',u:'https://www.udemy.com/courses/design/?q=garden+design&sort=highest-rated',tag:'Landscape'},
+  {t:'AutoCAD for Designers',r:'4.5 ⭐',d:'Technical drawing for both interior and landscape — floor plans, planting plans and construction documents.',u:'https://www.udemy.com/courses/design/?q=autocad+design&sort=highest-rated',tag:'Both'},
+  {t:'Photoshop for Designers',r:'4.5 ⭐',d:'Produce beautiful mood boards, render plans and create professional client presentations for From&Glow.',u:'https://www.udemy.com/courses/design/?q=photoshop+interior+landscape+design&sort=highest-rated',tag:'Both'},
+  {t:'Sustainable Interior Design',r:'4.4 ⭐',d:'Eco-friendly materials, healthy homes, biophilic design. Increasingly important for SA luxury clients.',u:'https://www.udemy.com/courses/design/?q=sustainable+interior+design&sort=highest-rated',tag:'Interior'},
+  {t:'Design Business: Start Your Practice',r:'4.5 ⭐',d:'Pricing, contracts, client acquisition and building a luxury design business. Essential for Phase 3.',u:'https://www.udemy.com/courses/business/?q=interior+design+business&sort=highest-rated',tag:'Business'}
+];
+var CTAGS={'Interior':'#fff3d4','Landscape':'#e8f5e9','Both':'#f0e8f5','Business':'#e3f2fd'};
+var CTXT={'Interior':'#a07820','Landscape':'#1a4a2e','Both':'#4a1e6e','Business':'#0277bd'};
+
+var YT=[
+  {n:'Foyr Design',h:'@FoyrNeo',d:'Interior design tips, space planning, software tutorials and style guides.',u:'https://www.youtube.com/@FoyrNeo',i:'✦'},
+  {n:'Piet Oudolf',h:'@PietOudolf',d:'The master of naturalistic planting — garden tours, plant combinations, design philosophy.',u:'https://www.youtube.com/results?search_query=piet+oudolf+planting+design',i:'🌿'},
+  {n:'Arvin Olano',h:'@ArvinOlano',d:'Practical interior design advice, room styling, design rules explained clearly.',u:'https://www.youtube.com/@ArvinOlano',i:'◈'},
+  {n:'RHS Gardening',h:'@RHSGardening',d:'Plant knowledge, sustainable gardening and design advice from the leading horticultural body.',u:'https://www.youtube.com/@RHSGardening',i:'🌳'},
+  {n:'Angela Rose Home',h:'@AngelaRoseHome',d:'Colour theory, space planning and design principles for the luxury residential designer.',u:'https://www.youtube.com/@AngelaRoseHome',i:'🌸'},
+  {n:'Epic Gardening',h:'@EpicGardening',d:'Practical plant and garden knowledge. Understanding plants makes you a better landscape designer.',u:'https://www.youtube.com/@epicgardening',i:'🌱'},
+  {n:'SABC Lifestyle',h:'@SABCLifestyle',d:'South African interior and lifestyle design — local context, SA designers and SA homes.',u:'https://www.youtube.com/results?search_query=south+africa+interior+design+luxury',i:'🇿🇦'}
+];
+
+var MEAS=[
+  {g:'Interior — Living Spaces',items:[{n:'Sofa to coffee table',v:'400–450mm',note:'Comfortable reach distance'},{n:'Two people passing',v:'900mm',note:'Minimum comfortable corridor'},{n:'Door swing clearance',v:'900mm',note:'In front of any hinged door'},{n:'TV height (centre from floor)',v:'1000–1200mm',note:'Eye level when seated'},{n:'Dining table to wall',v:'900mm min',note:'Chair pull-out plus circulation'}]},
+  {g:'Interior — Kitchen',items:[{n:'Counter height (standard SA)',v:'900mm',note:'Standard worktop height'},{n:'Upper cabinet to worktop',v:'450–500mm',note:'Space for appliances'},{n:'Island clearance all sides',v:'900–1200mm',note:'For movement and doors'},{n:'Work triangle total',v:'4000–7500mm',note:'Sink, stove and fridge'},{n:'Galley aisle width',v:'1200mm min',note:'For one cook comfortably'}]},
+  {g:'Interior — Bedroom & Bathroom',items:[{n:'Clearance each side of bed',v:'600–900mm',note:'Comfortable bedside access'},{n:'Wardrobe depth (hanging)',v:'600mm',note:'For full-length garments'},{n:'WC clearance (front)',v:'600mm',note:'Minimum access space'},{n:'Shower minimum size',v:'900x900mm',note:'800x800mm absolute minimum'},{n:'Vanity clearance (front)',v:'700–900mm',note:'To lean in comfortably'}]},
+  {g:'Exterior — Circulation',items:[{n:'Main path (comfortable)',v:'1200mm+',note:'Two people side by side'},{n:'Secondary path',v:'900mm',note:'Single file comfortable'},{n:'Steps — tread depth (outdoor)',v:'300–450mm',note:'Shallower than indoor steps'},{n:'Steps — riser height (outdoor)',v:'100–150mm',note:'More gradual than indoors'},{n:'Gate width (min)',v:'900mm',note:'For wheelbarrows and access'}]},
+  {g:'Exterior — Entertaining',items:[{n:'Terrace per person (min)',v:'1.5–2m²',note:'Comfortable outdoor dining'},{n:'Terrace depth (usable min)',v:'2400mm',note:'Table, chairs and circulation'},{n:'Pool coping clearance',v:'900mm',note:'Comfortable surround width'},{n:'Braai area depth (min)',v:'2400mm',note:'For built-in braai and movement'},{n:'Pergola height (min)',v:'2400mm',note:'Comfortable to walk under'}]},
+  {g:'Exterior — Planting',items:[{n:'Large tree from boundary',v:'3000mm+',note:'Roots and canopy clearance'},{n:'Large tree from house',v:'5000mm+',note:'Species-dependent — check first'},{n:'Shrub border depth (min)',v:'1200mm',note:'1800mm for real depth'},{n:'Perennial spacing',v:'300–600mm',note:'Depends on mature spread'},{n:'Hedge spacing (formal)',v:'300–600mm',note:'Depends on species'}]}
+];
+
+var STYLES=[
+  {s:'Japandi Interior',pal:'Warm white, linen, charcoal',mat:'Oak, linen, rattan, ceramics',char:'Low furniture, negative space',mood:'Serene, intentional, warm',note:'Hugely popular SA luxury 2024'},
+  {s:'Contemporary Luxury',pal:'Warm neutral, deep accent',mat:'Marble, brass, velvet, stone',char:'Statement pieces, art, volume',mood:'Refined, bespoke, confident',note:'Core From&Glow interior style'},
+  {s:'Biophilic Interior',pal:'Green, cream, stone, timber',mat:'Natural stone, timber, moss walls',char:'Living elements, organic shapes',mood:'Alive, restorative, luxurious',note:'Growing fast in SA luxury market'},
+  {s:'Art Deco',pal:'Gold, black, ivory, emerald',mat:'Marble, brass, lacquer, velvet',char:'Geometric, symmetrical, opulent',mood:'Glamorous, dramatic, bold',note:'Popular in SA luxury apartments'},
+  {s:'Contemporary SA Garden',pal:'Stone, steel, green, water',mat:'Travertine, Corten, indigenous plants',char:'Pool, clean lines, indigenous drama',mood:'Modern, proudly SA, serene',note:'Core From&Glow exterior style'},
+  {s:'Naturalistic Garden',pal:'Bronze, purple, gold, green',mat:'Steel edging, gravel, timber',char:'Drifts, grasses, seasonal change',mood:'Ecological, emotional, alive',note:'Growing luxury trend in SA'},
+  {s:'Mediterranean Garden',pal:'Silver, terracotta, purple, sand',mat:'Terracotta, gravel, render, stone',char:'Drought-tolerant, aromatic, warm',mood:'Relaxed, sun-drenched, easy',note:'Suits SA warm dry regions'},
+  {s:'Tropical Garden',pal:'Vivid greens, reds, oranges',mat:'Timber, bamboo, large-leaf plants',char:'Bold foliage, lush, dramatic',mood:'Exotic, rich, immersive',note:'KZN coast and warm SA gardens'}
+];
+
+var RUBRIC_D=[
+  {id:1,n:'Concept Strength',d:'Does the design have a clear, compelling concept that flows from interior to exterior?'},
+  {id:2,n:'Interior-Exterior Flow',d:'Is the transition from inside to outside seamless — materials, palette, scale?'},
+  {id:3,n:'Planting & Biophilic Quality',d:'Is nature present and meaningful throughout the interior and exterior?'},
+  {id:4,n:'Materials & Finishes',d:'Are materials luxurious, well-chosen and consistent across the full property?'},
+  {id:5,n:'Lighting Design',d:'Is there a complete, layered lighting concept for both interior and exterior?'},
+  {id:6,n:'Client Personality',d:'Does the design genuinely reflect the homeowner\'s personality and lifestyle?'},
+  {id:7,n:'The Glow Factor',d:'Would you pause in the doorway and feel moved? Does this property truly glow?'},
+  {id:8,n:'SA Context & Appropriateness',d:'Is the design climatically and culturally appropriate for its South African context?'}
+];
+
+var QUOTES=[
+  {t:'Have nothing in your house that you do not know to be useful, or believe to be beautiful.',a:'William Morris'},
+  {t:'A room should never allow the eye to settle in one place. It should smile at you and create fantasy.',a:'Juan Montoya'},
+  {t:'The details are not the details. They make the design.',a:'Charles Eames'},
+  {t:'Plants are not decoration. They are structure, mood, ecology, and time — all at once.',a:'Garden Design Wisdom'},
+  {t:'Simplicity is the ultimate sophistication.',a:'Leonardo da Vinci'},
+  {t:'Naturalistic planting is not about chaos. It is about understanding nature deeply enough to edit it.',a:'Piet Oudolf'},
+  {t:'Light is not something you add to a room. It is the room.',a:'Le Corbusier'},
+  {t:'The best rooms feel like they have always been there.',a:'Bunny Williams'},
+  {t:'Design with nature, not against it.',a:'Ian McHarg'},
+  {t:'Luxury is not about buying expensive things. It is about living in a space that is absolutely right for you.',a:'Andrée Putman'},
+  {t:'Right plant, right place. It sounds simple. It takes a lifetime to master.',a:'Beth Chatto'},
+  {t:'Every room should have a moment that takes your breath away.',a:'Axel Vervoordt'},
+  {t:'The first principle of design: give every room purpose, give every object meaning.',a:'Elsie de Wolfe'},
+  {t:'The role of the designer is that of a good host anticipating the needs of guests.',a:'Charles Eames'},
+  {t:'Beauty and function are one. They were never meant to be separated.',a:'Frank Lloyd Wright'},
+  {t:'I want people to feel immersed, to feel the garden moving around them.',a:'Piet Oudolf'},
+  {t:'A garden is a collaboration between the designer and the forces of nature. Humility is required.',a:'Garden Design Wisdom'},
+  {t:'Comfort is the ultimate luxury.',a:'Nate Berkus'},
+  {t:'The love of gardening is a seed that once sown, never dies.',a:'Gertrude Jekyll'},
+  {t:'Great design is the difference between something you use and something you love.',a:'Ilse Crawford'},
+  {t:'When in doubt, add more texture. A room without texture is a room without soul.',a:'Anonymous Designer'},
+  {t:'Do not be afraid of bare soil in winter. Structure and seed heads are beautiful. Leave them.',a:'Piet Oudolf'},
+  {t:'South Africa\'s greatest gift to residential design is the outdoor room. Own it.',a:'SA Design Wisdom'},
+  {t:'Indigenous plants are not a compromise. They are the most authentic luxury a South African garden can offer.',a:'SA Landscape Wisdom'},
+  {t:'The greatest From&Glow transformation is not the one that looks most expensive. It is the one that feels most like home.',a:'From&Glow Design Philosophy'},
+  {t:'You are not decorating houses. You are transforming empty structures into living stories.',a:'From&Glow Design Philosophy'},
+  {t:'The Highveld thunderstorm, the fynbos in flower, the fever tree at golden hour — these are your palette. Use them.',a:'From&Glow, South Africa'},
+  {t:'The inside and the outside are not two projects. They are one experience. Design them as one.',a:'From&Glow Design Philosophy'},
+  {t:'Every client hands you an empty carcass. Every client deserves to come home to something that glows.',a:'From&Glow Design Philosophy'},
+  {t:'180 days is the beginning. What you build in those days is the foundation of a career, a brand, and a body of work that is entirely yours, Nadine.',a:'Your From&Glow Study Tool 💛'}
+];
+
+var BRIEF_FIELDS=[
+  {id:'client',l:'Client Name / Project Code',p:'e.g. Joburg Villa — Sandton',ta:false},
+  {id:'scope',l:'Project Scope',p:'e.g. Full property — interior + garden, or interior only, or garden only',ta:false},
+  {id:'size',l:'Property Size & Type',p:'e.g. 450m² home, 1200m² stand, Joburg northern suburbs',ta:false},
+  {id:'style',l:'Desired Style Direction',p:'e.g. Contemporary luxury with biophilic touches and strong indoor-outdoor flow',ta:false},
+  {id:'budget',l:'Total Budget (Interior + Exterior)',p:'e.g. R2.5m total — R1.5m interior, R1m garden',ta:false},
+  {id:'personality',l:'Client Personality & Lifestyle',p:'e.g. Entertains regularly, loves nature, values calm and quality over trends...',ta:true},
+  {id:'musthave',l:'Must-Haves',p:'e.g. Home office, large kitchen island, covered braai area, indigenous garden, pool...',ta:true},
+  {id:'avoid',l:'What to Avoid',p:'e.g. Cold colours, formal and stiff spaces, high maintenance garden, clutter',ta:false},
+  {id:'feel',l:'How Should This Property Feel?',p:'e.g. Like a private game lodge — wild, luxurious, completely private and alive',ta:false},
+  {id:'climate',l:'Climate Zone & Site Conditions',p:'e.g. Highveld — frost risk, north-facing garden, heavy clay soil, afternoon shade',ta:false},
+  {id:'timeline',l:'Timeline',p:'e.g. Interior concept by end of month 2, full design by month 4, completion month 8',ta:false},
+  {id:'notes',l:'Additional Notes',p:'Any existing features to keep, access constraints, contractor preferences...',ta:true}
+];
+
+var WKTASKS=[
+  'Deep study session (105 min) — complete',
+  'Practice & application session (105 min) — complete',
+  'Project / critique / portfolio session (90 min) — complete',
+  'Anki cards reviewed (min 50 cards)',
+  'Analysed 3 real luxury properties or projects',
+  'Sketched one concept, floor plan or planting scheme',
+  'Logged a reflection note for the day'
+];
+
+var FILE_SECS=[{id:'fg1',t:'Interior'},{id:'fg2',t:'Garden'},{id:'fg3',t:'Projects'},{id:'fg4',t:'Inspo'},{id:'fg5',t:'Business'}];
+
+// ============================================================
+// HOME
+// ============================================================
+function getTod(){var n=new Date(),ds=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],ms=['January','February','March','April','May','June','July','August','September','October','November','December'];return ds[n.getDay()]+', '+n.getDate()+' '+ms[n.getMonth()]+' '+n.getFullYear();}
+
+function getFocus(day){
+  var w=Math.ceil(day/7);
+  var f={
+    1:{phase:'INTERIOR',t:'Elements & Principles of Design',b:'Ching Ch.1-4 + analyse 5 luxury interiors + start Anki deck',m:'Principles Reference Card'},
+    2:{phase:'INTERIOR',t:'Colour Theory + 10 Interior Styles',b:'Colour wheel deep dive + style reference board for all 10 styles',m:'Colour Reference Card + Style Comparison Complete'},
+    3:{phase:'INTERIOR',t:'Space Planning + Scale',b:'Scaled floor plans + furniture arrangement practice',m:'Two Scaled Floor Plans with Furniture'},
+    4:{phase:'INTERIOR',t:'Lighting + Materials + Finishes',b:'Layered lighting plans + build materials library of 40+ finishes',m:'Lighting Plan + Materials Library'},
+    5:{phase:'INTERIOR',t:'Kitchen, Bathroom & Wellness Design',b:'Full kitchen and bathroom design + wellness principles',m:'One Luxury Kitchen + One Luxury Bathroom Design'},
+    6:{phase:'INTERIOR',t:'Mood Boards & Concept Development',b:'Client brief practice + luxury mood board creation',m:'Two Mood Boards for Different Client Personalities'},
+    7:{phase:'INTERIOR',t:'Specs, Documentation + Digital Tools',b:'SketchUp intro + write a full interior specification',m:'Complete Interior Spec Document'},
+    8:{phase:'INTERIOR',t:'Interior Project Week',b:'Complete interior concept for a full luxury residence',m:'Full Interior Concept Package — Phase 1 Milestone'},
+    9:{phase:'LANDSCAPE',t:'Landscape Principles + Garden Styles',b:'Apply design principles outdoors + all 10 garden styles deep dive',m:'Garden Style Reference Board'},
+    10:{phase:'LANDSCAPE',t:'Trees, Shrubs + SA Indigenous Plants',b:'Learn 60 key species including SA indigenous — conditions, form, season',m:'SA Plant Anki Deck (60 cards)'},
+    11:{phase:'LANDSCAPE',t:'Perennials, Grasses + Planting Design',b:'Learn 40 perennials + naturalistic planting approach',m:'Full Planting Design for a 30m2 Border'},
+    12:{phase:'LANDSCAPE',t:'Site Analysis + Soil Science + SA Climates',b:'Full site analysis on a real SA property + soil diagnosis',m:'Completed SA Site Analysis Document'},
+    13:{phase:'LANDSCAPE',t:'Hard Landscaping + Water Features',b:'SA materials + formal and naturalistic water feature design',m:'Hard Landscape Material Board + Water Feature Design'},
+    14:{phase:'LANDSCAPE',t:'Garden Lighting + Sustainable SA Design',b:'Outdoor lighting plan + water-wise planting principles',m:'Complete Outdoor Lighting Plan'},
+    15:{phase:'LANDSCAPE',t:'Technical Drawing + Plant Schedules',b:'Scaled landscape plan + full plant schedule with SA suppliers',m:'Scaled Landscape Plan + Plant Schedule'},
+    16:{phase:'LANDSCAPE',t:'Landscape Project Week',b:'Complete landscape concept for a luxury SA garden',m:'Full Landscape Concept Package — Phase 2 Milestone'},
+    17:{phase:'FROM&GLOW',t:'Interior-Exterior Flow — The Transition',b:'Study the great SA indoor-outdoor homes. How do materials, light and palette flow?',m:'Interior-Exterior Flow Study — 5 Properties Analysed'},
+    18:{phase:'FROM&GLOW',t:'From&Glow Project 1',b:'Full property concept — interior AND garden as one unified design',m:'First From&Glow Complete Property Concept'},
+    19:{phase:'FROM&GLOW',t:'From&Glow Project 2',b:'Second full property — different style, different SA climate zone',m:'Second From&Glow Complete Property Concept'},
+    20:{phase:'FROM&GLOW',t:'Business of Design in SA',b:'SADA, pricing the SA luxury market, contracts, proposal templates',m:'From&Glow Fee Structure + Proposal Template'},
+    21:{phase:'FROM&GLOW',t:'Client Acquisition + Brand',b:'From&Glow brand identity, social media strategy, first client approach',m:'From&Glow Brand Statement + Social Strategy'},
+    22:{phase:'FROM&GLOW',t:'Portfolio Refinement',b:'Edit and present all work as a unified From&Glow portfolio',m:'From&Glow Portfolio — Print and Digital Ready'},
+    23:{phase:'FROM&GLOW',t:'From&Glow Project 3 — Signature Work',b:'Design your most ambitious full property transformation',m:'Signature From&Glow Portfolio Piece'},
+    24:{phase:'FROM&GLOW',t:'Review, Launch Preparation & Celebration',b:'Final review, portfolio sign-off, prepare for first client',m:'From&Glow — Launch Ready'}
+  };
+  var x=f[Math.min(w,24)];
+  var ptag=x.phase==='INTERIOR'?'pp-int':x.phase==='LANDSCAPE'?'pp-land':'pp-merge';
+  return '<span class="phase-pill '+ptag+'">'+x.phase+'</span><br><strong style="font-size:15px">'+x.t+'</strong><br><span style="color:var(--ink3);font-size:13px">'+x.b+'</span><br><span class="milestone-mark">✦ '+x.m+'</span>';
+}
+
+function updateHome(){
+  el('current-day').textContent=cd;el('hdr-d').textContent=cd;el('streak-num').textContent=streak;
+  var pct=Math.max(.5,Math.round((cd/180)*100));
+  el('prog').style.width=pct+'%';
+  el('today-focus').innerHTML=getFocus(cd);
+  var ds=tod().toUpperCase();
+  ['proj-date','notes-date','brief-date','rv-date'].forEach(function(id){var e=el(id);if(e)e.textContent='DAY '+cd+' — '+ds;});
+  // Phase indicator banner
+  var ph=getPhaseForDay(cd),pi=el('phase-indicator');
+  if(pi){
+    pi.style.background=ph.bg;
+    pi.style.border='1px solid '+ph.border;
+    pi.style.color=ph.color;
+    pi.innerHTML='<div style="font-size:10px;font-weight:700;letter-spacing:.1em">'+ph.label+'</div><div style="font-size:11px;opacity:.75;font-weight:400;text-transform:none;letter-spacing:.02em;margin-top:2px">'+ph.sub+' — Day '+cd+' of '+ph.days+' in this phase</div>';
+  }
+
+  var wl=el('wins-list'),recent=wins.slice(-10).reverse();
+  if(!recent.length){wl.innerHTML='<div style="color:var(--ink4);font-size:13px;padding:4px 0;font-style:italic">No wins logged yet — every insight counts.</div>';return;}
+  wl.innerHTML=recent.map(function(w){return '<div class="win-item"><div class="win-mark"></div><div>'+w+'</div></div>';}).join('');
+}
+
+function addWin(){var i=el('win-input'),v=i.value.trim();if(!v)return;wins.push(v);sv('fg_wins',wins);i.value='';updateHome();}
+function markDayDone(){if(cd<180)cd++;streak++;D.setItem('fg_day',cd);D.setItem('fg_streak',streak);updateHome();var b=event.currentTarget;b.textContent='✦ Done';b.style.background='linear-gradient(135deg,var(--gold),var(--gold2))';b.style.color='var(--ink)';setTimeout(function(){b.textContent='✓ Mark Done';b.style.background='';b.style.color='';},2000);}
+function resetProgress(){if(!confirm('Reset to Day 1? Your notes, wins and critiques will be kept.'))return;cd=1;streak=0;D.setItem('fg_day','1');D.setItem('fg_streak','0');updateHome();}
+
+// TIMER
+function startTimer(m){if(ti)clearInterval(ti);tr=m*60;tp=false;var ls={105:'DEEP STUDY — PHASE '+Math.ceil(cd/60),90:'PROJECT SESSION',25:'POMODORO FOCUS'};el('tlabel').textContent=ls[m]||m+' MINUTE SESSION';el('timer-display').style.display='block';el('tpause').textContent='⏸ Pause';updTimer();ti=setInterval(function(){if(!tp){tr--;updTimer();if(tr<=0){clearInterval(ti);ti=null;el('ttime').textContent='00:00';el('tlabel').textContent='SESSION COMPLETE — WELL DONE, NADINE ✦';}}},1000);}
+function updTimer(){var m=Math.floor(tr/60),s=tr%60;el('ttime').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');el('ttime').className=(tr<=60&&tr>0)?'urgent':'';}
+function pauseTimer(){tp=!tp;el('tpause').textContent=tp?'▶ Resume':'⏸ Pause';}
+function stopTimer(){if(ti)clearInterval(ti);ti=null;tp=false;el('timer-display').style.display='none';}
+
+// ANKI
+function logAnki(){var i=el('anki-input'),cnt=parseInt(i.value);if(!cnt||cnt<1)return;var td=new Date().toISOString().split('T')[0];ankiLog[td]=(ankiLog[td]||0)+cnt;sv('fg_anki',ankiLog);i.value='';renderAnki();var b=event.currentTarget;b.textContent='+'+cnt+' logged ✦';setTimeout(function(){b.textContent='Log Cards';},1500);}
+function renderAnki(){var c=el('anki-hist');if(!c)return;var ents=Object.entries(ankiLog).sort(function(a,b){return b[0].localeCompare(a[0]);}).slice(0,7);if(!ents.length){c.innerHTML='<div style="color:var(--ink4);font-size:12.5px;font-style:italic">Begin logging your Anki cards to track your knowledge growth.</div>';return;}var tot=Object.values(ankiLog).reduce(function(a,b){return a+b;},0);c.innerHTML='<div style="display:flex;gap:10px;margin-bottom:10px"><div style="background:var(--gold3);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:8px 14px;text-align:center;flex:1"><div style="font-family:\'Cormorant Garant\',serif;font-size:26px;font-weight:700;color:var(--gold)">'+tot+'</div><div style="font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em">Total Cards</div></div><div style="background:white;border:1px solid var(--warm);border-radius:3px;padding:8px 14px;text-align:center;flex:1"><div style="font-family:\'Cormorant Garant\',serif;font-size:26px;font-weight:700;color:var(--fe)">'+ents.length+'</div><div style="font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em">Days Logged</div></div></div>'+ents.map(function(e){var d=new Date(e[0]+'T00:00:00'),lbl=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}),pct=Math.min(100,Math.round((e[1]/200)*100));return '<div style="margin-bottom:6px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px"><span style="color:var(--ink2)">'+lbl+'</span><span style="font-weight:600;color:var(--gold)">'+e[1]+'</span></div><div style="background:var(--warm);height:3px;overflow:hidden;border-radius:0"><div style="background:var(--gold);height:100%;width:'+pct+'%"></div></div></div>';}).join('');}
+
+// CHECKLIST
+function renderChecklist(){var c=el('wkchecklist');if(!c)return;c.innerHTML=WKTASKS.map(function(task,i){var done=!!ckState[i];return '<div class="citem '+(done?'done':'')+'" onclick="toggleCk('+i+')"><div class="cbox">'+(done?'✦':'')+'</div><span>'+task+'</span></div>';}).join('');}
+function toggleCk(i){ckState[i]=!ckState[i];sv('fg_ck',ckState);renderChecklist();}
+function resetChecklist(){ckState={};sv('fg_ck',ckState);renderChecklist();}
+
+// PLAN
+function renderPlan(){
+  var ds=el('dsched');if(!ds)return;var tot=SCHED.reduce(function(a,s){return a+s.m;},0);
+  ds.innerHTML=SCHED.map(function(s){return '<div class="sblock"><div class="stime">'+s.t+'</div><div class="sline"></div><div class="sdetail"><div class="slabel">'+s.l+'</div><div class="sdesc">'+s.d+'</div><div class="smins">'+s.m+' min</div></div></div>';}).join('')+'<div style="background:var(--gold3);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:10px 14px;font-size:12.5px;color:var(--ink2);font-weight:600">Total: <strong>'+tot+' min — '+(tot/60).toFixed(1)+' hours per day</strong></div>';
+  var dp=el('dphases');if(!dp)return;
+  dp.innerHTML=PHASES.map(function(p){return '<div class="phase-band '+p.cls+'" style="margin-bottom:16px;display:block;padding:14px 16px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><div class="timeline-dot '+p.dot+'"></div><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.7">Phase '+p.n+' — '+p.r+'</div></div><div style="font-family:\'Cormorant Garant\',serif;font-size:18px;font-weight:600;margin-bottom:10px">'+p.t+'</div><ul style="padding-left:16px;margin-bottom:12px">'+p.items.map(function(i){return '<li style="font-size:12.5px;color:var(--ink2);margin-bottom:5px;line-height:1.5">'+i+'</li>';}).join('')+'</ul><div style="background:rgba(14,31,20,.08);border-radius:2px;padding:8px 12px;font-size:11.5px;font-weight:600;color:var(--fe)">✦ Milestone: '+p.milestone+'</div></div>';}).join('');
+  var bl=el('booklist');if(!bl)return;bl.innerHTML=BOOKS.map(function(b){return '<div class="bi"><div class="bicon" style="font-size:22px;padding-top:2px">'+b.i+'</div><div><div class="btitle">'+b.t+'</div><div class="bauth">'+b.a+'</div><div class="bdesc">'+b.d+'</div></div></div>';}).join('');
+  var cl=el('courselist');if(!cl)return;cl.innerHTML=COURSES.map(function(c){return '<div style="padding:12px 0;border-bottom:1px solid var(--warm)"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:5px"><div style="font-weight:600;font-size:13.5px;flex:1;color:var(--ink)">'+c.t+'</div><span style="background:'+(CTAGS[c.tag]||'#eee')+';color:'+(CTXT[c.tag]||'#555')+';border-radius:2px;padding:2px 8px;font-size:9px;font-weight:700;white-space:nowrap;flex-shrink:0;text-transform:uppercase;letter-spacing:.06em">'+c.tag+'</span></div><div style="font-size:11px;color:var(--gold);margin-bottom:4px">'+c.r+'</div><div style="font-size:12.5px;color:var(--ink3);line-height:1.55;margin-bottom:8px">'+c.d+'</div><a href="'+c.u+'" target="_blank" rel="noopener" style="display:inline-block;background:var(--fb);color:var(--gold);border-radius:2px;padding:6px 14px;font-size:11.5px;font-weight:600;text-decoration:none;letter-spacing:.04em">→ View on Udemy</a></div>';}).join('');
+  var yl=el('ytlist');if(!yl)return;yl.innerHTML=YT.map(function(y){return '<div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--warm);align-items:flex-start"><div style="font-size:20px;flex-shrink:0;padding-top:2px">'+y.i+'</div><div style="flex:1"><div style="font-weight:600;font-size:13.5px;color:var(--ink)">'+y.n+'</div><div style="font-size:10.5px;color:var(--gold);margin-bottom:3px;letter-spacing:.04em">'+y.h+'</div><div style="font-size:12.5px;color:var(--ink3);line-height:1.5">'+y.d+'</div></div><a href="'+y.u+'" target="_blank" rel="noopener" style="background:var(--rose);color:white;border-radius:2px;padding:5px 10px;font-size:10.5px;font-weight:600;text-decoration:none;flex-shrink:0;align-self:flex-start;letter-spacing:.04em">▶</a></div>';}).join('');
+}
+
+// LEARN
+var subfilterActive='all';
+function renderLearn(){
+  var sl=el('sublist');if(!sl)return;
+  var filtered=subfilterActive==='all'?SUBJECTS:SUBJECTS.filter(function(s){return s.tag===subfilterActive;});
+  sl.innerHTML=filtered.map(function(s,si){return '<div class="subject" onclick="toggleSub(this)"><div class="sub-hd"><div class="sub-title">'+s.t+'</div><div><span class="sub-tag '+(s.tag==='INT'?'tag-int':s.tag==='LAND'?'tag-land':'tag-both')+'">'+(s.tag==='INT'?'INT':s.tag==='LAND'?'LAND':'BOTH')+'</span></div><span class="sub-arrow">▼</span></div><div class="sub-body">'+s.c+(s.r?'<br><span class="sub-link" data-url="'+s.r+'" onclick="openLink(this.dataset.url)" style="cursor:pointer">→ Study Resource</span>':'')+'</div></div>';}).join('');
+  var gl=el('glosslist');if(!gl)return;gl.innerHTML=GLOSSARY.map(function(g,i){return '<div class="gitem" onclick="toggleGloss('+i+')"><div class="gterm"><span>'+g.t+'</span><span style="font-size:11px;color:var(--gold)">▼</span></div><div class="gdef" id="gd'+i+'">'+g.d+'</div></div>';}).join('');
+}
+function filterSubs(tag,btn){subfilterActive=tag;document.querySelectorAll('#sub-filters .ftab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderLearn();}
+function toggleSub(el_){document.querySelectorAll('.subject.open').forEach(function(s){if(s!==el_)s.classList.remove('open');});el_.classList.toggle('open');if(el_.classList.contains('open'))el_.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function toggleGloss(i){var d=el('gd'+i);d.classList.toggle('show');}
+
+// QUIZ
+var qa={},qs=0;
+function renderQuiz(){var c=el('quizbox');if(!c)return;qa={};qs=0;el('qrescard').style.display='none';c.innerHTML=QS.map(function(q,qi){return '<div class="qcard" id="qq'+qi+'"><div style="font-weight:600;font-size:13.5px;margin-bottom:12px;color:var(--ink);line-height:1.5">'+(qi+1)+'. '+q.q+'</div><div>'+q.o.map(function(o,oi){return '<button class="qopt" onclick="ansQ('+qi+','+oi+')">'+o+'</button>';}).join('')+'</div><div class="qexp" id="qe'+qi+'">'+q.e+'</div></div>';}).join('')+'<button onclick="submitQuiz()" class="btn" style="margin-top:8px">Submit Quiz</button>';}
+function ansQ(qi,oi){if(qa[qi]!==undefined)return;qa[qi]=oi;var q=QS[qi],card=el('qq'+qi);card.querySelectorAll('.qopt').forEach(function(b,i){if(i===q.c)b.classList.add('correct');else if(i===oi)b.classList.add('wrong');b.disabled=true;});el('qe'+qi).classList.add('show');if(oi===q.c)qs++;}
+function submitQuiz(){QS.forEach(function(_,qi){if(qa[qi]===undefined)ansQ(qi,-1);});var pct=Math.round((qs/QS.length)*100),card=el('qrescard');card.style.display='block';el('qresults').innerHTML='<div style="text-align:center;padding:14px 0"><div style="font-family:\'Cormorant Garant\',serif;font-size:56px;font-weight:700;color:'+(pct>=80?'var(--gold)':pct>=60?'var(--fe)':'var(--rose)')+'">'+qs+'/'+QS.length+'</div><div style="font-size:18px;font-weight:600;margin:6px 0;color:var(--ink)">'+pct+'%</div><div style="font-size:13.5px;color:var(--ink3);margin-bottom:18px;font-style:italic">'+(pct>=80?'Outstanding. The From&Glow standard. ✦':pct>=60?'Good work — keep studying your weaker areas.':'Keep going. Every great designer had a day one.')+'</div><button onclick="renderQuiz()" class="btn">Retake Quiz</button></div>';var qt=parseInt(D.getItem('fg_qt')||'0')+1;D.setItem('fg_qt',qt);card.scrollIntoView({behavior:'smooth',block:'start'});}
+
+// FLASHCARDS
+var activeFcat='all';
+var FCARDS=FCARDS_ALL.slice();
+
+function buildFcardCats(){
+  var c=el('fcard-cats');if(!c)return;
+  c.innerHTML=FCARD_CATS.map(function(cat){
+    var count=cat.id==='all'?FCARDS_ALL.length:FCARDS_ALL.filter(function(f){return f.tag===cat.id;}).length;
+    return '<button class="ftab'+(activeFcat===cat.id?' active':'')+'" onclick="filterFcards(\''+cat.id+'\',this)">'+cat.label+' <span style="opacity:.6;font-size:9px">('+count+')</span></button>';
+  }).join('');
+}
+
+function filterFcards(cat,btn){
+  activeFcat=cat;
+  FCARDS=cat==='all'?FCARDS_ALL.slice():FCARDS_ALL.filter(function(f){return f.tag===cat;});
+  fi=0;
+  document.querySelectorAll('#fcard-cats .ftab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  renderFlash();
+}
+
+function renderFlash(){
+  var c=el('flashcard');if(!c)return;
+  if(!FCARDS||!FCARDS.length){c.innerHTML='<div style="text-align:center;padding:24px;color:var(--ink4);font-style:italic">No cards in this category.</div>';return;}
+  var fc=FCARDS[fi];
+  var catObj=FCARD_CATS.filter(function(x){return x.id===fc.tag;})[0]||{label:fc.tag};
+  var catColors={IS:'var(--gold)',GS:'var(--fe)',CT:'#7b3fa0',MF:'#8b4513',LT:'#c45c1a',SP:'#1565c0',SW:'#2e7d32',SA:'#b71c1c',FG:'var(--gold)'};
+  var catBgs={IS:'var(--gold3)',GS:'#e8f5e9',CT:'#f0e8f5',MF:'#fdf5ed',LT:'#fff3e0',SP:'#e3f2fd',SW:'#e8f5e9',SA:'#fbe9e7',FG:'var(--gold3)'};
+  var col=catColors[fc.tag]||'var(--gold)';
+  var bg=catBgs[fc.tag]||'var(--gold3)';
+  c.innerHTML=
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">' +
+      '<div style="display:flex;align-items:center;gap:8px">' +
+        '<span style="background:'+bg+';color:'+col+';font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:2px;border:1px solid '+col+';opacity:.8">'+catObj.label+'</span>' +
+        '<span style="font-size:10px;color:var(--ink4)">'+( fi+1)+' / '+FCARDS.length+'</span>' +
+      '</div>' +
+      '<div style="background:var(--warm);height:2px;flex:1;margin-left:12px;overflow:hidden;border-radius:1px"><div style="background:var(--gold);height:100%;width:'+(((fi+1)/FCARDS.length)*100)+'%;transition:width .3s"></div></div>' +
+    '</div>' +
+    '<div class="fcard" onclick="revealFlash()" id="fcbody">' +
+      '<div style="font-size:10px;opacity:.5;margin-bottom:10px;letter-spacing:.15em;text-transform:uppercase">Read the clues — What is this?</div>' +
+      '<div style="font-size:17px;font-style:italic;line-height:1.75;font-family:serif">'+fc.cl+'</div>' +
+      '<div style="margin-top:18px;font-size:10px;opacity:.4;letter-spacing:.1em;text-transform:uppercase">Tap to reveal</div>' +
+    '</div>' +
+    '<div id="fans" style="display:none;margin-top:12px;background:'+bg+';border-radius:3px;padding:18px;text-align:center;border:1px solid '+col+';opacity:.9">' +
+      '<div style="font-size:22px;font-weight:700;color:var(--ink);margin-bottom:6px;font-family:serif">'+fc.s+'</div>' +
+      '<div style="font-size:12px;color:var(--ink3);font-style:italic;margin-bottom:8px;line-height:1.6">'+fc.k+'</div>' +
+      '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:'+col+'">'+catObj.label+'</div>' +
+    '</div>' +
+    '<div style="display:flex;gap:8px;margin-top:14px">' +
+      '<button onclick="prevFlash()" class="btn btn-ghost btn-sm" style="flex:1"'+(fi===0?' disabled':'')+'>← Prev</button>' +
+      '<button onclick="nextFlash()" class="btn btn-sm" style="flex:1">'+(fi===FCARDS.length-1?'&#8635; Restart':'Next &#8594;')+'</button>' +
+    '</div>';
+}
+
+function revealFlash(){var a=el('fans');if(a)a.style.display='block';}
+function nextFlash(){fi=fi<FCARDS.length-1?fi+1:0;renderFlash();}
+function prevFlash(){if(fi>0){fi--;renderFlash();}}
+
+// INSPO
+function pinUrl(){var u=el('inspo-url').value.trim(),tag=el('inspo-tag').value;if(!u)return;inspo.unshift({id:Date.now(),url:u,tag:tag,type:'url'});sv('fg_inspo',inspo);el('inspo-url').value='';renderInspo();}
+function uploadInspo(){var inp=el('inspo-file'),tag=el('inspo-tag').value,files=[...inp.files];if(!files.length)return;var p=0;files.forEach(function(f){var r=new FileReader();r.onload=function(e){inspo.unshift({id:Date.now()+Math.random(),url:e.target.result,tag:tag,type:'upload'});p++;if(p===files.length){sv('fg_inspo',inspo);renderInspo();}};r.readAsDataURL(f);});inp.value='';}
+function filterInspo(tag,btn){ifilter=tag;document.querySelectorAll('#inspo-tabs .ftab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderInspo();}
+function delInspo(id){inspo=inspo.filter(function(i){return i.id!=id;});sv('fg_inspo',inspo);renderInspo();}
+function renderInspo(){var g=el('inspo-grid'),em=el('inspo-empty');if(!g)return;var filt=ifilter==='all'?inspo:inspo.filter(function(i){return i.tag===ifilter;});if(!filt.length){g.innerHTML='';em.style.display='block';return;}em.style.display='none';g.innerHTML=filt.map(function(item){return '<div class="ipin" onclick="viewInspo('+item.id+')"><img src="'+item.url+'" alt="'+item.tag+'" onerror="this.parentElement.style.display=\'none\'"><div class="iptag">'+item.tag+'</div><button class="ipdel" onclick="event.stopPropagation();delInspo('+item.id+')">✕</button></div>';}).join('');}
+function viewInspo(id){var item=inspo.find(function(i){return i.id==id;});if(!item)return;var w=window.open('','_blank');w.document.write('<!DOCTYPE html><html><body style="margin:0;background:#0e1f14;display:flex;align-items:center;justify-content:center;min-height:100vh"><img src="'+item.url+'" style="max-width:100%;max-height:100vh;object-fit:contain"></body></html>');}
+
+// BRIEF
+function renderBriefFields(){var c=el('brief-fields');if(!c)return;c.innerHTML=BRIEF_FIELDS.map(function(f){return '<div class="bff"><div class="bfl">'+f.l+'</div>'+(f.ta?'<textarea id="bf-'+f.id+'" placeholder="'+f.p+'" style="min-height:70px"></textarea>':'<input id="bf-'+f.id+'" type="text" placeholder="'+f.p+'">')+'</div>';}).join('');}
+function saveBrief(){var nm=el('brief-name').value.trim()||'Untitled Project',data={};BRIEF_FIELDS.forEach(function(f){var e=el('bf-'+f.id);if(e)data[f.id]=e.value.trim();});var dl=new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'});briefs.unshift({name:nm,date:dl,day:cd,data:data});sv('fg_briefs',briefs);el('brief-name').value='';BRIEF_FIELDS.forEach(function(f){var e=el('bf-'+f.id);if(e)e.value='';});renderSavedBriefs();alert('Brief saved: "'+nm+'"');}
+function renderSavedBriefs(){var c=el('saved-briefs');if(!c||!briefs.length)return;c.innerHTML='<div style="font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Saved Briefs</div>'+briefs.slice(0,5).map(function(b){return '<div class="bfsaved"><div class="bftitle">'+b.name+'</div><div class="bfdate">'+b.date+' — Day '+b.day+'</div><div style="font-size:12.5px;color:var(--ink2)">'+(b.data.style?'<strong>Style:</strong> '+b.data.style+'<br>':'')+(b.data.feel?'<strong>Feel:</strong> '+b.data.feel+'<br>':'')+(b.data.personality?'<strong>Client:</strong> '+b.data.personality.substring(0,80)+(b.data.personality.length>80?'...':''):'')+'</div></div>';}).join('');}
+
+// REFERENCE
+function initPal(){['60','30','10'].forEach(function(k){var e=el('c'+k),h=el('h'+k);if(!e||!h)return;e.addEventListener('input',function(){h.textContent=e.value;});});}
+function savePal(){var nm=el('pal-name').value.trim()||'Untitled Palette',c6=el('c60').value,c3=el('c30').value,c1=el('c10').value,dl=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});pals.unshift({name:nm,c60:c6,c30:c3,c10:c1,date:dl,day:cd});sv('fg_pals',pals);el('pal-name').value='';renderPals();}
+function delPal(i){pals.splice(i,1);sv('fg_pals',pals);renderPals();}
+function renderPals(){var c=el('saved-pals');if(!c)return;if(!pals.length){c.innerHTML='<div style="color:var(--ink4);font-size:12.5px;font-style:italic;text-align:center;padding:10px 0">No palettes saved yet.</div>';return;}c.innerHTML='<div style="font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Saved Palettes</div>'+pals.map(function(p,i){return '<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><div style="font-weight:600;font-size:13px;color:var(--ink)">'+p.name+'</div><div style="display:flex;align-items:center;gap:8px"><div style="font-size:10px;color:var(--ink4)">'+p.date+'</div><button onclick="delPal('+i+')" style="background:none;border:none;color:var(--ink4);cursor:pointer;font-size:13px">✕</button></div></div><div class="psaved-strip"><div class="pstrip" style="background:'+p.c60+';flex:6"></div><div class="pstrip" style="background:'+p.c30+';flex:3"></div><div class="pstrip" style="background:'+p.c10+';flex:1"></div></div><div style="display:flex;gap:8px;font-size:9.5px;color:var(--ink4);font-family:monospace"><span style="flex:6">60% '+p.c60+'</span><span style="flex:3">30% '+p.c30+'</span><span style="flex:1">10% '+p.c10+'</span></div></div>';}).join('');}
+// ============================================================
+// LANDSCAPE CHEAT SHEETS
+// ============================================================
+var SA_PLANTS={
+  zones:[
+    {
+      zone:'Highveld (Gauteng & surrounds)',
+      climate:'Summer rainfall • Frost in winter • Afternoon thunderstorms • Altitude 1500–1800m',
+      color:'var(--gold)',bg:'var(--gold3)',
+      trees:[
+        {n:'Wild Olive',lat:'Olea europaea subsp. africana',note:'Evergreen, drought tolerant, birds love it'},
+        {n:'Fever Tree',lat:'Vachellia xanthophloea',note:'Iconic yellow-barked acacia, semi-deciduous'},
+        {n:'Cape Chestnut',lat:'Calodendrum capense',note:'Spectacular spring flowers, medium tree'},
+        {n:'White Stinkwood',lat:'Celtis africana',note:'Fast growing, great shade, frost hardy'},
+        {n:'Buffalo Thorn',lat:'Ziziphus mucronata',note:'Indigenous, drought tolerant, wildlife tree'}
+      ],
+      shrubs:[
+        {n:'Sagewood',lat:'Buddleja salviifolia',note:'Fast growing, fragrant, frost hardy'},
+        {n:'Wild Gardenia',lat:'Gardenia volkensii',note:'Fragrant white flowers, evergreen'},
+        {n:'Num-num',lat:'Carissa macrocarpa',note:'Thorny hedge, edible fruit, coastal too'},
+        {n:'Wild Peach',lat:'Kiggelaria africana',note:'Host plant for Garden Acraea butterfly'}
+      ],
+      perennials:[
+        {n:'Red Hot Poker',lat:'Kniphofia species',note:'Bold flower spikes, bird-attracting, drought tolerant'},
+        {n:'Wild Dagga',lat:'Leonotis leonurus',note:'Orange flowers, butterflies, frost tolerant'},
+        {n:'Agapanthus',lat:'Agapanthus africanus',note:'Classic SA garden plant, blue or white'},
+        {n:'River Lily',lat:'Crinum macowanii',note:'Large bulb, pink flowers, summer rainfall'}
+      ]
+    },
+    {
+      zone:'Western Cape (Cape Town & surrounds)',
+      climate:'Mediterranean • Wet winters, dry summers • Fynbos biome • Wind-exposed • No frost in most areas',
+      color:'var(--fe)',bg:'#e8f5e9',
+      trees:[
+        {n:'Real Yellowwood',lat:'Podocarpus latifolius',note:'SA\'s national tree, slow growing, formal'},
+        {n:'Wild Pear',lat:'Dombeya rotundifolia',note:'Spring flowers, deciduous, wildlife tree'},
+        {n:'Camphor Tree',lat:'Tarchonanthus camphoratus',note:'Silver foliage, aromatic, wind tolerant'},
+        {n:'Keurboom',lat:'Virgilia oroboides',note:'Fast growing, pink flowers, short-lived pioneer'}
+      ],
+      shrubs:[
+        {n:'Protea cynaroides',lat:'King Protea',note:'SA national flower, bold statement plant'},
+        {n:'Leucadendron',lat:'Various species',note:'Colourful foliage, long-lasting, fynbos essential'},
+        {n:'Restio',lat:'Various species',note:'Architectural grass-like, Cape endemic, very water-wise'},
+        {n:'Berzelia',lat:'Berzelia lanuginosa',note:'White bobble flowers, wet soil tolerant'}
+      ],
+      perennials:[
+        {n:'Watsonia',lat:'Watsonia species',note:'Sword-like leaves, pink-red flowers, summer'},
+        {n:'Freesia',lat:'Freesia species',note:'Fragrant, spring flowering, Cape endemic'},
+        {n:'Pelargonium',lat:'Various species',note:'Classic Cape plant, drought tolerant, varied'},
+        {n:'Lampranthus',lat:'Various species',note:'Brilliant colour, totally drought tolerant'}
+      ]
+    },
+    {
+      zone:'KwaZulu-Natal (Durban & surrounds)',
+      climate:'Subtropical • Hot and humid • Year-round rainfall • Frost-free coast • Rich biodiversity',
+      color:'#7b3fa0',bg:'#f0e8f5',
+      trees:[
+        {n:'Natal Mahogany',lat:'Trichilia emetica',note:'Large canopy, evergreen, birds and butterflies'},
+        {n:'Bougainvillea',lat:'Bougainvillea species',note:'Dramatic colour, thrives in KZN heat'},
+        {n:'Wild Fig',lat:'Ficus species',note:'Massive canopy, wildlife magnet, landmark tree'},
+        {n:'Natal Bottlebrush',lat:'Greyia sutherlandii',note:'Spectacular red flowers, mountain slopes'}
+      ],
+      shrubs:[
+        {n:'Plumbago',lat:'Plumbago auriculata',note:'Reliable blue flowers, heat loving, easy'},
+        {n:'Yesterday-Today-Tomorrow',lat:'Brunfelsia pauciflora',note:'Fragrant, colour-changing flowers'},
+        {n:'Crossandra',lat:'Crossandra infundibuliformis',note:'Orange flowers, shade tolerant, tropical feel'},
+        {n:'Wild Medlar',lat:'Vangueria infausta',note:'Wildlife food source, drought tolerant'}
+      ],
+      perennials:[
+        {n:'Clivia',lat:'Clivia miniata',note:'Classic SA shade plant, orange or yellow flowers'},
+        {n:'Strelitzia',lat:'Strelitzia reginae',note:'Bird of Paradise — iconic, bold, SA signature'},
+        {n:'Dietes',lat:'Dietes grandiflora',note:'Wild Iris — tough, evergreen, long-flowering'},
+        {n:'Canna',lat:'Canna species',note:'Tropical drama, bold leaves, vivid flowers'}
+      ]
+    }
+  ]
+};
+
+var SA_CLIMATE=[
+  {zone:'Highveld',color:'var(--gold)',bg:'var(--gold3)',
+   facts:[
+    {l:'Rainfall',v:'600–700mm/year, summer only (Oct–Mar)'},
+    {l:'Frost',v:'Yes — June to August. Design for it.'},
+    {l:'Summer',v:'Hot days (25–32°C), afternoon thunderstorms'},
+    {l:'Winter',v:'Cold nights (-5 to 5°C), dry and sunny days'},
+    {l:'Altitude',v:'1500–1800m above sea level'},
+    {l:'Soil',v:'Often red-clay or sandy loam. Test pH — usually 6–7'},
+    {l:'Design tip',v:'Use deciduous trees for winter sun, evergreens for structure. Plan for frost on tender plants.'}
+   ]},
+  {zone:'Western Cape',color:'var(--fe)',bg:'#e8f5e9',
+   facts:[
+    {l:'Rainfall',v:'600–900mm/year, winter only (May–Sep)'},
+    {l:'Frost',v:'Rare on coast, possible in mountains and inland valleys'},
+    {l:'Summer',v:'Hot and dry (25–35°C), South-Easter wind'},
+    {l:'Winter',v:'Cool and wet (10–18°C)'},
+    {l:'Altitude',v:'Sea level to 1000m (varies greatly)'},
+    {l:'Soil',v:'Sandy, well-draining, low nutrient. pH 5–6.5 (acid)'},
+    {l:'Design tip',v:'Plant in autumn so roots establish in winter rains. Design for summer drought — indigenous fynbos thrives.'}
+   ]},
+  {zone:'KwaZulu-Natal Coast',color:'#7b3fa0',bg:'#f0e8f5',
+   facts:[
+    {l:'Rainfall',v:'800–1000mm/year, year-round (peaks Nov–Mar)'},
+    {l:'Frost',v:'None on coast. Some risk inland above 900m'},
+    {l:'Summer',v:'Hot and humid (28–35°C), occasional cyclone influence'},
+    {l:'Winter',v:'Mild and dry (18–24°C) — outdoor living year-round'},
+    {l:'Altitude',v:'Sea level to 600m for most projects'},
+    {l:'Soil',v:'Clay-rich coastal soils. Good organic content. pH 6–7'},
+    {l:'Design tip',v:'Lean into the subtropical climate. Strelitzia, Clivia, Canna and Bougainvillea thrive. Drainage is key.'}
+   ]},
+  {zone:'SA Water Context',color:'var(--rose)',bg:'#fbe9e7',
+   facts:[
+    {l:'National crisis',v:'SA is a water-scarce country. Day Zero in Cape Town (2018) changed everything.'},
+    {l:'Design response',v:'Always specify drought-tolerant species as preference. Indigenous = water-wise.'},
+    {l:'Irrigation',v:'Drip irrigation is preferred over sprinklers. Water at dawn not midday.'},
+    {l:'Mulching',v:'100mm mulch layer reduces water loss by up to 70%. Always specify.'},
+    {l:'Councils',v:'Many SA municipalities have watering restrictions. Check before designing.'},
+    {l:'Client benefit',v:'Water-wise gardens cost less to maintain — a real luxury selling point.'}
+   ]}
+];
+
+var SA_HARDSCAPE=[
+  {mat:'Travertine',origin:'Imported (Turkey, Italy)',cost:'●●●●○',
+   pros:'Warm tones, moves seamlessly indoor to outdoor, ages beautifully, very popular in SA luxury',
+   cons:'Porous — needs sealing, can stain, slippery when wet if not sealed properly',
+   uses:'Pool surrounds, terraces, entrance paths, interior floors to exterior continuity'},
+  {mat:'Granite (SA Local)',origin:'Local — Rustenburg, Mpumalanga',cost:'●●●○○',
+   pros:'Extremely durable, low maintenance, frost and heat resistant, SA-sourced = lower cost',
+   cons:'Heavy, can look cold if not used carefully, limited colour range locally',
+   uses:'Feature walls, steps, retaining walls, formal paths, pool copings'},
+  {mat:'Sandstone (SA)',origin:'Local — Free State, Mpumalanga',cost:'●●○○○',
+   pros:'Warm honey and rust tones, natural texture, locally abundant, very affordable',
+   cons:'Softer than granite, can flake over time, less suitable for high-traffic areas',
+   uses:'Garden walls, stepping stones, rustic paths, feature elements'},
+  {mat:'Corobrik / Clay Brick',origin:'SA manufactured',cost:'●●○○○',
+   pros:'Classic SA material, warm earthy tones, good for period or cottage styles, affordable',
+   cons:'Requires maintenance, mortar joints can weep, less suited to contemporary luxury',
+   uses:'Garden walls, boundary walls, cottage and heritage garden paths'},
+  {mat:'Corten Steel (Weathering Steel)',origin:'Imported, fabricated locally',cost:'●●●●○',
+   pros:'Develops warm rust patina, architectural statement, very durable, no painting needed',
+   cons:'Can stain adjacent surfaces, takes 1–2 years to fully patina, premium cost',
+   uses:'Retaining walls, raised planters, water feature walls, screens, signage'},
+  {mat:'Concrete (Bush-hammered / Exposed Aggregate)',origin:'SA manufactured',cost:'●●●○○',
+   pros:'Fully custom, can be coloured and textured, modern aesthetic, very durable',
+   cons:'Can crack if poorly mixed, needs expansion joints, can look clinical if overused',
+   uses:'Contemporary terraces, driveways, pool surrounds, feature walls, steps'},
+  {mat:'Composite Decking',origin:'Imported and SA manufactured',cost:'●●●○○',
+   pros:'Low maintenance vs timber, no splinters, consistent colour, UV stable for SA climate',
+   cons:'Higher upfront cost than timber, can feel artificial, some products fade',
+   uses:'Pool decks, entertainment areas, roof terraces, covered outdoor rooms'},
+  {mat:'Hardwood Timber (Balau, Teak)',origin:'Balau — SE Asia, Teak — sustainable plantations',cost:'●●●●○',
+   pros:'Natural warmth and beauty, excellent for SA outdoor living, ages to silver if not oiled',
+   cons:'Requires annual oiling, premium cost, ensure FSC certified timber',
+   uses:'Decking, pergola beams, screens, outdoor furniture, bespoke features'}
+];
+
+var SA_WATER=[
+  {group:'Swimming Pools — SA Luxury Standard',items:[
+    {n:'Minimum pool width (luxury)',v:'4000mm',note:'3000mm absolute minimum for lap movement'},
+    {n:'Standard luxury pool',v:'8000–12000 x 4000mm',note:'Most common SA luxury residential size'},
+    {n:'Pool coping width',v:'300–500mm',note:'Wider coping = more luxurious feel'},
+    {n:'Pool surround (travertine)',v:'1500–2500mm minimum',note:'Enough for sunloungers and circulation'},
+    {n:'Safety fence (SANS 10134)',v:'Required — 1200mm min height',note:'Legally required in SA for all pools'},
+    {n:'Steps — pool entry',v:'900mm wide minimum',note:'1200mm+ for a luxury gracious entry'},
+    {n:'Shallow end depth',v:'900–1200mm',note:'For children and social swimming'},
+    {n:'Deep end depth',v:'1500–1800mm',note:'Not more unless lap pool or diving'}
+  ]},
+  {group:'Formal Water Features',items:[
+    {n:'Rill width (minimum)',v:'300mm',note:'Below this looks too narrow'},
+    {n:'Rill depth',v:'150–300mm',note:'Deep enough for visual reflection'},
+    {n:'Formal reflecting pool depth',v:'300–450mm',note:'For reflection, not planting'},
+    {n:'Water feature pump — flow',v:'Pond volume x 2/hour',note:'Minimum for healthy circulation'},
+    {n:'Overflow allowance (SA drought)',v:'Design with recirculation',note:'Never specify overflow to drain in SA'}
+  ]},
+  {group:'Naturalistic Ponds',items:[
+    {n:'Minimum depth for wildlife',v:'600mm',note:'Allows amphibians to overwinter'},
+    {n:'Aquatic plant zone depth',v:'150–300mm',note:'Marginal shelf for reeds and marginals'},
+    {n:'Open water zone',v:'Min 50% of surface area',note:'For oxygenation and wildlife access'},
+    {n:'Child safety shelf',v:'Gradual slope to 300mm',note:'No vertical drop edges near pools'},
+    {n:'Liner overlap (EPDM)',v:'300mm beyond water edge',note:'Hidden under stone or planting'}
+  ]},
+  {group:'Rain Gardens & SuDS (SA)',items:[
+    {n:'Rain garden depth',v:'200–300mm below lawn level',note:'Designed to drain within 24–48 hours'},
+    {n:'Permeable paving fall',v:'1:80 minimum',note:'Towards planted zones not drains'},
+    {n:'Swale width (minimum)',v:'600mm',note:'Wider is better for heavy SA summer storms'},
+    {n:'Retention pond (large estates)',v:'Engineer required',note:'SANS standards apply — get sign-off'}
+  ]}
+];
+
+var SA_LAYERS=[
+  {layer:'Canopy Layer',height:'8–25m+',role:'Structure, shade, scale, wildlife habitat, borrowed landscape',
+   color:'var(--fe)',bg:'#e8f5e9',
+   saPlants:['Wild Olive (Olea europaea subsp. africana)','Fever Tree (Vachellia xanthophloea)','Natal Mahogany (Trichilia emetica)','Wild Fig (Ficus species)','White Stinkwood (Celtis africana)'],
+   designTip:'Plant canopy trees first. They define everything else. Allow 5m+ from boundaries.'},
+  {layer:'Understorey Layer',height:'3–8m',role:'Secondary structure, seasonal flowers, bird habitat, filtered light',
+   color:'var(--gold)',bg:'var(--gold3)',
+   saPlants:['Cape Chestnut (Calodendrum capense)','Wild Pear (Dombeya rotundifolia)','Keurboom (Virgilia oroboides)','Waterberry (Syzygium cordatum)','Boerboon (Schotia brachypetala)'],
+   designTip:'These create the mid-level drama — spring flowers, autumn colour, feeding birds.'},
+  {layer:'Shrub Layer',height:'1–3m',role:'Structure, privacy screening, colour, seasonal interest, habitat',
+   color:'#7b3fa0',bg:'#f0e8f5',
+   saPlants:['Protea cynaroides (King Protea)','Wild Gardenia (Gardenia volkensii)','Sagewood (Buddleja salviifolia)','Num-num (Carissa macrocarpa)','Plumbago (Plumbago auriculata)'],
+   designTip:'The working layer of a garden. Mix evergreen structure with seasonal flowering shrubs.'},
+  {layer:'Herbaceous / Perennial Layer',height:'0.3–1.2m',role:'Seasonal colour, movement, pollinator attraction, year-round change',
+   color:'var(--fe)',bg:'#e8f5e9',
+   saPlants:['Agapanthus (Agapanthus africanus)','Strelitzia (Strelitzia reginae)','Wild Dagga (Leonotis leonurus)','Red Hot Poker (Kniphofia species)','Clivia (Clivia miniata)'],
+   designTip:'This layer creates the emotional response. Plant in drifts (odd numbers, 3–7 of each).'},
+  {layer:'Ground Layer',height:'0–0.3m',role:'Soil coverage, weed suppression, texture, connecting all layers',
+   color:'#8b4513',bg:'#fdf5ed',
+   saPlants:['Gazania (Gazania species)','Carpet Geranium (Geranium incanum)','Lampranthus (Lampranthus species)','Mondo Grass (Ophiopogon japonicus)','Indigenous sedges (Carex species)'],
+   designTip:'Never leave bare soil. Ground cover is the finish of a garden, like a floor in an interior.'}
+];
+
+// ============================================================
+// BUSINESS CHEAT SHEETS
+// ============================================================
+var BIZ_PRICING=[
+  {model:'Consultation Fee',desc:'Initial client meeting and site visit',
+   range:'R1,500 – R4,500 per session',note:'Always charge for your time from day one. This filters serious clients.'},
+  {model:'Fixed Design Fee — Interior',desc:'Full interior design service: concept to specification',
+   range:'R15,000 – R80,000+ per project',note:'Based on scope and size. R650–R1,200 per sqm is a useful guide for SA luxury.'},
+  {model:'Fixed Design Fee — Landscape',desc:'Full landscape design: brief to planting plan and specifications',
+   range:'R12,000 – R60,000+ per project',note:'Smaller scope than interior usually but can be equal for large estates.'},
+  {model:'Full Property Fee (Interior + Landscape)',desc:'From&Glow complete service — the competitive advantage',
+   range:'R40,000 – R200,000+',note:'Position as a premium unified service. Discount vs two separate designers = your value proposition.'},
+  {model:'Percentage of Project Cost',desc:'Fee as % of total contractor/supplier costs',
+   range:'10–18% of project cost',note:'Works well on large projects. Industry norm in SA is 12–15% for full service.'},
+  {model:'Hourly Rate',desc:'Time-based billing for smaller tasks',
+   range:'R650 – R1,800 per hour',note:'Use for consultations, extras, travel time. Mid-range to start, increase with experience.'},
+  {model:'Procurement / Sourcing Fee',desc:'Fee for sourcing and ordering furniture and materials on behalf of client',
+   range:'10–20% markup on items',note:'Standard industry practice. Be transparent with clients about this upfront.'},
+  {model:'Implementation Oversight',desc:'Site visits and contractor management during build',
+   range:'R1,200 – R2,500 per site visit',note:'Or include as a fixed fee based on estimated visits. Always include in your proposal scope.'}
+];
+
+var BIZ_TIMELINE=[
+  {phase:'Discovery & Brief',duration:'Week 1–2',tasks:[
+    'Initial consultation meeting (charged)',
+    'Site survey and measurements',
+    'Client questionnaire completed',
+    'Brief written and agreed in writing',
+    'Fee proposal sent and signed'
+  ]},
+  {phase:'Concept Design',duration:'Week 3–5',tasks:[
+    'Mood boards and concept direction (2–3 options)',
+    'Concept floor plan / landscape bubble diagram',
+    'Preliminary material and plant palette',
+    'Concept presentation to client',
+    'Client feedback and preferred direction confirmed'
+  ]},
+  {phase:'Design Development',duration:'Week 6–9',tasks:[
+    'Detailed floor plans / scaled landscape plan',
+    'Material and finish specifications',
+    'Furniture schedule / plant schedule',
+    'Lighting design plan',
+    'Revised presentation to client — sign-off obtained'
+  ]},
+  {phase:'Technical Documentation',duration:'Week 10–12',tasks:[
+    'Full specification documents for contractors',
+    'Technical drawings (sections, elevations)',
+    'Bill of quantities (with QS if required)',
+    'Tender documentation — go to market for quotes',
+    'Contractor selection recommendation to client'
+  ]},
+  {phase:'Implementation & Oversight',duration:'Week 13 – Completion',tasks:[
+    'Construction begins — site visits per schedule',
+    'Variation order management',
+    'Quality control inspections',
+    'Snagging list before client handover',
+    'Final photography and portfolio documentation'
+  ]},
+  {phase:'Typical Total Timelines',duration:'',tasks:[
+    'Interior only (apartment): 3–5 months',
+    'Interior only (full house): 5–9 months',
+    'Landscape only: 3–6 months',
+    'Full property From&Glow: 9–18 months',
+    'Complex luxury estate: 18–36 months'
+  ]}
+];
+
+var BIZ_PROPOSAL=[
+  {section:'Cover Page',items:['From&Glow logo and brand','Client name and project name','Date','Your contact details']},
+  {section:'Project Overview',items:['Brief summary of the project scope','Property address and description','What the client asked for in their own words (shows you listened)']},
+  {section:'Your Understanding of the Brief',items:['Key goals and aspirations','Lifestyle and personality notes','Must-haves and non-negotiables','Any specific challenges or site conditions']},
+  {section:'Scope of Work',items:['Exactly what is included (Interior / Landscape / Both)','Room by room or zone by zone breakdown','Number of concept options to be presented','Number of revisions included','Site visit schedule']},
+  {section:'What is NOT Included',items:['Contractor management (unless specified)','Structural or engineering work','Quantity surveying','Any items not explicitly listed above']},
+  {section:'Timeline',items:['Start date','Key milestone dates','Estimated completion','Conditions that may affect timeline']},
+  {section:'Fee Structure',items:['Total fee clearly stated (no surprises)','Payment schedule (e.g. 50% upfront, 25% at concept, 25% at completion)','What triggers each payment','How additional work is charged (hourly rate or variation orders)']},
+  {section:'Terms & Conditions',items:['Intellectual property — designs remain yours until paid in full','Client approval in writing required at each stage before proceeding','Cancellation terms and kill fee','Late payment interest clause']},
+  {section:'Your Credentials',items:['Brief professional bio','Relevant projects or experience (even informal at this stage)','SADA membership or student registration','From&Glow brand statement']},
+  {section:'Acceptance',items:['Signature line for client','Date','Clear next step: "Sign and return to confirm appointment"']}
+];
+
+var BIZ_CONTRACT=[
+  {item:'Parties',desc:'Full legal names, addresses and contact details of both designer and client. Company registration if applicable.'},
+  {item:'Project Description',desc:'Clear description of the property and the scope of design work. Reference the signed proposal.'},
+  {item:'Services to be Provided',desc:'Detailed list of exactly what you will deliver. Be specific — vague contracts cause disputes.'},
+  {item:'Fees and Payment Schedule',desc:'Total fee, payment milestones, due dates, accepted payment methods, and interest on late payments (prime + 2% is standard SA practice).'},
+  {item:'Additional Services',desc:'How extra work beyond scope will be charged. Include your hourly rate and the process for approving variations.'},
+  {item:'Client Responsibilities',desc:'What you need from the client — access, prompt feedback, timely approvals, truthful information about budget.'},
+  {item:'Timeline',desc:'Start date, key milestone dates, and conditions that may extend the timeline (contractor delays, client delays, force majeure).'},
+  {item:'Intellectual Property',desc:'All designs, drawings and documents remain the property of From&Glow until final payment is received in full.'},
+  {item:'Confidentiality',desc:'Neither party will share sensitive project information without written consent. Important for high-net-worth SA clients.'},
+  {item:'Photography Rights',desc:'You retain the right to photograph the completed project for your portfolio. Client can request anonymity.'},
+  {item:'Dispute Resolution',desc:'Process for resolving disagreements — mediation first, then arbitration. Specify SA jurisdiction.'},
+  {item:'Cancellation / Kill Fee',desc:'If client cancels, you retain all fees for work completed plus a kill fee (typically 20–30% of remaining balance).'},
+  {item:'Signatures',desc:'Both parties must sign and date. Keep original signed copies. Digital signatures (DocuSign) are legally valid in SA.'}
+];
+
+var BIZ_BODIES=[
+  {body:'SADA',full:'South African Institute of Interior Designers',
+   relevance:'Interior Design',color:'var(--gold)',
+   what:'The professional body for interior designers in SA. Student membership available while studying.',
+   why:'Professional credibility, client trust, access to industry resources and events.',
+   url:'https://www.sada.co.za/'},
+  {body:'SACLAP',full:'South African Council for the Landscape Architectural Profession',
+   relevance:'Landscape Design',color:'var(--fe)',
+   what:'Statutory body regulating landscape architecture in SA. Registration required to practise as a Landscape Architect.',
+   why:'Important to understand the distinction — Landscape Designer vs Landscape Architect. You can practise as a designer without SACLAP registration.',
+   url:'https://www.saclap.org.za/'},
+  {body:'SALI',full:'South African Landscaping Institute',
+   relevance:'Landscape Design',color:'var(--fe)',
+   what:'Professional body for landscaping contractors and designers in SA.',
+   why:'Membership adds credibility when working with contractors. Access to supplier networks.',
+   url:'https://www.sali.org.za/'},
+  {body:'GBCSA',full:'Green Building Council South Africa',
+   relevance:'Sustainability',color:'#2e7d32',
+   what:'Promotes sustainable building and design in SA. Green Star rating system for buildings and interiors.',
+   why:'Understanding Green Star helps you speak to luxury SA clients who value sustainability credentials.',
+   url:'https://www.gbcsa.org.za/'},
+  {body:'NHBRC',full:'National Home Builders Registration Council',
+   relevance:'Construction Knowledge',color:'var(--ink3)',
+   what:'Registers home builders in SA. Important to understand when working with contractors.',
+   why:'All contractors you recommend should be NHBRC registered. Protects your clients.',
+   url:'https://www.nhbrc.org.za/'},
+  {body:'CSD',full:'Central Supplier Database (SA Government)',
+   relevance:'Business Registration',color:'var(--ink3)',
+   what:'Register From&Glow as a supplier if you plan to do any government or corporate work.',
+   why:'Required for any government tender work. Low priority for luxury residential but good to know.',
+   url:'https://secure.csd.gov.za/'},
+  {body:'CIPC',full:'Companies and Intellectual Property Commission',
+   relevance:'Business Registration',color:'var(--gold)',
+   what:'Register From&Glow as a formal business entity. CC or Pty Ltd.',
+   why:'Essential. Trading as a registered entity protects you legally and enables you to invoice professionally.',
+   url:'https://www.cipc.co.za/'}
+];
+
+var BIZ_MARKETING=[
+  {channel:'Instagram',priority:'★★★★★',
+   strategy:'Your primary platform for SA luxury residential clients. Post finished projects, behind-the-scenes, mood boards, client transformations and design insights.',
+   tips:['Consistency over frequency — 3–4 quality posts per week','Use Reels — Instagram favours video heavily','Hashtags: #FromAndGlow #SAInteriorDesign #SAGardenDesign #LuxuryDesignSA #JohannesburgDesign #CapeTownDesign','Tag architects, contractors and suppliers in relevant posts — reciprocal exposure','Stories daily — show your process, not just the result']},
+  {channel:'Houzz SA',priority:'★★★★○',
+   strategy:'The platform where serious renovation and design clients in SA research designers. Build a complete professional profile with project photos.',
+   tips:['Complete profile with bio, services and contact details','Upload every completed project with descriptions','Respond to every enquiry within 24 hours','Request reviews from happy clients — these are gold']},
+  {channel:'Pinterest',priority:'★★★★○',
+   strategy:'You already have 686 pins — you understand this platform. Create From&Glow boards that attract clients with similar taste.',
+   tips:['Create boards by style, room type and colour','Link all pins back to your website or Instagram','This is discovery, not conversion — but it builds authority']},
+  {channel:'LinkedIn',priority:'★★★○○',
+   strategy:'For connecting with architects, developers, estate agents and corporate clients. More B2B than Instagram.',
+   tips:['Post case studies and design insights — professional tone','Connect with every architect, developer and estate agent in your target market','A recommendation from an architect can transform your business']},
+  {channel:'Referrals',priority:'★★★★★',
+   strategy:'In SA luxury residential, referrals are how most business is won. One happy client in Sandton or Constantia is worth 10 Instagram followers.',
+   tips:['Always ask happy clients to refer you by name','Send a thank-you gift when a referral converts to a project','Stay in touch — a Christmas card, a check-in call — relationships last','The contractors, architects and estate agents you work with are referral partners']},
+  {channel:'Website',priority:'★★★★○',
+   strategy:'Your digital home. Must look as good as your design work. Simple, beautiful, mobile-optimised.',
+   tips:['Portfolio first — make it the main event','About page that tells the From&Glow story — the carcass to glow narrative','Contact form that feels effortless','Invest in professional photography for every finished project']},
+  {channel:'Networking in SA Luxury Market',priority:'★★★★○',
+   strategy:'SA luxury residential is a relationship business. Be present in the right rooms.',
+   tips:['Attend SADA events and industry functions','Join Joburg and Cape Town design and property networking groups','Enter design competitions — SADA awards, Decorex — for credibility and exposure','Partner with luxury furniture showrooms for referrals and events']}
+];
+
+function renderSAPlants(){
+  var c=el('sa-plants');if(!c)return;
+  c.innerHTML=SA_PLANTS.zones.map(function(z){
+    return '<div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--warm)">' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">' +
+        '<div style="width:8px;height:8px;border-radius:50%;background:'+z.color+';flex-shrink:0"></div>' +
+        '<div style="font-size:13px;font-weight:700;color:var(--ink)">'+z.zone+'</div>' +
+      '</div>' +
+      '<div style="font-size:11px;color:var(--ink3);font-style:italic;margin-bottom:10px;padding-left:16px">'+z.climate+'</div>' +
+      ['trees','shrubs','perennials'].map(function(type){
+        var labels={trees:'Trees',shrubs:'Shrubs',perennials:'Perennials & Groundcovers'};
+        return '<div style="margin-bottom:8px;padding-left:16px">' +
+          '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:'+z.color+';margin-bottom:5px">'+labels[type]+'</div>' +
+          z[type].map(function(p){
+            return '<div style="display:flex;gap:8px;padding:4px 0;border-bottom:1px solid var(--warm)">' +
+              '<div style="flex:1">' +
+                '<span style="font-weight:600;font-size:12.5px;color:var(--ink)">'+p.n+'</span>' +
+                '<span style="font-size:11px;color:var(--ink4);font-style:italic"> — '+p.lat+'</span>' +
+              '</div>' +
+              '<div style="font-size:11px;color:var(--ink3);max-width:160px;text-align:right;line-height:1.4">'+p.note+'</div>' +
+            '</div>';
+          }).join('') +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }).join('');
+}
+
+function renderSAClimate(){
+  var c=el('sa-climate');if(!c)return;
+  c.innerHTML=SA_CLIMATE.map(function(z){
+    return '<div style="margin-bottom:14px;padding:14px;border-radius:3px;border:1px solid var(--warm);background:'+z.bg+'">' +
+      '<div style="font-size:13px;font-weight:700;color:'+z.color+';margin-bottom:10px;letter-spacing:.02em">'+z.zone+'</div>' +
+      z.facts.map(function(f){
+        var isTip=f.l==='Design tip';
+        return '<div style="display:flex;gap:10px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.06)' + (isTip?';padding-top:8px;margin-top:2px;border-top:1px solid rgba(0,0,0,.1);border-bottom:none':'') + '">' +
+          '<span style="font-size:10px;font-weight:700;color:'+z.color+';min-width:70px;flex-shrink:0;text-transform:uppercase;letter-spacing:.05em;padding-top:1px">'+(isTip?'✦ Tip':f.l)+'</span>' +
+          '<span style="font-size:12.5px;color:var(--ink2);flex:1;line-height:1.5">'+f.v+'</span>' +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }).join('');
+}
+
+function renderSAHardscape(){
+  var c=el('sa-hardscape');if(!c)return;
+  var tiers={1:'●○○○○',2:'●●○○○',3:'●●●○○',4:'●●●●○',5:'●●●●●'};
+  c.innerHTML=SA_HARDSCAPE.map(function(m){
+    return '<div style="padding:12px 0;border-bottom:1px solid var(--warm)">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px">' +
+        '<div style="font-weight:700;font-size:14px;color:var(--ink)">'+m.mat+'</div>' +
+        '<div style="text-align:right;flex-shrink:0">' +
+          '<div style="font-size:11px;color:var(--gold);letter-spacing:.02em">'+m.cost+'</div>' +
+          '<div style="font-size:10px;color:var(--ink4)">'+m.origin+'</div>' +
+        '</div>' +
+      '</div>' +
+      '<div style="font-size:12px;color:var(--fe);margin-bottom:3px;font-weight:600">✓ '+m.pros+'</div>' +
+      '<div style="font-size:12px;color:var(--rose);margin-bottom:5px">✗ '+m.cons+'</div>' +
+      '<div style="font-size:11.5px;color:var(--ink3);font-style:italic">Use for: '+m.uses+'</div>' +
+    '</div>';
+  }).join('') +
+  '<div style="font-size:10.5px;color:var(--ink4);padding-top:10px;border-top:1px solid var(--warm)">Cost tier: ● low — ●●●●● premium luxury</div>';
+}
+
+function renderSAWater(){
+  var c=el('sa-water');if(!c)return;
+  c.innerHTML=SA_WATER.map(function(g){
+    return '<div class="mg"><div class="mgt">'+g.group+'</div>' +
+      g.items.map(function(item){
+        return '<div class="mr"><div><div class="mn">'+item.n+'</div><div class="mnote">'+item.note+'</div></div><div class="mv">'+item.v+'</div></div>';
+      }).join('') +
+    '</div>';
+  }).join('');
+}
+
+function renderSALayers(){
+  var c=el('sa-layers');if(!c)return;
+  c.innerHTML=SA_LAYERS.map(function(layer){
+    return '<div style="margin-bottom:14px;border-radius:3px;padding:14px;background:'+layer.bg+';border:1px solid var(--warm)">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">' +
+        '<div style="font-weight:700;font-size:14px;color:'+layer.color+'">'+layer.layer+'</div>' +
+        '<div style="font-size:10px;font-weight:600;color:var(--ink4);background:white;padding:2px 8px;border-radius:2px">'+layer.height+'</div>' +
+      '</div>' +
+      '<div style="font-size:12px;color:var(--ink2);font-style:italic;margin-bottom:8px">'+layer.role+'</div>' +
+      '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:5px">SA Plants for this Layer</div>' +
+      '<div style="margin-bottom:8px">' +
+        layer.saPlants.map(function(p){
+          return '<div style="font-size:12px;color:var(--ink2);padding:3px 0;border-bottom:1px solid rgba(0,0,0,.06)">• '+p+'</div>';
+        }).join('') +
+      '</div>' +
+      '<div style="background:rgba(14,31,20,.07);border-radius:2px;padding:7px 10px;font-size:12px;color:var(--fe);font-weight:500">✦ '+layer.designTip+'</div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderBizPricing(){
+  var c=el('biz-pricing');if(!c)return;
+  c.innerHTML='<div style="background:var(--gold3);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:var(--ink2);line-height:1.6"><strong>Important:</strong> These are market guides for 2024–2025 SA luxury residential. Your fees will grow with experience and reputation. Start confidently, not apologetically.</div>' +
+  BIZ_PRICING.map(function(p){
+    return '<div style="padding:12px 0;border-bottom:1px solid var(--warm)">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px">' +
+        '<div style="font-weight:700;font-size:13.5px;color:var(--ink);flex:1">'+p.model+'</div>' +
+        '<div style="font-size:12px;font-weight:700;color:var(--gold);text-align:right;flex-shrink:0;white-space:nowrap">'+p.range+'</div>' +
+      '</div>' +
+      '<div style="font-size:12px;color:var(--ink3);margin-bottom:4px">'+p.desc+'</div>' +
+      '<div style="font-size:12px;color:var(--fe);font-style:italic">'+p.note+'</div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderBizTimeline(){
+  var c=el('biz-timeline');if(!c)return;
+  var colors=['var(--gold)','var(--fe)','#7b3fa0','var(--rose)','var(--fe)','var(--ink3)'];
+  c.innerHTML=BIZ_TIMELINE.map(function(p,i){
+    return '<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--warm)">' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">' +
+        '<div style="width:8px;height:8px;border-radius:50%;background:'+colors[i]+';flex-shrink:0"></div>' +
+        '<div style="font-weight:700;font-size:13.5px;color:var(--ink);flex:1">'+p.phase+'</div>' +
+        (p.duration?'<div style="font-size:10.5px;font-weight:600;color:'+colors[i]+';white-space:nowrap">'+p.duration+'</div>':'') +
+      '</div>' +
+      '<ul style="padding-left:16px">' +
+        p.tasks.map(function(t){
+          return '<li style="font-size:12.5px;color:var(--ink2);margin-bottom:4px;line-height:1.5">'+t+'</li>';
+        }).join('') +
+      '</ul>' +
+    '</div>';
+  }).join('');
+}
+
+function renderBizProposal(){
+  var c=el('biz-proposal');if(!c)return;
+  c.innerHTML='<div style="background:var(--gold3);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:var(--ink2)">Tick every section before sending any proposal. A professional proposal wins clients before the work even begins.</div>' +
+  BIZ_PROPOSAL.map(function(s,i){
+    return '<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--warm)">' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">' +
+        '<div style="width:18px;height:18px;border:1.5px solid var(--gold);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--gold)">'+(i+1)+'</div>' +
+        '<div style="font-weight:700;font-size:13px;color:var(--ink)">'+s.section+'</div>' +
+      '</div>' +
+      '<ul style="padding-left:26px">' +
+        s.items.map(function(item){
+          return '<li style="font-size:12px;color:var(--ink2);margin-bottom:3px;line-height:1.5">'+item+'</li>';
+        }).join('') +
+      '</ul>' +
+    '</div>';
+  }).join('');
+}
+
+function renderBizContract(){
+  var c=el('biz-contract');if(!c)return;
+  c.innerHTML='<div style="background:var(--gold3);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:var(--ink2)"><strong>Note:</strong> Always have a lawyer review your standard contract. This is a guide, not legal advice. SADA provides member contract templates.</div>' +
+  BIZ_CONTRACT.map(function(item){
+    return '<div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--warm)">' +
+      '<div style="width:24px;height:24px;background:var(--fb);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center"><span style="color:var(--gold);font-size:12px">✦</span></div>' +
+      '<div><div style="font-weight:700;font-size:13px;color:var(--ink);margin-bottom:3px">'+item.item+'</div><div style="font-size:12.5px;color:var(--ink2);line-height:1.5">'+item.desc+'</div></div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderBizBodies(){
+  var c=el('biz-bodies');if(!c)return;
+  c.innerHTML=BIZ_BODIES.map(function(b){
+    return '<div style="padding:12px 0;border-bottom:1px solid var(--warm)">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:5px">' +
+        '<div>' +
+          '<span style="font-weight:700;font-size:15px;color:'+b.color+'">'+b.body+'</span>' +
+          '<span style="font-size:12px;color:var(--ink3);margin-left:6px">'+b.full+'</span>' +
+        '</div>' +
+        '<span style="font-size:10px;font-weight:700;color:'+b.color+';background:white;border:1px solid var(--warm);border-radius:2px;padding:2px 7px;white-space:nowrap;flex-shrink:0">'+b.relevance+'</span>' +
+      '</div>' +
+      '<div style="font-size:12.5px;color:var(--ink2);margin-bottom:4px;line-height:1.5">'+b.what+'</div>' +
+      '<div style="font-size:12px;color:var(--fe);margin-bottom:6px;font-style:italic">'+b.why+'</div>' +
+      '<span onclick="openLink(\''+b.url+'\')" style="font-size:12px;font-weight:600;color:var(--gold);cursor:pointer;border-bottom:1px solid rgba(201,168,76,.4)">→ Visit website</span>' +
+    '</div>';
+  }).join('');
+}
+
+function renderBizMarketing(){
+  var c=el('biz-marketing');if(!c)return;
+  c.innerHTML=BIZ_MARKETING.map(function(ch){
+    return '<div style="padding:14px 0;border-bottom:1px solid var(--warm)">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">' +
+        '<div style="font-weight:700;font-size:14px;color:var(--ink)">'+ch.channel+'</div>' +
+        '<div style="font-size:13px;color:var(--gold)">'+ch.priority+'</div>' +
+      '</div>' +
+      '<div style="font-size:12.5px;color:var(--ink2);line-height:1.55;margin-bottom:8px;font-style:italic;border-left:2px solid var(--gold);padding-left:10px">'+ch.strategy+'</div>' +
+      '<ul style="padding-left:16px">' +
+        ch.tips.map(function(t){
+          return '<li style="font-size:12px;color:var(--ink2);margin-bottom:4px;line-height:1.5">'+t+'</li>';
+        }).join('') +
+      '</ul>' +
+    '</div>';
+  }).join('') +
+  '<div style="background:var(--gold3);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:12px 14px;margin-top:14px;font-size:12.5px;color:var(--ink2);line-height:1.6">'+
+    '<strong style="color:var(--gold)">From&Glow positioning statement:</strong> ' +
+    '"We transform properties into homes — inside and out — as one unified experience. For the SA homeowner who wants a single trusted designer, not two separate conversations."' +
+  '</div>';
+}
+function renderMeas(){var c=el('measlist');if(!c)return;c.innerHTML=MEAS.map(function(g){return '<div class="mg"><div class="mgt">'+g.g+'</div>'+g.items.map(function(item){return '<div class="mr"><div><div class="mn">'+item.n+'</div>'+(item.note?'<div class="mnote">'+item.note+'</div>':'')+'</div><div class="mv">'+item.v+'</div></div>';}).join('')+'</div>';}).join('');}
+function renderStyleTable(){var t=el('styletable');if(!t)return;var hs=['Style','Palette','Materials','Character','Mood','SA Note'],ks=['s','pal','mat','char','mood','note'];t.innerHTML='<thead><tr>'+hs.map(function(h){return '<th>'+h+'</th>';}).join('')+'</tr></thead><tbody>'+STYLES.map(function(row){return '<tr>'+ks.map(function(k,i){return '<td'+(i===0?' class="stn"':'')+'>'+row[k]+'</td>';}).join('')+'</tr>';}).join('')+'</tbody>';}
+
+// STATS
+function renderStats(){var c=el('statgrid'),ch=el('statchart');if(!c)return;var ta=Object.values(ankiLog).reduce(function(a,b){return a+b;},0),sd=cd-1,pct=Math.round((sd/180)*100),rvc=reviews.length;c.innerHTML=[{n:sd,l:'Days Complete',col:'var(--gold)',b:pct},{n:streak,l:'Day Streak',col:'#c45c1a',b:Math.min(100,streak/30*100)},{n:ta.toLocaleString(),l:'Anki Cards',col:'var(--fe)',b:Math.min(100,ta/8000*100)},{n:Math.round(sd*5),l:'Study Hours',col:'var(--rose)',b:Math.min(100,sd*5/900*100)},{n:wins.length,l:'Wins Logged',col:'var(--gold)',b:null},{n:crits.length,l:'Critiques',col:'var(--fe)',b:null},{n:Object.keys(notes).length,l:'Study Notes',col:'var(--gold)',b:null},{n:rvc,l:'Weekly Reviews',col:'var(--fe)',b:null}].map(function(s){return '<div class="sbox"><div class="snum" style="color:'+s.col+'">'+s.n+'</div><div class="slbl">'+s.l+'</div>'+(s.b!==null?'<div class="sbar-w"><div class="sbar" style="background:'+s.col+';width:'+s.b+'%"></div></div>':'')+'</div>';}).join('');var ra=Object.entries(ankiLog).sort(function(a,b){return a[0].localeCompare(b[0]);}).slice(-7);if(ra.length){var mx=Math.max.apply(null,ra.map(function(e){return e[1];}));mx=mx||1;ch.innerHTML='<div style="margin-top:6px"><div style="font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Anki Cards — Last 7 Days</div><div style="display:flex;align-items:flex-end;gap:6px;height:60px">'+ra.map(function(e){var h=Math.max(4,Math.round((e[1]/mx)*60)),lbl=new Date(e[0]+'T00:00:00').toLocaleDateString('en-GB',{weekday:'short'});return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="font-size:9px;color:var(--gold);font-weight:600">'+e[1]+'</div><div style="width:100%;height:'+h+'px;background:var(--gold);opacity:.8"></div><div style="font-size:9px;color:var(--ink4)">'+lbl+'</div></div>';}).join('')+'</div></div>';}else{ch.innerHTML='<div style="color:var(--ink4);font-size:12.5px;font-style:italic;padding:12px 0;text-align:center">Begin logging Anki cards to see your growth chart.</div>';}var rvd=el('rv-date');if(rvd)rvd.textContent='DAY '+cd+' — '+tod().toUpperCase();}
+function setRvScore(v,btn){rvScore=v;document.querySelectorAll('#rv-score-btns .sbtn').forEach(function(b){b.classList.remove('sel');});btn.classList.add('sel');}
+function saveReview(){var l=el('rv-learned').value.trim(),h=el('rv-hard').value.trim(),f=el('rv-focus').value.trim();if(!l&&!h&&!f){alert('Please fill in at least one field before saving.');return;}var dl=new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'});reviews.unshift({week:Math.ceil(cd/7),day:cd,date:dl,learned:l,hard:h,focus:f,score:rvScore});sv('fg_reviews',reviews);el('rv-learned').value='';el('rv-hard').value='';el('rv-focus').value='';rvScore=0;document.querySelectorAll('#rv-score-btns .sbtn').forEach(function(b){b.classList.remove('sel');});renderSavedReviews();alert('Weekly review saved. Keep building, Nadine. ✦');}
+function renderSavedReviews(){var c=el('saved-reviews');if(!c)return;if(!reviews.length){c.innerHTML='';return;}c.innerHTML='<div style="font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Past Reviews</div>'+reviews.slice(0,4).map(function(r){return '<div class="rvsaved"><div class="rvwlbl">Week '+r.week+' — Day '+r.day+(r.score?' — '+r.score+'/10':'')+'</div><div style="font-size:10px;color:var(--ink4);margin-bottom:8px">'+r.date+'</div>'+(r.learned?'<div style="margin-bottom:4px"><strong>Learned:</strong> '+r.learned.substring(0,100)+(r.learned.length>100?'...':'')+'</div>':'')+(r.focus?'<div><strong>Next week:</strong> '+r.focus.substring(0,80)+(r.focus.length>80?'...':'')+'</div>':'')+'</div>';}).join('');}
+
+// QUOTES
+function renderQuotes(){var c=el('quotebox'),ac=el('allquotes');if(!c)return;var q=QUOTES[qi%QUOTES.length];c.innerHTML='<div class="qquote"><div class="qqrule"></div><div class="qqtext">"'+q.t+'"</div><div class="qqauth">'+q.a+'</div></div><div style="text-align:center;font-size:10px;color:var(--ink4);letter-spacing:.08em;text-transform:uppercase">'+((qi%QUOTES.length)+1)+' of '+QUOTES.length+'</div>';if(ac)ac.innerHTML=QUOTES.map(function(q,i){return '<div style="padding:12px 0;border-bottom:1px solid var(--warm)'+(i===qi%QUOTES.length?';border-left:2px solid var(--gold);padding-left:12px':'')+'"><div style="font-family:\'Cormorant Garant\',serif;font-size:15px;font-style:italic;color:var(--ink);margin-bottom:5px;line-height:1.6">"'+q.t+'"</div><div style="font-size:10px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.08em">'+q.a+'</div></div>';}).join('');}
+function nextQ(){qi=(qi+1)%QUOTES.length;D.setItem('fg_qi',qi);renderQuotes();}
+function prevQ(){qi=(qi-1+QUOTES.length)%QUOTES.length;D.setItem('fg_qi',qi);renderQuotes();}
+
+// RUBRIC
+function renderRubric(){var c=el('rubric-items');if(!c)return;c.innerHTML=RUBRIC_D.map(function(item){return '<div class="ritem"><div class="rname">'+item.id+'. '+item.n+'</div><div class="rdesc">'+item.d+'</div><div style="display:flex;gap:4px;flex-wrap:wrap">'+ [1,2,3,4,5,6,7,8,9,10].map(function(n){return '<button class="sbtn" onclick="setScore('+item.id+','+n+',this)">'+n+'</button>';}).join('')+'</div></div>';}).join('');}
+function setScore(id,v,btn){rscores[id]=v;btn.closest('.ritem').querySelectorAll('.sbtn').forEach(function(b){b.classList.remove('sel');});btn.classList.add('sel');updRubric();}
+function updRubric(){var tot=Object.values(rscores).reduce(function(a,b){return a+b;},0),e=el('rtotal');e.textContent=tot+' / 80';e.style.color=tot>=64?'var(--gold)':tot>=48?'var(--fe)':'var(--rose)';}
+function saveRubric(){var nm=el('rubric-proj').value.trim()||'Untitled Project',tot=Object.values(rscores).reduce(function(a,b){return a+b;},0);if(tot===0){alert('Please score at least one category first.');return;}var dl=new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'});crits.unshift({name:nm,date:new Date().toISOString().split('T')[0],dateLabel:dl,total:tot,day:cd});sv('fg_crits',crits);el('rubric-proj').value='';rscores={};document.querySelectorAll('.sbtn.sel').forEach(function(b){b.classList.remove('sel');});updRubric();renderCritHist();alert('"'+nm+'" scored '+tot+'/80. '+(tot>=64?'The From&Glow standard. ✦':tot>=48?'Good work. Keep refining.':'Keep going — every critique teaches.'));}
+function renderCritHist(){var card=el('crit-hist-card'),list=el('crit-list');if(!crits.length){card.style.display='none';return;}card.style.display='block';list.innerHTML=crits.map(function(c){var col=c.total>=64?'var(--gold)':c.total>=48?'var(--fe)':'var(--rose)';return '<div class="centry"><div><div style="font-weight:600;color:var(--ink)">'+c.name+'</div><div style="font-size:10px;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em">'+(c.dateLabel||c.date)+' — Day '+(c.day||'?')+'</div></div><div style="font-family:\'Cormorant Garant\',serif;font-size:22px;font-weight:700;color:'+col+'">'+c.total+'/80</div></div>';}).join('');}
+
+// NOTES
+function saveNote(){var txt=el('note-text').value.trim();if(!txt)return;var now=new Date(),dl=now.toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'});notes[cd]={text:txt,date:now.toISOString().split('T')[0],dateLabel:dl};sv('fg_notes',notes);el('note-text').value='';renderNoteHist();var b=event.currentTarget;b.textContent='Saved ✦';setTimeout(function(){b.textContent='Save Note';},1500);}
+function renderNoteHist(){var c=el('notes-hist');if(!c)return;var ents=Object.entries(notes).sort(function(a,b){return b[0]-a[0];}).slice(0,8);if(!ents.length){c.innerHTML='';return;}c.innerHTML='<div style="font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Recent Notes</div>'+ents.map(function(e){return '<div class="snote"><div class="ndlbl">Day '+e[0]+' — '+(e[1].dateLabel||e[1].date||'')+'</div><div style="color:var(--ink2)">'+e[1].text+'</div></div>';}).join('');}
+
+// FILES
+function buildFileTabs(){var c=el('file-tabs');if(!c)return;c.innerHTML=FILE_SECS.map(function(s){return '<button class="ftab'+(afs===s.id?' active':'')+'" onclick="switchFS(\''+s.id+'\',this)">'+s.t+'</button>';}).join('');}
+function switchFS(id,btn){afs=id;document.querySelectorAll('#file-tabs .ftab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderFiles();}
+function uploadFiles(){var inp=el('file-input'),files=[...inp.files];if(!files.length)return;if(!sfiles[afs])sfiles[afs]=[];var p=0;files.forEach(function(f){var r=new FileReader();r.onload=function(e){sfiles[afs].push({id:Date.now()+Math.random(),name:f.name,type:f.type,data:e.target.result});p++;if(p===files.length){sv('fg_sfiles',sfiles);renderFiles();}};r.readAsDataURL(f);});inp.value='';}
+function renderFiles(){var g=el('file-grid');if(!g)return;var sf=sfiles[afs]||[];if(!sf.length){g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--ink4);font-size:13px;font-style:italic">No files in this section yet.</div>';return;}g.innerHTML=sf.map(function(f,idx){if(f.type&&f.type.startsWith('image/')){return '<div style="position:relative;border-radius:3px;overflow:hidden;border:1px solid var(--warm);cursor:pointer" onclick="viewFile('+idx+')"><img src="'+f.data+'" style="width:100%;height:110px;object-fit:cover;display:block"><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(14,31,20,.7));padding:8px"><div style="font-size:9.5px;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+f.name+'</div></div><button onclick="delFile('+idx+');event.stopPropagation()" style="position:absolute;top:6px;right:6px;background:rgba(14,31,20,.65);color:white;border:none;width:24px;height:24px;border-radius:50%;font-size:12px;cursor:pointer;line-height:1">✕</button></div>';}else{return '<div style="position:relative;border-radius:3px;border:1px solid var(--warm);background:var(--cream);height:110px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;cursor:pointer" onclick="viewFile('+idx+')"><div style="font-size:26px">◈</div><div style="font-size:10px;text-align:center;padding:0 8px;color:var(--ink3);word-break:break-word;line-height:1.3">'+f.name+'</div><button onclick="delFile('+idx+');event.stopPropagation()" style="position:absolute;top:6px;right:6px;background:rgba(14,31,20,.65);color:white;border:none;width:24px;height:24px;border-radius:50%;font-size:12px;cursor:pointer;line-height:1">✕</button></div>';}}).join('');}
+function viewFile(idx){var f=sfiles[afs][idx];if(f.type&&f.type.startsWith('image/')){var w=window.open('','_blank');w.document.write('<!DOCTYPE html><html><body style="margin:0;background:#0e1f14;display:flex;align-items:center;justify-content:center;min-height:100vh"><img src="'+f.data+'" style="max-width:100%;max-height:100vh;object-fit:contain"></body></html>');}else{var a=document.createElement('a');a.href=f.data;a.download=f.name;a.click();}}
+function delFile(idx){if(!confirm('Delete this file?'))return;sfiles[afs].splice(idx,1);sv('fg_sfiles',sfiles);renderFiles();}
+
+// BACKUP
+var BKEYS=['fg_day','fg_streak','fg_wins','fg_notes','fg_crits','fg_sfiles','fg_ck','fg_anki','fg_inspo','fg_briefs','fg_pals','fg_reviews','fg_qi','fg_qt'];
+function exportBackup(){var bk={version:'1.0',exportDate:new Date().toISOString(),exportDateLabel:tod(),app:'from-and-glow',day:cd,data:{}};BKEYS.forEach(function(k){var v=D.getItem(k);if(v!==null)bk.data[k]=v;});var blob=new Blob([JSON.stringify(bk,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='from-and-glow-backup-'+new Date().toISOString().split('T')[0]+'.json';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);var b=event.currentTarget,orig=b.innerHTML;b.innerHTML='Exported ✦';setTimeout(function(){b.innerHTML=orig;},2500);}
+function importBackup(ev){var f=ev.target.files[0];if(!f)return;var se=el('restore-status');se.style.display='block';se.innerHTML='<span style="color:var(--ink3);font-style:italic">Reading backup...</span>';var r=new FileReader();r.onload=function(e){try{var bk=JSON.parse(e.target.result);if(!bk.data||!bk.version){se.innerHTML='<span style="color:var(--rose)">Invalid backup file.</span>';return;}var dl=bk.exportDateLabel||bk.exportDate.split('T')[0]||'unknown date';if(!confirm('Restore backup from '+dl+'? This will replace all current data.')){se.innerHTML='<span style="color:var(--ink3)">Cancelled.</span>';ev.target.value='';return;}Object.entries(bk.data).forEach(function(kv){D.setItem(kv[0],kv[1]);});se.innerHTML='<span style="color:var(--fe)">Restored. Reloading... ✦</span>';setTimeout(function(){window.location.reload();},1800);}catch(err){se.innerHTML='<span style="color:var(--rose)">Could not read this file. Make sure it is a valid From&Glow backup file.</span>';}};r.readAsText(f);ev.target.value='';}
+
+// NAV
+function gotoTab(tab,btn){document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});el('pg-'+tab).classList.add('on');btn.classList.add('on');window.scrollTo({top:0,behavior:'smooth'});if(tab==='stats')renderStats();}
+
+// INIT
+function init(){updateHome();renderChecklist();renderAnki();renderPlan();renderMasterPlan();renderLearn();renderQuiz();buildFcardCats();renderFlash();renderBriefFields();renderSavedBriefs();renderInspo();renderRubric();renderCritHist();buildFileTabs();renderFiles();renderNoteHist();renderPals();renderMeas();renderStyleTable();renderSAPlants();renderSAClimate();renderSAHardscape();renderSAWater();renderSALayers();renderBizPricing();renderBizTimeline();renderBizProposal();renderBizContract();renderBizBodies();renderBizMarketing();renderQuotes();renderSavedReviews();initPal();}
+window.onload=init;
+</script></body></html>
