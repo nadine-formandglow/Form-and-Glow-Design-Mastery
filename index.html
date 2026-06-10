@@ -294,13 +294,19 @@ textarea{resize:vertical;min-height:110px}
   <button class="nb" onclick="gotoTab('inspo',this)"><span class="ni">🖼️</span><span class="nl">Inspo</span></button>
   <button class="nb" onclick="gotoTab('ref',this)"><span class="ni">📐</span><span class="nl">Reference</span></button>
   <button class="nb" onclick="gotoTab('stats',this)"><span class="ni">◈</span><span class="nl">Stats</span></button>
-  <button class="nb" onclick="gotoTab('quotes',this)"><span class="ni">❝</span><span class="nl">Wisdom</span></button>
   <button class="nb" onclick="gotoTab('projects',this)"><span class="ni">✏️</span><span class="nl">Critique</span></button>
   <button class="nb" onclick="gotoTab('notes',this)"><span class="ni">📝</span><span class="nl">Notes</span></button>
 </nav>
 
 <!-- ===== HOME ===== -->
 <div class="pg on" id="pg-home">
+  <div class="card" style="background:var(--fb);border:none;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:var(--gold);opacity:.06"></div>
+    <div style="font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);opacity:.8;margin-bottom:10px">Today\'s Wisdom ✦</div>
+    <div id="home-quote-text" style="font-family:'Cormorant Garant',serif;font-size:17px;font-style:italic;line-height:1.65;color:white;margin-bottom:10px">Loading...</div>
+    <div style="width:22px;height:1px;background:var(--gold);opacity:.5;margin-bottom:8px"></div>
+    <div id="home-quote-author" style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);opacity:.65"></div>
+  </div>
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:12px">
       <div>
@@ -377,8 +383,6 @@ textarea{resize:vertical;min-height:110px}
     <div id="dphases"></div>
   </div>
   <div class="card"><div class="ct">Essential Reading</div><div class="ct-rule"></div><div class="cs">The books every From&Glow designer must own.</div><div id="booklist"></div></div>
-  <div class="card"><div class="ct">Recommended Courses</div><div class="ct-rule"></div><div class="cs">The best courses to complement your 180-day study.</div><div id="courselist"></div></div>
-  <div class="card"><div class="ct">YouTube Channels</div><div class="ct-rule"></div><div class="cs">Free study material for your daily sessions.</div><div id="ytlist"></div></div>
 </div>
 
 <!-- ===== LEARN ===== -->
@@ -395,6 +399,8 @@ textarea{resize:vertical;min-height:110px}
     <div id="sublist"></div>
   </div>
   <div class="card"><div class="ct">Key Terms Glossary</div><div class="ct-rule"></div><div class="cs">60 essential terms across both disciplines.</div><div id="glosslist"></div></div>
+  <div class="card"><div class="ct">Recommended Courses</div><div class="ct-rule"></div><div class="cs">The best Udemy courses to complement your 180-day study.</div><div id="courselist"></div></div>
+  <div class="card"><div class="ct">YouTube Channels</div><div class="ct-rule"></div><div class="cs">Free study material for your daily sessions.</div><div id="ytlist"></div></div>
 </div>
 
 <!-- ===== QUIZ ===== -->
@@ -502,10 +508,6 @@ textarea{resize:vertical;min-height:110px}
 </div>
 
 <!-- ===== QUOTES ===== -->
-<div class="pg" id="pg-quotes">
-  <div class="card"><div class="ct">Design Wisdom</div><div class="ct-rule"></div><div class="cs">Words from the masters of both disciplines — and for From&Glow.</div><div id="quotebox"></div><div style="display:flex;gap:8px;margin-top:14px"><button onclick="prevQ()" class="btn btn-ghost btn-sm" style="flex:1">← Prev</button><button onclick="nextQ()" class="btn btn-sm" style="flex:1">Next →</button></div></div>
-  <div class="card"><div class="ct">All Quotes</div><div class="ct-rule"></div><div id="allquotes"></div></div>
-</div>
 
 <!-- ===== PROJECTS ===== -->
 <div class="pg" id="pg-projects">
@@ -566,7 +568,27 @@ pals=JSON.parse(D.getItem('fg_pals')||'[]'),
 reviews=JSON.parse(D.getItem('fg_reviews')||'[]'),
 rscores={},afs='fg1',ifilter='all',subfilter='all',rvScore=0,
 ti=null,tr=0,tp=false,
-qi=parseInt(D.getItem('fg_qi')||String(Math.floor(Math.random()*35))),fi=0;
+qi=parseInt(D.getItem('fg_qi')||'0'),fi=0;
+
+// Daily quote — advances automatically each calendar day
+function getDailyQuoteIndex(){
+  var today=new Date(),
+      // Use date as a seed — changes every day automatically
+      seed=today.getFullYear()*10000+(today.getMonth()+1)*100+today.getDate(),
+      // Cycle through quotes based on day number since a fixed start date
+      start=new Date(2025,0,1), // Jan 1 2025 as day 0
+      dayNum=Math.floor((today-start)/(1000*60*60*24)),
+      idx=((dayNum%QUOTES.length)+QUOTES.length)%QUOTES.length;
+  // Save so manual browsing still works
+  var saved=D.getItem('fg_qi_date');
+  var todayStr=today.toISOString().split('T')[0];
+  if(saved!==todayStr){
+    D.setItem('fg_qi_date',todayStr);
+    D.setItem('fg_qi',idx);
+    qi=idx;
+  }
+  return qi;
+}
 
 function sv(k,v){D.setItem(k,JSON.stringify(v));}
 function el(id){return document.getElementById(id);}
@@ -1940,7 +1962,8 @@ function saveReview(){var l=el('rv-learned').value.trim(),h=el('rv-hard').value.
 function renderSavedReviews(){var c=el('saved-reviews');if(!c)return;if(!reviews.length){c.innerHTML='';return;}c.innerHTML='<div style="font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Past Reviews</div>'+reviews.slice(0,4).map(function(r){return '<div class="rvsaved"><div class="rvwlbl">Week '+r.week+' — Day '+r.day+(r.score?' — '+r.score+'/10':'')+'</div><div style="font-size:10px;color:var(--ink4);margin-bottom:8px">'+r.date+'</div>'+(r.learned?'<div style="margin-bottom:4px"><strong>Learned:</strong> '+r.learned.substring(0,100)+(r.learned.length>100?'...':'')+'</div>':'')+(r.focus?'<div><strong>Next week:</strong> '+r.focus.substring(0,80)+(r.focus.length>80?'...':'')+'</div>':'')+'</div>';}).join('');}
 
 // QUOTES
-function renderQuotes(){var c=el('quotebox'),ac=el('allquotes');if(!c)return;var q=QUOTES[qi%QUOTES.length];c.innerHTML='<div class="qquote"><div class="qqrule"></div><div class="qqtext">"'+q.t+'"</div><div class="qqauth">'+q.a+'</div></div><div style="text-align:center;font-size:10px;color:var(--ink4);letter-spacing:.08em;text-transform:uppercase">'+((qi%QUOTES.length)+1)+' of '+QUOTES.length+'</div>';if(ac)ac.innerHTML=QUOTES.map(function(q,i){return '<div style="padding:12px 0;border-bottom:1px solid var(--warm)'+(i===qi%QUOTES.length?';border-left:2px solid var(--gold);padding-left:12px':'')+'"><div style="font-family:\'Cormorant Garant\',serif;font-size:15px;font-style:italic;color:var(--ink);margin-bottom:5px;line-height:1.6">"'+q.t+'"</div><div style="font-size:10px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.08em">'+q.a+'</div></div>';}).join('');}
+function renderHomeQuote(){var idx=getDailyQuoteIndex(),q=QUOTES[idx%QUOTES.length],qt=el('home-quote-text'),qa=el('home-quote-author');if(qt)qt.innerHTML='"'+q.t+'"';if(qa)qa.textContent='— '+q.a;}
+function renderQuotes(){var c=el('quotebox'),ac=el('allquotes');if(!c)return;var idx=getDailyQuoteIndex(),q=QUOTES[idx%QUOTES.length];c.innerHTML='<div class="qquote"><div class="qqrule"></div><div class="qqtext">"'+q.t+'"</div><div class="qqauth">'+q.a+'</div></div><div style="text-align:center;font-size:10px;color:var(--ink4);letter-spacing:.08em;text-transform:uppercase">Quote '+(( idx%QUOTES.length)+1)+' of '+QUOTES.length+' — changes every day</div>';if(ac)ac.innerHTML=QUOTES.map(function(q,i){return '<div style="padding:12px 0;border-bottom:1px solid var(--warm)'+(i===idx%QUOTES.length?';border-left:2px solid var(--gold);padding-left:12px':'')+'"><div style="font-family:\'Cormorant Garant\',serif;font-size:15px;font-style:italic;color:var(--ink);margin-bottom:5px;line-height:1.6">"'+q.t+'"</div><div style="font-size:10px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.08em">'+q.a+'</div></div>';}).join('');}
 function nextQ(){qi=(qi+1)%QUOTES.length;D.setItem('fg_qi',qi);renderQuotes();}
 function prevQ(){qi=(qi-1+QUOTES.length)%QUOTES.length;D.setItem('fg_qi',qi);renderQuotes();}
 
@@ -1972,6 +1995,6 @@ function importBackup(ev){var f=ev.target.files[0];if(!f)return;var se=el('resto
 function gotoTab(tab,btn){document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});el('pg-'+tab).classList.add('on');btn.classList.add('on');window.scrollTo({top:0,behavior:'smooth'});if(tab==='stats')renderStats();}
 
 // INIT
-function init(){updateHome();renderChecklist();renderAnki();renderPlan();renderMasterPlan();renderLearn();renderQuiz();buildFcardCats();renderFlash();renderBriefFields();renderSavedBriefs();renderInspo();renderRubric();renderCritHist();buildFileTabs();renderFiles();renderNoteHist();renderPals();renderMeas();renderStyleTable();renderSAPlants();renderSAClimate();renderSAHardscape();renderSAWater();renderSALayers();renderBizPricing();renderBizTimeline();renderBizProposal();renderBizContract();renderBizBodies();renderBizMarketing();renderStats();renderQuotes();renderSavedReviews();initPal();}
+function init(){getDailyQuoteIndex();renderHomeQuote();updateHome();renderChecklist();renderAnki();renderPlan();renderMasterPlan();renderLearn();renderQuiz();buildFcardCats();renderFlash();renderBriefFields();renderSavedBriefs();renderInspo();renderRubric();renderCritHist();buildFileTabs();renderFiles();renderNoteHist();renderPals();renderMeas();renderStyleTable();renderSAPlants();renderSAClimate();renderSAHardscape();renderSAWater();renderSALayers();renderBizPricing();renderBizTimeline();renderBizProposal();renderBizContract();renderBizBodies();renderBizMarketing();renderStats();renderSavedReviews();initPal();}
 window.onload=init;
 </script></body></html>
