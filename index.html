@@ -314,7 +314,7 @@ textarea{resize:vertical;min-height:110px}
       </div>
     </div>
     <div style="margin-bottom:18px">
-      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;font-weight:600">Today's Focus</div>
+      <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;font-weight:600">Today\'s Focus</div>
       <div class="focus-box" id="today-focus">Loading...</div>
     </div>
     <div>
@@ -586,7 +586,7 @@ var PHASES=[
 ];
 
 // ============================================================
-// NADINE'S FROM&GLOW MASTER PLAN
+// NADINE\'S FROM&GLOW MASTER PLAN
 // ============================================================
 var FG_PLAN={
   title:'From & Glow Design Mastery — 180 Day Plan',
@@ -1285,75 +1285,95 @@ function renderPals(){var c=el('saved-pals');if(!c)return;if(!pals.length){c.inn
 // LANDSCAPE CHEAT SHEETS
 // ============================================================
 var SA_PLANTS={
+  legend:{drought:['★★★ Very drought tolerant','★★ Moderate water needs','★ Needs regular water'],growth:['Fast: establishes in 1-3 years','Medium: 3-5 years','Slow: 5+ years']},
   zones:[
     {
       zone:'Highveld (Gauteng & surrounds)',
-      climate:'Summer rainfall • Frost in winter • Afternoon thunderstorms • Altitude 1500–1800m',
+      climate:'Summer rainfall • Frost in winter (-5 to 5°C) • Afternoon thunderstorms • Altitude 1500–1800m • Hot dry winters',
       color:'var(--gold)',bg:'var(--gold3)',
       trees:[
-        {n:'Wild Olive',lat:'Olea europaea subsp. africana',note:'Evergreen, drought tolerant, birds love it'},
-        {n:'Fever Tree',lat:'Vachellia xanthophloea',note:'Iconic yellow-barked acacia, semi-deciduous'},
-        {n:'Cape Chestnut',lat:'Calodendrum capense',note:'Spectacular spring flowers, medium tree'},
-        {n:'White Stinkwood',lat:'Celtis africana',note:'Fast growing, great shade, frost hardy'},
-        {n:'Buffalo Thorn',lat:'Ziziphus mucronata',note:'Indigenous, drought tolerant, wildlife tree'}
+        {n:'Wild Olive',lat:'Olea europaea subsp. africana',note:'Evergreen • Drought ★★★ • Growth: Slow • Birds love berries • Excellent street or feature tree • Frost hardy'},
+        {n:'Fever Tree',lat:'Vachellia xanthophloea',note:'Iconic yellow-green bark • Drought ★★ • Growth: Fast • Semi-deciduous • Needs space — not for small gardens'},
+        {n:'Cape Chestnut',lat:'Calodendrum capense',note:'Spectacular pink spring flowers • Drought ★★ • Growth: Medium • Semi-deciduous • Magnificent specimen tree'},
+        {n:'White Stinkwood',lat:'Celtis africana',note:'Fast shade tree • Drought ★★★ • Growth: Fast • Frost hardy • Good for large gardens • Yellow autumn colour'},
+        {n:'Buffalo Thorn',lat:'Ziziphus mucronata',note:'Cultural significance • Drought ★★★ • Growth: Medium • Wildlife tree • Thorny — use away from paths'},
+        {n:'Weeping Boerbean',lat:'Schotia brachypetala',note:'Brilliant red flowers in winter • Drought ★★★ • Growth: Medium • Semi-deciduous • Birds and insects flock to it'},
+        {n:'Mountain Karee',lat:'Searsia leptodictya',note:'Graceful weeping form • Drought ★★★ • Growth: Fast • Evergreen • Perfect Highveld garden tree • Very underused'}
       ],
       shrubs:[
-        {n:'Sagewood',lat:'Buddleja salviifolia',note:'Fast growing, fragrant, frost hardy'},
-        {n:'Wild Gardenia',lat:'Gardenia volkensii',note:'Fragrant white flowers, evergreen'},
-        {n:'Num-num',lat:'Carissa macrocarpa',note:'Thorny hedge, edible fruit, coastal too'},
-        {n:'Wild Peach',lat:'Kiggelaria africana',note:'Host plant for Garden Acraea butterfly'}
+        {n:'Sagewood',lat:'Buddleja salviifolia',note:'Fast growing • Drought ★★★ • Fragrant grey-silver leaves • Frost hardy • Butterflies love it • Good hedge or screen'},
+        {n:'Wild Gardenia',lat:'Gardenia volkensii',note:'Fragrant white flowers • Drought ★★ • Evergreen • Slow — worth the wait • Beautiful specimen shrub'},
+        {n:'Num-num',lat:'Carissa macrocarpa',note:'Thorny security hedge • Drought ★★★ • Edible red fruit • Works Highveld and coast • Evergreen'},
+        {n:'Wild Peach',lat:'Kiggelaria africana',note:'Host plant for Garden Acraea butterfly • Drought ★★ • Evergreen • Medium shrub to small tree • Wildlife garden essential'},
+        {n:'Crossberry',lat:'Grewia occidentalis',note:'Mauve star flowers • Drought ★★★ • Growth: Fast • Frost hardy • Bird-attracting berries • Versatile hedge or specimen'},
+        {n:'Wild Jasmine',lat:'Jasminum multipartitum',note:'Fragrant white flowers • Drought ★★ • Scrambling shrub • Frost hardy • Excellent on a wall or fence'}
       ],
       perennials:[
-        {n:'Red Hot Poker',lat:'Kniphofia species',note:'Bold flower spikes, bird-attracting, drought tolerant'},
-        {n:'Wild Dagga',lat:'Leonotis leonurus',note:'Orange flowers, butterflies, frost tolerant'},
-        {n:'Agapanthus',lat:'Agapanthus africanus',note:'Classic SA garden plant, blue or white'},
-        {n:'River Lily',lat:'Crinum macowanii',note:'Large bulb, pink flowers, summer rainfall'}
+        {n:'Red Hot Poker',lat:'Kniphofia species',note:'Bold orange-red spikes • Drought ★★★ • Birds love the nectar • Frost hardy • Long-flowering • Mass plant for impact'},
+        {n:'Wild Dagga',lat:'Leonotis leonurus',note:'Orange whorled flowers • Drought ★★★ • Frost hardy • Butterflies • Cut back hard in winter for best display'},
+        {n:'Agapanthus',lat:'Agapanthus africanus',note:'Blue or white flowers • Drought ★★ • Frost hardy • Summer flowering • Excellent border or mass planting'},
+        {n:'River Lily',lat:'Crinum macowanii',note:'Large pink flowers • Drought ★★ • Bulb — needs summer water • Frost hardy • Architectural statement'},
+        {n:'Gazania',lat:'Gazania krebsiana',note:'Brilliant daisy flowers • Drought ★★★ • Ground cover • Frost hardy • Full sun only • Closes at night'},
+        {n:'Pig\'s Ear',lat:'Cotyledon orbiculata',note:'Succulent grey leaves • Drought ★★★ • Orange tubular flowers • Frost tolerant • Excellent for dry banks'},
+        {n:'Wild Iris',lat:'Dietes grandiflora',note:'White iris flowers • Drought ★★ • Evergreen clumps • Long-flowering • Frost hardy • Reliable and beautiful'}
       ]
     },
     {
       zone:'Western Cape (Cape Town & surrounds)',
-      climate:'Mediterranean • Wet winters, dry summers • Fynbos biome • Wind-exposed • No frost in most areas',
+      climate:'Mediterranean • Wet winters, dry summers • Fynbos biome • South-Easter wind • No frost on coast • Dry summers essential for planting design',
       color:'var(--fe)',bg:'#e8f5e9',
       trees:[
-        {n:'Real Yellowwood',lat:'Podocarpus latifolius',note:'SA\'s national tree, slow growing, formal'},
-        {n:'Wild Pear',lat:'Dombeya rotundifolia',note:'Spring flowers, deciduous, wildlife tree'},
-        {n:'Camphor Tree',lat:'Tarchonanthus camphoratus',note:'Silver foliage, aromatic, wind tolerant'},
-        {n:'Keurboom',lat:'Virgilia oroboides',note:'Fast growing, pink flowers, short-lived pioneer'}
+        {n:'Real Yellowwood',lat:'Podocarpus latifolius',note:'SA national tree • Drought ★★ • Growth: Slow • Evergreen • Formal and elegant • Very long-lived statement tree'},
+        {n:'Wild Pear',lat:'Dombeya rotundifolia',note:'White spring flowers • Drought ★★★ • Growth: Medium • Deciduous • Spectacular in flower • Attracts insects'},
+        {n:'Camphor Bush',lat:'Tarchonanthus camphoratus',note:'Silver aromatic foliage • Drought ★★★ • Growth: Medium • Evergreen • Wind tolerant — ideal for exposed Cape gardens'},
+        {n:'Keurboom',lat:'Virgilia oroboides',note:'Pink flowers • Drought ★★ • Growth: Fast • Short-lived pioneer (10-15 years) • Excellent for quick establishment'},
+        {n:'Cape Beech',lat:'Rapanea melanophloeos',note:'Handsome evergreen • Drought ★★ • Growth: Medium • Good in shade • Forest garden or sheltered position'},
+        {n:'Silvertree',lat:'Leucadendron argenteum',note:'Stunning silver foliage • Drought ★★★ • Cape Peninsula endemic • Architectural statement • Full sun only'}
       ],
       shrubs:[
-        {n:'Protea cynaroides',lat:'King Protea',note:'SA national flower, bold statement plant'},
-        {n:'Leucadendron',lat:'Various species',note:'Colourful foliage, long-lasting, fynbos essential'},
-        {n:'Restio',lat:'Various species',note:'Architectural grass-like, Cape endemic, very water-wise'},
-        {n:'Berzelia',lat:'Berzelia lanuginosa',note:'White bobble flowers, wet soil tolerant'}
+        {n:'King Protea',lat:'Protea cynaroides',note:'SA national flower • Drought ★★★ • Growth: Slow • Dramatic statement plant • Full sun • Acid well-drained soil essential'},
+        {n:'Leucadendron',lat:'Various species',note:'Colourful foliage year-round • Drought ★★★ • Growth: Medium • Fynbos essential • Many varieties • Very long-lasting cut flower'},
+        {n:'Restio / Cape Reed',lat:'Various species',note:'Architectural grass-like stems • Drought ★★★ • Cape endemic • Movement in wind • Low maintenance • Contemporary gardens'},
+        {n:'Berzelia',lat:'Berzelia lanuginosa',note:'White bobble flowers • Drought ★★ • Wet soil tolerant • Fynbos • Good cut flower • Evergreen'},
+        {n:'Pincushion',lat:'Leucospermum cordifolium',note:'Brilliant orange pincushion flowers • Drought ★★★ • Spring flowering • Spectacular • Needs excellent drainage'},
+        {n:'Wild Rosemary',lat:'Eriocephalus africanus',note:'Fragrant silver leaves • Drought ★★★ • Growth: Fast • Fluffy white flowers • Excellent low hedge or ground cover'}
       ],
       perennials:[
-        {n:'Watsonia',lat:'Watsonia species',note:'Sword-like leaves, pink-red flowers, summer'},
-        {n:'Freesia',lat:'Freesia species',note:'Fragrant, spring flowering, Cape endemic'},
-        {n:'Pelargonium',lat:'Various species',note:'Classic Cape plant, drought tolerant, varied'},
-        {n:'Lampranthus',lat:'Various species',note:'Brilliant colour, totally drought tolerant'}
+        {n:'Watsonia',lat:'Watsonia species',note:'Pink-red sword flowers • Drought ★★★ • Summer flowering • Bulb — dormant in winter • Naturalises beautifully'},
+        {n:'Freesia',lat:'Freesia species',note:'Highly fragrant • Drought ★★★ • Spring flowering • Cape endemic • Small bulb — mass plant for impact'},
+        {n:'Cape Pelargonium',lat:'Pelargonium species',note:'Wide variety of forms • Drought ★★★ • Long-flowering • Cape endemic • Excellent in dry sunny spots'},
+        {n:'Vygie / Lampranthus',lat:'Lampranthus species',note:'Brilliant jewel colours • Drought ★★★ • Ground cover • Winter-spring flowering • Stunning mass effect'},
+        {n:'Babiana',lat:'Babiana species',note:'Vibrant blue-purple flowers • Drought ★★★ • Spring bulb • Cape endemic • Attracts sunbirds'},
+        {n:'Bulbine',lat:'Bulbine frutescens',note:'Yellow or orange flowers • Drought ★★★ • Year-round • Ground cover • Very tough • Excellent for dry banks'}
       ]
     },
     {
       zone:'KwaZulu-Natal (Durban & surrounds)',
-      climate:'Subtropical • Hot and humid • Year-round rainfall • Frost-free coast • Rich biodiversity',
+      climate:'Subtropical • Hot and humid summers • Year-round rainfall • Frost-free coast • Rich biodiversity • Ideal for tropical and exotic plants',
       color:'#7b3fa0',bg:'#f0e8f5',
       trees:[
-        {n:'Natal Mahogany',lat:'Trichilia emetica',note:'Large canopy, evergreen, birds and butterflies'},
-        {n:'Bougainvillea',lat:'Bougainvillea species',note:'Dramatic colour, thrives in KZN heat'},
-        {n:'Wild Fig',lat:'Ficus species',note:'Massive canopy, wildlife magnet, landmark tree'},
-        {n:'Natal Bottlebrush',lat:'Greyia sutherlandii',note:'Spectacular red flowers, mountain slopes'}
+        {n:'Natal Mahogany',lat:'Trichilia emetica',note:'Large canopy • Drought ★★ • Growth: Medium • Evergreen • Birds and butterflies • Excellent shade tree for large gardens'},
+        {n:'Wild Fig',lat:'Ficus species',note:'Massive spreading canopy • Drought ★★★ • Growth: Fast • Wildlife magnet • Landmark tree — needs space • Roots can be invasive'},
+        {n:'Natal Bottlebrush',lat:'Greyia sutherlandii',note:'Spectacular red flowers • Drought ★★ • Growth: Medium • Semi-deciduous • Mountain slopes • Sunbird magnet'},
+        {n:'Bougainvillea',lat:'Bougainvillea species',note:'Brilliant colour display • Drought ★★★ • Growth: Fast • Thrives in KZN heat • Many colours • Train on wall or pergola'},
+        {n:'White Bauhinia',lat:'Bauhinia galpinii',note:'Brick-red flowers • Drought ★★ • Growth: Fast • Semi-deciduous scrambler • Excellent on walls or fences'},
+        {n:'Natal Fig',lat:'Ficus natalensis',note:'Dense shade tree • Drought ★★ • Growth: Medium • Evergreen • Good street or garden tree • Aerial roots in time'}
       ],
       shrubs:[
-        {n:'Plumbago',lat:'Plumbago auriculata',note:'Reliable blue flowers, heat loving, easy'},
-        {n:'Yesterday-Today-Tomorrow',lat:'Brunfelsia pauciflora',note:'Fragrant, colour-changing flowers'},
-        {n:'Crossandra',lat:'Crossandra infundibuliformis',note:'Orange flowers, shade tolerant, tropical feel'},
-        {n:'Wild Medlar',lat:'Vangueria infausta',note:'Wildlife food source, drought tolerant'}
+        {n:'Plumbago',lat:'Plumbago auriculata',note:'Reliable blue flowers • Drought ★★★ • Growth: Fast • Heat loving • Long-flowering • Excellent informal hedge'},
+        {n:'Yesterday-Today-Tomorrow',lat:'Brunfelsia pauciflora',note:'Fragrant colour-changing flowers • Drought ★★ • Growth: Medium • Purple to white in 3 days • Showy and fragrant'},
+        {n:'Crossandra',lat:'Crossandra infundibuliformis',note:'Orange flowers • Drought ★★ • Shade tolerant • Tropical feel • Low growing • Excellent border plant'},
+        {n:'Wild Medlar',lat:'Vangueria infausta',note:'Wildlife food source • Drought ★★★ • Growth: Medium • Edible fruit • Deciduous • Birds and animals'},
+        {n:'Gardenia',lat:'Gardenia jasminoides',note:'Intensely fragrant white flowers • Drought ★★ • Growth: Medium • Evergreen • Acid soil preferred • Luxury garden essential'},
+        {n:'Tibouchina',lat:'Tibouchina granulosa',note:'Vivid purple flowers • Drought ★★ • Growth: Fast • Long-flowering • Semi-deciduous • Spectacular in mass planting'}
       ],
       perennials:[
-        {n:'Clivia',lat:'Clivia miniata',note:'Classic SA shade plant, orange or yellow flowers'},
-        {n:'Strelitzia',lat:'Strelitzia reginae',note:'Bird of Paradise — iconic, bold, SA signature'},
-        {n:'Dietes',lat:'Dietes grandiflora',note:'Wild Iris — tough, evergreen, long-flowering'},
-        {n:'Canna',lat:'Canna species',note:'Tropical drama, bold leaves, vivid flowers'}
+        {n:'Clivia',lat:'Clivia miniata',note:'Orange or yellow flowers • Drought ★★ • Shade tolerant • Spring flowering • Evergreen clumps • KZN woodland garden essential'},
+        {n:'Strelitzia',lat:'Strelitzia reginae',note:'Bird of Paradise • Drought ★★★ • Year-round flowers • Iconic SA plant • Full sun or light shade • Bold architectural form'},
+        {n:'Wild Iris',lat:'Dietes grandiflora',note:'White iris flowers • Drought ★★ • Evergreen • Long-flowering • Reliable and beautiful • Good border or mass plant'},
+        {n:'Canna',lat:'Canna species',note:'Tropical drama • Drought ★★ • Bold foliage and flowers • Fast growing • Many colours • Loves heat and moisture'},
+        {n:'Impatiens',lat:'Impatiens species',note:'Continuous colour in shade • Drought ★ • Tender — frost sensitive • KZN perennial • Excellent for shaded tropical gardens'},
+        {n:'Elephant Ear',lat:'Alocasia / Colocasia species',note:'Dramatic large leaves • Drought ★ • Loves moisture • Tropical statement • Perfect for water features or boggy areas'}
       ]
     }
   ]
@@ -1496,22 +1516,24 @@ var SA_LAYERS=[
 // BUSINESS CHEAT SHEETS
 // ============================================================
 var BIZ_PRICING=[
-  {model:'Consultation Fee',desc:'Initial client meeting and site visit',
-   range:'R1,500 – R4,500 per session',note:'Always charge for your time from day one. This filters serious clients.'},
-  {model:'Fixed Design Fee — Interior',desc:'Full interior design service: concept to specification',
-   range:'R15,000 – R80,000+ per project',note:'Based on scope and size. R650–R1,200 per sqm is a useful guide for SA luxury.'},
-  {model:'Fixed Design Fee — Landscape',desc:'Full landscape design: brief to planting plan and specifications',
-   range:'R12,000 – R60,000+ per project',note:'Smaller scope than interior usually but can be equal for large estates.'},
-  {model:'Full Property Fee (Interior + Landscape)',desc:'From&Glow complete service — the competitive advantage',
-   range:'R40,000 – R200,000+',note:'Position as a premium unified service. Discount vs two separate designers = your value proposition.'},
-  {model:'Percentage of Project Cost',desc:'Fee as % of total contractor/supplier costs',
-   range:'10–18% of project cost',note:'Works well on large projects. Industry norm in SA is 12–15% for full service.'},
-  {model:'Hourly Rate',desc:'Time-based billing for smaller tasks',
-   range:'R650 – R1,800 per hour',note:'Use for consultations, extras, travel time. Mid-range to start, increase with experience.'},
-  {model:'Procurement / Sourcing Fee',desc:'Fee for sourcing and ordering furniture and materials on behalf of client',
-   range:'10–20% markup on items',note:'Standard industry practice. Be transparent with clients about this upfront.'},
-  {model:'Implementation Oversight',desc:'Site visits and contractor management during build',
-   range:'R1,200 – R2,500 per site visit',note:'Or include as a fixed fee based on estimated visits. Always include in your proposal scope.'}
+  {model:'Consultation Fee',desc:'Initial client meeting and site visit — charged from Day 1',
+   range:'R1,500 – R4,500 per session',note:'Always charge for consultations. It filters serious clients from time-wasters. For a Sandton or Constantia client, this is nothing — but it signals you are a professional, not a hobbyist.'},
+  {model:'Fixed Design Fee — Interior',desc:'Full interior design service from concept to specification',
+   range:'R15,000 – R80,000+ per project',note:'Guide: R650–R1,200 per sqm for SA luxury. A 200sqm Sandton home at R800/sqm = R160,000 full interior fee. Start lower while building your portfolio, increase with each project.'},
+  {model:'Fixed Design Fee — Landscape',desc:'Full landscape design from brief to planting plan and specifications',
+   range:'R12,000 – R55,000+ per project',note:'Garden design fees are typically 60–70% of comparable interior fees. A full luxury garden design for a 1000sqm stand: R25,000–R45,000. Estate projects command much more.'},
+  {model:'Full Property — From&Glow Service',desc:'Interior AND landscape as one unified commission — your competitive advantage',
+   range:'R45,000 – R250,000+',note:'This is where From&Glow wins. Two separate designers would cost 30–40% more than your combined fee. Examples: Sandton townhouse full property: R60,000–R90,000. Large Highveld estate: R150,000–R300,000+.'},
+  {model:'Percentage of Project Cost',desc:'Design fee as a percentage of total contractor and supplier costs',
+   range:'10–18% of total project cost',note:'SA luxury residential projects typically cost R8,000–R25,000+ per sqm to build and furnish. On a R3m project, 12% = R360,000 design fee. Use this model for large projects where scope is harder to predict upfront.'},
+  {model:'Hourly Rate',desc:'Time-based billing for consultations, extras and travel',
+   range:'R650 – R1,800 per hour',note:'Junior/emerging: R650–R900/hr. Established: R900–R1,400/hr. Senior/specialist: R1,400–R1,800/hr. Always track your hours from Day 1 — even on fixed-fee projects, so you know your effective hourly rate.'},
+  {model:'Procurement / Sourcing Fee',desc:'Markup on furniture, materials and plants sourced on behalf of the client',
+   range:'10–20% markup on items',note:'Standard SA industry practice. On a R500,000 furniture and materials specification, 15% sourcing fee = R75,000. Be transparent about this upfront in your proposal. Some designers charge 20% for lower-value items, 10% for large orders.'},
+  {model:'Implementation Oversight',desc:'Site visits and contractor management during the build phase',
+   range:'R1,500 – R3,500 per site visit',note:'Or bundle as a fixed monthly retainer during construction: R8,000–R20,000/month depending on project intensity. For a luxury 6-month build, oversight retainer = R50,000–R120,000. Always include this in your proposal — it is where quality is protected.'},
+  {model:'Real Project Examples — SA Context',desc:'Typical total fees for complete From&Glow projects',
+   range:'See notes',note:'Sandton 3-bed apartment full interior: R35,000–R65,000 • Fourways family home interior + garden: R80,000–R140,000 • Constantia luxury home full property: R120,000–R220,000 • Winelands wine estate interior + landscape: R180,000–R400,000+ • These are design fees only — not construction costs.'}
 ];
 
 var BIZ_TIMELINE=[
@@ -1573,19 +1595,23 @@ var BIZ_PROPOSAL=[
 ];
 
 var BIZ_CONTRACT=[
-  {item:'Parties',desc:'Full legal names, addresses and contact details of both designer and client. Company registration if applicable.'},
-  {item:'Project Description',desc:'Clear description of the property and the scope of design work. Reference the signed proposal.'},
-  {item:'Services to be Provided',desc:'Detailed list of exactly what you will deliver. Be specific — vague contracts cause disputes.'},
-  {item:'Fees and Payment Schedule',desc:'Total fee, payment milestones, due dates, accepted payment methods, and interest on late payments (prime + 2% is standard SA practice).'},
-  {item:'Additional Services',desc:'How extra work beyond scope will be charged. Include your hourly rate and the process for approving variations.'},
-  {item:'Client Responsibilities',desc:'What you need from the client — access, prompt feedback, timely approvals, truthful information about budget.'},
-  {item:'Timeline',desc:'Start date, key milestone dates, and conditions that may extend the timeline (contractor delays, client delays, force majeure).'},
-  {item:'Intellectual Property',desc:'All designs, drawings and documents remain the property of From&Glow until final payment is received in full.'},
-  {item:'Confidentiality',desc:'Neither party will share sensitive project information without written consent. Important for high-net-worth SA clients.'},
-  {item:'Photography Rights',desc:'You retain the right to photograph the completed project for your portfolio. Client can request anonymity.'},
-  {item:'Dispute Resolution',desc:'Process for resolving disagreements — mediation first, then arbitration. Specify SA jurisdiction.'},
-  {item:'Cancellation / Kill Fee',desc:'If client cancels, you retain all fees for work completed plus a kill fee (typically 20–30% of remaining balance).'},
-  {item:'Signatures',desc:'Both parties must sign and date. Keep original signed copies. Digital signatures (DocuSign) are legally valid in SA.'}
+  {item:'Parties to the Agreement',desc:'Full legal names, physical addresses, email addresses and contact numbers of both the designer and client. If From&Glow is registered as a company, include registration number. State the relationship: "The Designer agrees to provide design services to the Client as described herein."'},
+  {item:'Project Description & Scope',desc:'Clear description of the property (address, size, type). Specific scope: Interior only / Landscape only / Full From&Glow property. Reference and attach the signed proposal. State: "Any work not listed in the attached proposal constitutes additional services and will be charged accordingly."'},
+  {item:'Services to be Provided',desc:'Room-by-room or zone-by-zone breakdown of exactly what you will deliver. Include: concept design, design development, specifications, drawings, schedules, site visits (number specified), contractor liaison (if included). Be specific — vague scope causes the most disputes in SA design practice.'},
+  {item:'Fees — Total and Breakdown',desc:'State total fee clearly: "The total design fee for the scope described above is R[amount] (VAT exclusive/inclusive — specify)." Break down by phase if applicable. State your VAT registration status. In SA, VAT is 15% — clarify upfront whether your fee is VAT inclusive or exclusive.'},
+  {item:'Payment Schedule',desc:'Example SA standard: 50% deposit on signature (non-refundable after concept work begins) • 25% on presentation of concept design • 25% on delivery of final design documentation. State: "Work will not commence until the deposit payment reflects in the From&Glow bank account."'},
+  {item:'Late Payment',desc:'State clearly: "Invoices are payable within [7/14] days of issue. Late payments will attract interest at the prime lending rate plus 2% per month, calculated from the due date." This is standard and legally enforceable in SA. Include your banking details in every invoice.'},
+  {item:'Additional Services & Variations',desc:'State: "Any work requested beyond the agreed scope will be charged at R[your hourly rate] per hour or by written variation order agreed in advance. No additional work will be undertaken without written client approval." This clause protects you from scope creep — the biggest source of underpayment in design.'},
+  {item:'Client Responsibilities',desc:'The client must: provide accurate information about budget, site and requirements • respond to design presentations within [10] working days • provide access to the property for site visits • appoint and manage all contractors (unless contractor management is included in scope) • obtain all necessary building plan approvals and permissions.'},
+  {item:'Timeline & Delays',desc:'Include estimated start and end dates for each phase. State: "Timelines are contingent on timely client feedback and approvals. Delays caused by the client, contractors or third parties will extend the timeline accordingly without penalty to the Designer."'},
+  {item:'Intellectual Property',desc:'State clearly: "All designs, drawings, specifications, mood boards and documents produced by From&Glow remain the intellectual property of From&Glow until all fees have been paid in full. The client may not use, reproduce or share any design work until full payment is received."'},
+  {item:'Confidentiality',desc:'State: "Both parties agree to keep all project information, financial details and personal information confidential. From&Glow will not disclose client identity or property details publicly without written consent." — Critical for high-net-worth SA clients who value privacy.'},
+  {item:'Photography & Portfolio Rights',desc:'State: "From&Glow retains the right to photograph the completed project for portfolio, marketing and publication purposes. The client may request anonymity, in which case the property location and client name will not be disclosed." This protects your ability to build your portfolio.'},
+  {item:'Cancellation & Kill Fee',desc:'State: "Should the client terminate this agreement after work has commenced, all fees for work completed to date are payable in full, plus a cancellation fee of [20–30%] of the remaining balance. The 50% deposit is non-refundable in all circumstances." This protects your time and revenue.'},
+  {item:'Dispute Resolution',desc:'State: "In the event of a dispute, both parties agree to attempt resolution through good-faith negotiation, followed by mediation if required, before any legal proceedings. This agreement is governed by the laws of the Republic of South Africa, and both parties consent to the jurisdiction of the [Gauteng/Western Cape] High Court."'},
+  {item:'Force Majeure',desc:'State: "Neither party shall be in breach of this agreement for delays or failures caused by circumstances beyond reasonable control, including load-shedding, natural disasters, civil unrest, or pandemic restrictions." — Particularly relevant in the SA context given load-shedding realities.'},
+  {item:'Entire Agreement',desc:'State: "This agreement, together with the attached proposal, constitutes the entire agreement between the parties and supersedes all prior discussions, representations or understandings." Sign and date both documents. Both parties must initial every page.'},
+  {item:'Signatures',desc:'Both parties sign and date. Include: "I/We the undersigned confirm that I/we have read, understood and agree to all terms and conditions set out in this agreement." Keep original signed copies — both physical and digital. DocuSign and HelloSign are legally valid in SA under the Electronic Communications Act.'}
 ];
 
 var BIZ_BODIES=[
@@ -1627,27 +1653,81 @@ var BIZ_BODIES=[
 ];
 
 var BIZ_MARKETING=[
-  {channel:'Instagram',priority:'★★★★★',
-   strategy:'Your primary platform for SA luxury residential clients. Post finished projects, behind-the-scenes, mood boards, client transformations and design insights.',
-   tips:['Consistency over frequency — 3–4 quality posts per week','Use Reels — Instagram favours video heavily','Hashtags: #FromAndGlow #SAInteriorDesign #SAGardenDesign #LuxuryDesignSA #JohannesburgDesign #CapeTownDesign','Tag architects, contractors and suppliers in relevant posts — reciprocal exposure','Stories daily — show your process, not just the result']},
+  {channel:'Instagram — From&Glow Strategy',priority:'★★★★★',
+   strategy:'Your primary platform for SA luxury residential clients. The luxury design market in SA is driven by visual inspiration — Instagram is where clients discover designers they eventually hire.',
+   tips:[
+     'Profile: Bio must say exactly what you do — "Full property transformation. Interior + landscape. SA luxury residential." Include your URL.',
+     'Content pillars: Before/after transformations • Design process and behind-the-scenes • SA plant and material knowledge • Mood boards and colour palettes • Client brief stories (anonymised)',
+     'Reels perform 3–5x better than static posts. Film yourself explaining a design decision, walking through a mood board, or identifying a plant on site.',
+     'Hashtags for SA luxury: #FromAndGlow #SAInteriorDesign #SAGardenDesign #LuxuryDesignSA #SandtonDesign #CapeTownInteriors #JohannesburgDesign #SALuxuryHomes #IndigenousGarden #SALandscapeDesign',
+     'Post 3–4 times per week minimum. Stories every day — even just a plant ID, a fabric swatch, or a quote from your study.',
+     'Tag everyone in relevant posts — furniture suppliers, contractors, architects. Reciprocal tagging builds your reach fast.',
+     'DM every architect and interior specifier in your area. Not to sell — to introduce yourself and offer value.'
+   ]},
+  {channel:'Instagram — 90-Day Launch Plan',priority:'★★★★★',
+   strategy:'A week-by-week plan to launch From&Glow on Instagram from Day 1 of your 180-day study journey.',
+   tips:[
+     'Weeks 1–4: Set up profile • Post your From&Glow story — the carcass to glow vision • Share your study journey — what you are learning and why • Post mood boards from your study',
+     'Weeks 5–8: Post style deep-dives — "What makes a Japandi interior" • SA plant spotlights • Share your first mood boards and concept exercises',
+     'Weeks 9–12: Post your first full concept project (even if fictional) • "Before" photos of spaces you would transform • Process posts showing how you think',
+     'Weeks 13–18: Post your first real or mock client brief and concept • Document Phase 2 projects as case studies • Start showing interior + landscape as one vision',
+     'Weeks 19–24: Portfolio reveals • From&Glow brand content • Soft launch announcement • "Now accepting first clients" post',
+     'Target: 500+ engaged SA followers by end of 180 days. Quality over quantity — 500 local luxury-interested followers beats 5,000 international ones.'
+   ]},
   {channel:'Houzz SA',priority:'★★★★○',
-   strategy:'The platform where serious renovation and design clients in SA research designers. Build a complete professional profile with project photos.',
-   tips:['Complete profile with bio, services and contact details','Upload every completed project with descriptions','Respond to every enquiry within 24 hours','Request reviews from happy clients — these are gold']},
-  {channel:'Pinterest',priority:'★★★★○',
-   strategy:'You already have 686 pins — you understand this platform. Create From&Glow boards that attract clients with similar taste.',
-   tips:['Create boards by style, room type and colour','Link all pins back to your website or Instagram','This is discovery, not conversion — but it builds authority']},
-  {channel:'LinkedIn',priority:'★★★○○',
-   strategy:'For connecting with architects, developers, estate agents and corporate clients. More B2B than Instagram.',
-   tips:['Post case studies and design insights — professional tone','Connect with every architect, developer and estate agent in your target market','A recommendation from an architect can transform your business']},
-  {channel:'Referrals',priority:'★★★★★',
-   strategy:'In SA luxury residential, referrals are how most business is won. One happy client in Sandton or Constantia is worth 10 Instagram followers.',
-   tips:['Always ask happy clients to refer you by name','Send a thank-you gift when a referral converts to a project','Stay in touch — a Christmas card, a check-in call — relationships last','The contractors, architects and estate agents you work with are referral partners']},
-  {channel:'Website',priority:'★★★★○',
-   strategy:'Your digital home. Must look as good as your design work. Simple, beautiful, mobile-optimised.',
-   tips:['Portfolio first — make it the main event','About page that tells the From&Glow story — the carcass to glow narrative','Contact form that feels effortless','Invest in professional photography for every finished project']},
-  {channel:'Networking in SA Luxury Market',priority:'★★★★○',
-   strategy:'SA luxury residential is a relationship business. Be present in the right rooms.',
-   tips:['Attend SADA events and industry functions','Join Joburg and Cape Town design and property networking groups','Enter design competitions — SADA awards, Decorex — for credibility and exposure','Partner with luxury furniture showrooms for referrals and events']}
+   strategy:'The platform where serious SA renovation and design clients research designers before making contact. A complete Houzz profile with strong project photos converts browsers into enquiries.',
+   tips:[
+     'Complete every field in your profile — bio, specialities, service areas, fee range, languages',
+     'Upload every completed project with detailed descriptions explaining your design decisions',
+     'Respond to every enquiry within 2 hours if possible — Houzz tracks your response rate',
+     'Request a review from every satisfied client — these are enormously influential',
+     'Houzz SA is less competitive than in the UK/US — early presence builds authority quickly'
+   ]},
+  {channel:'Pinterest — Your Existing Advantage',priority:'★★★★○',
+   strategy:'You already have 686 pins — you understand this platform intuitively. Now convert it into a From&Glow discovery engine.',
+   tips:[
+     'Create From&Glow branded boards: "From&Glow Interior Inspiration" • "SA Indigenous Gardens" • "Indoor-Outdoor Living SA" • "Luxury Materials" • "From Shell to Home"',
+     'Pin consistently — 5–10 pins per day takes 10 minutes and compounds over time',
+     'Link every pin to your Instagram or website — Pinterest drives traffic, not direct enquiries',
+     'Your existing taste and curation IS your brand. Pinterest shows clients who you are before you say a word.'
+   ]},
+  {channel:'Referrals — Your Most Powerful Channel',priority:'★★★★★',
+   strategy:'In SA luxury residential, referrals generate 60–80% of all new business for established designers. One happy client in Sandton, Constantia or Umhlanga is worth more than any advertising budget.',
+   tips:[
+     'Always ask directly: "If you know anyone who could benefit from From&Glow, I would be so grateful for an introduction."',
+     'Send a handwritten thank-you card AND a small gift when a referral becomes a client (a beautiful plant, a design book, a candle)',
+     'Stay in regular touch with past clients — a message when you see something they would love, a Christmas card, a check-in after 6 months',
+     'Build relationships with: Luxury estate agents (they see properties pre-renovation) • Architects (they need trusted interior/landscape partners) • Building contractors (they always need designers to recommend) • Property developers (they need staging and design) • Mortgage advisors (clients buying luxury homes need designers)',
+     'Every contractor, supplier and professional you work with is a potential referral partner. Treat them accordingly.'
+   ]},
+  {channel:'LinkedIn — The Professional Network',priority:'★★★○○',
+   strategy:'For connecting with architects, developers, property professionals and corporate clients. More relationship-building than direct client acquisition.',
+   tips:[
+     'Post case studies and design insights in a professional tone — very different from Instagram',
+     'Connect with every architect, property developer, estate agent, project manager and building contractor in your target market',
+     'A single recommendation from a respected SA architect can transform your pipeline',
+     'Share your study journey professionally — "Building expertise in both interior and landscape design to serve SA luxury residential clients"'
+   ]},
+  {channel:'Website — Your Digital Home',priority:'★★★★○',
+   strategy:'Your website is your credibility anchor. Every other platform should drive traffic here. It must look as beautiful as your design work.',
+   tips:[
+     'Portfolio is the main event — make it the first thing visitors see',
+     'About page that tells the From&Glow story: from building site to beautiful home, inside and out',
+     'Services page: clearly explain the full property transformation offering — interior + landscape as one',
+     'Contact form that feels effortless — name, email, brief description, preferred contact time',
+     'Invest in professional photography for every completed project — photography IS the portfolio',
+     'Wix, Squarespace or Webflow are all excellent for a beautiful design portfolio — no code needed'
+   ]},
+  {channel:'SA Luxury Market Networking',priority:'★★★★○',
+   strategy:'SA luxury residential is a relationship business. The clients you want are found in specific rooms, events and communities — be present.',
+   tips:[
+     'SADA events and annual awards — attend, enter, volunteer if possible',
+     'Decorex Johannesburg and Cape Town — walk every year as a professional, not just a visitor',
+     'Joburg and Cape Town design weeks — attend openings, meet designers, suppliers and clients',
+     'Luxury property show days in your target neighbourhoods — introduce yourself to estate agents',
+     'Architectural and design firm open days — build relationships with architects who need design partners',
+     'Partner with luxury furniture showrooms — they see clients before designers do'
+   ]}
 ];
 
 function renderSAPlants(){
@@ -1889,6 +1969,6 @@ function importBackup(ev){var f=ev.target.files[0];if(!f)return;var se=el('resto
 function gotoTab(tab,btn){document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});el('pg-'+tab).classList.add('on');btn.classList.add('on');window.scrollTo({top:0,behavior:'smooth'});if(tab==='stats')renderStats();}
 
 // INIT
-function init(){updateHome();renderChecklist();renderAnki();renderPlan();renderMasterPlan();renderLearn();renderQuiz();buildFcardCats();renderFlash();renderBriefFields();renderSavedBriefs();renderInspo();renderRubric();renderCritHist();buildFileTabs();renderFiles();renderNoteHist();renderPals();renderMeas();renderStyleTable();renderSAPlants();renderSAClimate();renderSAHardscape();renderSAWater();renderSALayers();renderBizPricing();renderBizTimeline();renderBizProposal();renderBizContract();renderBizBodies();renderBizMarketing();renderQuotes();renderSavedReviews();initPal();}
+function init(){updateHome();renderChecklist();renderAnki();renderPlan();renderMasterPlan();renderLearn();renderQuiz();buildFcardCats();renderFlash();renderBriefFields();renderSavedBriefs();renderInspo();renderRubric();renderCritHist();buildFileTabs();renderFiles();renderNoteHist();renderPals();renderMeas();renderStyleTable();renderSAPlants();renderSAClimate();renderSAHardscape();renderSAWater();renderSALayers();renderBizPricing();renderBizTimeline();renderBizProposal();renderBizContract();renderBizBodies();renderBizMarketing();renderStats();renderQuotes();renderSavedReviews();initPal();}
 window.onload=init;
 </script></body></html>
