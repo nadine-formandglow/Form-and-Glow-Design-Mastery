@@ -313,6 +313,9 @@ textarea{resize:vertical;min-height:110px}
         <button onclick="resetProgress()" style="font-size:10px;color:var(--ink4);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.04em">↺ Reset</button>
       </div>
     </div>
+    <div style="margin-bottom:10px">
+      <div id="phase-indicator" style="border-radius:3px;padding:10px 14px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase"></div>
+    </div>
     <div style="margin-bottom:18px">
       <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;font-weight:600">Today\'s Focus</div>
       <div class="focus-box" id="today-focus">Loading...</div>
@@ -985,26 +988,26 @@ var BOOKS=[
 ];
 
 var COURSES=[
-  {t:'Interior Design Fundamentals',r:'4.6 ⭐',d:'Elements, principles, colour, space planning and materials. The perfect Phase 1 foundation course.',u:'https://www.udemy.com/courses/design/?q=interior+design+fundamentals&sort=highest-rated',tag:'Interior'},
-  {t:'SketchUp for Interior Designers',r:'4.7 ⭐',d:'Create floor plans, 3D models and client presentations. Essential digital tool for luxury design practice.',u:'https://www.udemy.com/courses/design/?q=sketchup+interior+design&sort=highest-rated',tag:'Interior'},
-  {t:'Planting Design Masterclass',r:'4.7 ⭐',d:'Deep dive into planting design — layering, seasonal interest, naturalistic schemes. Phase 2 core course.',u:'https://www.udemy.com/courses/design/?q=planting+design&sort=highest-rated',tag:'Landscape'},
-  {t:'Garden Design: Outdoor Spaces',r:'4.6 ⭐',d:'Comprehensive garden design covering principles, styles, planting and client presentation.',u:'https://www.udemy.com/courses/design/?q=garden+design&sort=highest-rated',tag:'Landscape'},
-  {t:'AutoCAD for Designers',r:'4.5 ⭐',d:'Technical drawing for both interior and landscape — floor plans, planting plans and construction documents.',u:'https://www.udemy.com/courses/design/?q=autocad+design&sort=highest-rated',tag:'Both'},
-  {t:'Photoshop for Designers',r:'4.5 ⭐',d:'Produce beautiful mood boards, render plans and create professional client presentations for From&Glow.',u:'https://www.udemy.com/courses/design/?q=photoshop+interior+landscape+design&sort=highest-rated',tag:'Both'},
-  {t:'Sustainable Interior Design',r:'4.4 ⭐',d:'Eco-friendly materials, healthy homes, biophilic design. Increasingly important for SA luxury clients.',u:'https://www.udemy.com/courses/design/?q=sustainable+interior+design&sort=highest-rated',tag:'Interior'},
-  {t:'Design Business: Start Your Practice',r:'4.5 ⭐',d:'Pricing, contracts, client acquisition and building a luxury design business. Essential for Phase 3.',u:'https://www.udemy.com/courses/business/?q=interior+design+business&sort=highest-rated',tag:'Business'}
+  {t:'Interior Design Fundamentals 2026 — Beginner to Advanced',r:'4.6 ⭐',d:'Hands-on learning built on real project insights. Covers principles, colour psychology, lighting, materials, furniture styles and global trends. Perfect Phase 1 foundation.',u:'https://www.udemy.com/course/interior-design-fundamentals-2026-from-beginner-to-advanced/',tag:'Interior'},
+  {t:'Interior Design 101: Complete Essentials A-Z',r:'4.5 ⭐',d:'Comprehensive course covering design principles, lighting design, colour theory and space planning. Tailored for beginners eager to build a professional foundation.',u:'https://www.udemy.com/course/interior-design-course-basics/',tag:'Interior'},
+  {t:'The Complete Garden Design Course — How To Design',r:'4.7 ⭐',d:'Master all essential skills used by professional garden designers. Step-by-step design demonstrations, 13 exercises, six different garden projects. Phase 2 core course.',u:'https://www.udemy.com/course/the-complete-garden-design-course-3-how-to-design/',tag:'Landscape'},
+  {t:'The Planting Design Course',r:'4.6 ⭐',d:'Comprehensive planting design course — think like a designer, create beautiful sustainable planting schemes. Practical and career-focused.',u:'https://www.udemy.com/course/the-planting-design-course/',tag:'Landscape'},
+  {t:'Planting Design: Overview',r:'4.5 ⭐',d:'Principles and practices of planting design — plant selection by light, soil, water and season. Created by an Olmsted Scholar and award-winning landscape designer.',u:'https://www.udemy.com/course/planting-design-overview/',tag:'Landscape'},
+  {t:'Modern Landscape Architecture: Get Certified',r:'4.4 ⭐',d:'Fundamentals of landscape architecture — design principles, plant selection for climate and soil, sustainable practices and practical tools.',u:'https://www.udemy.com/course/modern-landscape-architecture-get-certified-today/',tag:'Landscape'},
+  {t:'Interior Design Complete Course — A to Z',r:'4.5 ⭐',d:'A-Z workshop in design and entrepreneurship. History, colour, space planning, materials, lighting, furniture, client process and business of design.',u:'https://www.udemy.com/course/become-interior-designer/',tag:'Both'},
+  {t:'Interior Design Basics: Plan & Transform Any Room',r:'4.4 ⭐',d:'Space planning, principles, ergonomics, materials, lighting and acoustics across 13 practical chapters. Solid foundation for the From&Glow designer.',u:'https://www.udemy.com/course/interior-designing-and-decoration/',tag:'Both'}
 ];
 var CTAGS={'Interior':'#fff3d4','Landscape':'#e8f5e9','Both':'#f0e8f5','Business':'#e3f2fd'};
 var CTXT={'Interior':'#a07820','Landscape':'#1a4a2e','Both':'#4a1e6e','Business':'#0277bd'};
 
 var YT=[
-  {n:'Foyr Design',h:'@FoyrNeo',d:'Interior design tips, space planning, software tutorials and style guides.',u:'https://www.youtube.com/@FoyrNeo',i:'✦'},
-  {n:'Piet Oudolf',h:'@PietOudolf',d:'The master of naturalistic planting — garden tours, plant combinations, design philosophy.',u:'https://www.youtube.com/results?search_query=piet+oudolf+planting+design',i:'🌿'},
-  {n:'Arvin Olano',h:'@ArvinOlano',d:'Practical interior design advice, room styling, design rules explained clearly.',u:'https://www.youtube.com/@ArvinOlano',i:'◈'},
-  {n:'RHS Gardening',h:'@RHSGardening',d:'Plant knowledge, sustainable gardening and design advice from the leading horticultural body.',u:'https://www.youtube.com/@RHSGardening',i:'🌳'},
-  {n:'Angela Rose Home',h:'@AngelaRoseHome',d:'Colour theory, space planning and design principles for the luxury residential designer.',u:'https://www.youtube.com/@AngelaRoseHome',i:'🌸'},
-  {n:'Epic Gardening',h:'@EpicGardening',d:'Practical plant and garden knowledge. Understanding plants makes you a better landscape designer.',u:'https://www.youtube.com/@epicgardening',i:'🌱'},
-  {n:'SABC Lifestyle',h:'@SABCLifestyle',d:'South African interior and lifestyle design — local context, SA designers and SA homes.',u:'https://www.youtube.com/results?search_query=south+africa+interior+design+luxury',i:'🇿🇦'}
+  {n:'Foyr Neo',h:'@FoyrNeo',d:'Interior design software tutorials, design inspiration, mood boards and space planning. Great for learning digital tools alongside theory study.',u:'https://www.youtube.com/channel/UC4kt__4pC_N1HiB7Ye0zcUA',i:'✦'},
+  {n:'Arvin Olano',h:'@ArvinOlano',d:'Approachable interior design tips, room styling, colour and design rules explained clearly. Real projects, real budgets, real insight.',u:'https://www.youtube.com/c/ArvinOlano',i:'◈'},
+  {n:'Angela Rose — DIY & Design',h:'@angelarosehome',d:'Fearless DIY design transformations with step-by-step tutorials. Practical, inspiring, real. Stop pinning, start doing.',u:'https://www.youtube.com/channel/UCCccVpY1Wqi0Q9CV5-XjWXQ',i:'🌸'},
+  {n:'RHS — Royal Horticultural Society',h:'@The_RHS',d:'Plant knowledge, sustainable gardening and design advice from the leading horticultural body. Essential for landscape study.',u:'https://www.youtube.com/@The_RHS',i:'🏛️'},
+  {n:'Epic Gardening',h:'@EpicGardening',d:'3.8 million subscribers. Practical plant and garden knowledge. Understanding plants makes you a better landscape designer.',u:'https://www.youtube.com/@epicgardening',i:'🌱'},
+  {n:'Landscape Architecture Foundation',h:'@LAFoundation',d:'Professional landscape architecture, urban design, ecological thinking and practice. Essential viewing for Phase 2.',u:'https://www.youtube.com/@lafoundation',i:'🌳'},
+  {n:'SA Luxury Interior Design',h:'Search on YouTube',d:'Search "South Africa luxury interior design" on YouTube for local SA designers, projects and market context directly relevant to From&Glow clients.',u:'https://www.youtube.com/results?search_query=south+africa+luxury+interior+design+2024',i:'🇿🇦'}
 ];
 
 var MEAS=[
