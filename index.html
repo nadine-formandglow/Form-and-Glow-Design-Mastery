@@ -487,6 +487,7 @@ textarea{resize:vertical;min-height:110px}
   <div class="card"><div class="ct">📝 Contract Essentials</div><div class="ct-rule"></div><div class="cs">What every SA design contract must include to protect you and your client.</div><div id="biz-contract"></div></div>
   <div class="card"><div class="ct">🏛️ SA Professional Bodies & Registrations</div><div class="ct-rule"></div><div class="cs">The bodies, registrations and certifications that give From&Glow professional credibility in SA.</div><div id="biz-bodies"></div></div>
   <div class="card"><div class="ct">📱 Marketing & Client Acquisition</div><div class="ct-rule"></div><div class="cs">How to attract luxury residential clients in SA — channels, strategies and From&Glow positioning.</div><div id="biz-marketing"></div></div>
+  <div class="card"><div class="ct">🎨 AI Visualisation Tools — Sign-Off Drawings</div><div class="ct-rule"></div><div class="cs">Take floor plans and sketches to a polished, presentation-ready level — the "concept meets photoreal" look used by top visualisation studios.</div><div id="ai-viz-tools"></div></div>
 </div>
 
 <!-- ===== STATS ===== -->
@@ -1679,6 +1680,40 @@ var BIZ_BODIES=[
    url:'https://www.cipc.co.za/'}
 ];
 
+var AI_VIZ_TOOLS=[
+  {name:'Veras AI (EvolveLAB)',tag:'★ Recommended start',
+   desc:'A plugin that works directly inside SketchUp (also Revit, Rhino, Vectorworks, Archicad). Veras uses your 3D model as a substrate — it preserves your geometry while adding photorealistic, AI-styled rendering on top. Free trial available.',
+   steps:[
+     'Build your basic 3D model in SketchUp — even simple massing with walls, windows and rooflines works.',
+     'Set up a 3D perspective view with good spatial depth (avoid extreme close-ups).',
+     'Install the Veras plugin from evolvelab.io/veras and sign in.',
+     'Choose a style preset or write a text prompt describing materials, mood and lighting (e.g. "warm minimalist interior, oak floors, linen sofas, golden hour light").',
+     'Use the Geometry Slider to control how closely the AI follows your model vs. how much creative freedom it takes.',
+     'Use Render Selection to refine just one area — a wall, a piece of furniture — without re-rendering the whole image.'
+   ],
+   tutorial:'Search YouTube: "Easy AI Renders for Architects | SketchUp + Veras Tutorial"'},
+  {name:'Sign-Off Drawing Polish (no AI needed)',tag:'Do this first',
+   desc:'Before adding AI rendering, a polished 2D floor plan communicates the vision beautifully and is achievable for every project, every time.',
+   steps:[
+     'Soft colour wash per room — use your F&G palette tints (linen, sage, warm beige) instead of plain white.',
+     'Furniture silhouettes in plan view — beds, sofas, kitchen counters, sanitaryware — gives clients an instant sense of scale and flow.',
+     'Title block — project name, drawing number, scale, revision, date, and the F&G logo in the header.',
+     'North arrow + scale bar — standard on every professional drawing, signals credibility.',
+     'Material & finish callouts — small colour swatches with names (e.g. "Engineered oak — warm finish") next to the plan.',
+     'Dimension lines on external walls — even approximate overall dimensions add a professional, sign-off feel.'
+   ],
+   tutorial:'See: Flatlet Renovation sign-off floor plan (Form&Glow reference example)'},
+  {name:'Midjourney / AI Image Tools',tag:'For mood & concept boards',
+   desc:'General AI image generators are best for early concept and mood exploration — not final sign-off drawings, since they don\'t preserve exact geometry like Veras does.',
+   steps:[
+     'Use reference images of similar rooms/gardens as a starting point.',
+     'Write detailed style prompts: materials, colour palette, lighting, mood, era.',
+     'Generate multiple variations to show a client 2-3 directions before committing to one.',
+     'Best used during the concept/brief stage — pair with Veras or hand-drawn plans for sign-off.'
+   ],
+   tutorial:''}
+];
+
 var BIZ_MARKETING=[
   {channel:'Instagram — From&Glow Strategy',priority:'★★★★★',
    strategy:'Your primary platform for SA luxury residential clients. The luxury design market in SA is driven by visual inspiration — Instagram is where clients discover designers they eventually hire.',
@@ -1954,6 +1989,28 @@ function renderBizMarketing(){
     '"We transform properties into homes — inside and out — as one unified experience. For the SA homeowner who wants a single trusted designer, not two separate conversations."' +
   '</div>';
 }
+function renderAiVizTools(){
+  var c=el('ai-viz-tools');if(!c)return;
+  c.innerHTML=AI_VIZ_TOOLS.map(function(tool){
+    return '<div style="padding:14px 0;border-bottom:1px solid var(--warm)">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">' +
+        '<div style="font-weight:700;font-size:14px;color:var(--ink)">'+tool.name+'</div>' +
+        '<div style="font-size:11px;color:var(--gold);font-weight:600">'+tool.tag+'</div>' +
+      '</div>' +
+      '<div style="font-size:12.5px;color:var(--ink2);line-height:1.55;margin-bottom:8px;font-style:italic;border-left:2px solid var(--gold);padding-left:10px">'+tool.desc+'</div>' +
+      '<ul style="padding-left:16px">' +
+        tool.steps.map(function(s){
+          return '<li style="font-size:12px;color:var(--ink2);margin-bottom:4px;line-height:1.5">'+s+'</li>';
+        }).join('') +
+      '</ul>' +
+      (tool.tutorial?'<div style="font-size:11px;color:var(--ink4);margin-top:6px"><strong>Tutorial:</strong> '+tool.tutorial+'</div>':'') +
+    '</div>';
+  }).join('') +
+  '<div style="background:var(--gold3);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:12px 14px;margin-top:14px;font-size:12.5px;color:var(--ink2);line-height:1.6">'+
+    '<strong style="color:var(--gold)">Workflow tip:</strong> ' +
+    'Start with a polished 2D floor plan (no AI needed) for sign-off. As you grow comfortable with SketchUp, layer in Veras for client-facing concept renders — the geometry stays accurate while the finish looks photoreal.' +
+  '</div>';
+}
 function renderMeas(){var c=el('measlist');if(!c)return;c.innerHTML=MEAS.map(function(g){return '<div class="mg"><div class="mgt">'+g.g+'</div>'+g.items.map(function(item){return '<div class="mr"><div><div class="mn">'+item.n+'</div>'+(item.note?'<div class="mnote">'+item.note+'</div>':'')+'</div><div class="mv">'+item.v+'</div></div>';}).join('')+'</div>';}).join('');}
 function renderStyleTable(){var t=el('styletable');if(!t)return;var hs=['Style','Palette','Materials','Character','Mood','SA Note'],ks=['s','pal','mat','char','mood','note'];t.innerHTML='<thead><tr>'+hs.map(function(h){return '<th>'+h+'</th>';}).join('')+'</tr></thead><tbody>'+STYLES.map(function(row){return '<tr>'+ks.map(function(k,i){return '<td'+(i===0?' class="stn"':'')+'>'+row[k]+'</td>';}).join('')+'</tr>';}).join('')+'</tbody>';}
 
@@ -1997,6 +2054,6 @@ function importBackup(ev){var f=ev.target.files[0];if(!f)return;var se=el('resto
 function gotoTab(tab,btn){document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});el('pg-'+tab).classList.add('on');btn.classList.add('on');window.scrollTo({top:0,behavior:'smooth'});if(tab==='stats')renderStats();}
 
 // INIT
-function init(){getDailyQuoteIndex();renderHomeQuote();updateHome();renderChecklist();renderAnki();renderPlan();renderMasterPlan();renderLearn();renderQuiz();buildFcardCats();renderFlash();renderBriefFields();renderSavedBriefs();renderInspo();renderRubric();renderCritHist();buildFileTabs();renderFiles();renderNoteHist();renderPals();renderMeas();renderStyleTable();renderSAPlants();renderSAClimate();renderSAHardscape();renderSAWater();renderSALayers();renderBizPricing();renderBizTimeline();renderBizProposal();renderBizContract();renderBizBodies();renderBizMarketing();renderStats();renderSavedReviews();initPal();}
+function init(){getDailyQuoteIndex();renderHomeQuote();updateHome();renderChecklist();renderAnki();renderPlan();renderMasterPlan();renderLearn();renderQuiz();buildFcardCats();renderFlash();renderBriefFields();renderSavedBriefs();renderInspo();renderRubric();renderCritHist();buildFileTabs();renderFiles();renderNoteHist();renderPals();renderMeas();renderStyleTable();renderSAPlants();renderSAClimate();renderSAHardscape();renderSAWater();renderSALayers();renderBizPricing();renderBizTimeline();renderBizProposal();renderBizContract();renderBizBodies();renderBizMarketing();renderAiVizTools();renderStats();renderSavedReviews();initPal();}
 window.onload=init;
 </script></body></html>
